@@ -1,0 +1,768 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D203EA6719680B1E00669326 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6619680B1E00669326 /* AVFoundation.framework */; };
+		D203EA6919680B3900669326 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6819680B3900669326 /* QuartzCore.framework */; };
+		D203EA6B19680B4D00669326 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6A19680B4D00669326 /* MobileCoreServices.framework */; };
+		D21CE98D19680D9D006E19C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */; };
+		D21CE98F19680DB8006E19C6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98E19680DB8006E19C6 /* CoreText.framework */; };
+		D21CE99119680DC2006E19C6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE99019680DC2006E19C6 /* ImageIO.framework */; };
+		D21F128A1966ACA7006A8910 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F12891966ACA7006A8910 /* Foundation.framework */; };
+		D21F128C1966ACA7006A8910 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F128B1966ACA7006A8910 /* CoreGraphics.framework */; };
+		D21F128E1966ACA7006A8910 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F128D1966ACA7006A8910 /* UIKit.framework */; };
+		D21F12941966ACA7006A8910 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21F12921966ACA7006A8910 /* InfoPlist.strings */; };
+		D21F12961966ACA7006A8910 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12951966ACA7006A8910 /* main.m */; };
+		D21F129A1966ACA7006A8910 /* YCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12991966ACA7006A8910 /* YCAppDelegate.m */; };
+		D21F129D1966ACA7006A8910 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21F129B1966ACA7006A8910 /* Main_iPhone.storyboard */; };
+		D21F12A01966ACA7006A8910 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21F129E1966ACA7006A8910 /* Main_iPad.storyboard */; };
+		D21F12A51966ACA7006A8910 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D21F12A41966ACA7006A8910 /* Images.xcassets */; };
+		D21F12AC1966ACA8006A8910 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F12AB1966ACA8006A8910 /* XCTest.framework */; };
+		D21F12AD1966ACA8006A8910 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F12891966ACA7006A8910 /* Foundation.framework */; };
+		D21F12AE1966ACA8006A8910 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F128D1966ACA7006A8910 /* UIKit.framework */; };
+		D21F12B61966ACA8006A8910 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21F12B41966ACA8006A8910 /* InfoPlist.strings */; };
+		D21F12B81966ACA8006A8910 /* YChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12B71966ACA8006A8910 /* YChatTests.m */; };
+		D21F12C61966AEFA006A8910 /* YCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12C51966AEFA006A8910 /* YCLoginViewController.m */; };
+		D21F12CD1966B97C006A8910 /* UITextField+PaddingText.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12CC1966B97C006A8910 /* UITextField+PaddingText.m */; };
+		D21F12D11966BC8C006A8910 /* YCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12D01966BC8C006A8910 /* YCTabBarController.m */; };
+		D21F12DC1966CCAC006A8910 /* YCRecentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12DB1966CCAC006A8910 /* YCRecentsViewController.m */; };
+		D21F12E01966CCCF006A8910 /* YCGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F12DF1966CCCF006A8910 /* YCGroupsViewController.m */; };
+		D21F12E41966CFCB006A8910 /* recent-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21F12E31966CFCB006A8910 /* recent-button@2x.png */; };
+		D21F12E61966D096006A8910 /* groups_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21F12E51966D096006A8910 /* groups_button@2x.png */; };
+		D21F12E91966D305006A8910 /* friend-button.png in Resources */ = {isa = PBXBuildFile; fileRef = D21F12E71966D305006A8910 /* friend-button.png */; };
+		D21F12EA1966D305006A8910 /* setting-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21F12E81966D305006A8910 /* setting-button@2x.png */; };
+		D21F13041967091C006A8910 /* TUSKXMPPLIB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13031967091C006A8910 /* TUSKXMPPLIB.framework */; };
+		D21F130619670933006A8910 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130519670933006A8910 /* Security.framework */; };
+		D21F13081967093F006A8910 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13071967093F006A8910 /* CFNetwork.framework */; };
+		D21F130A19670954006A8910 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130919670954006A8910 /* CoreLocation.framework */; };
+		D21F130C19670964006A8910 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130B19670964006A8910 /* libxml2.dylib */; };
+		D21F130E19670979006A8910 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130D19670979006A8910 /* SystemConfiguration.framework */; };
+		D21F13101967097F006A8910 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130F1967097F006A8910 /* CoreData.framework */; };
+		D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13111967099C006A8910 /* libresolv.dylib */; };
+		D21F13161967419F006A8910 /* YCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F13151967419F006A8910 /* YCConstants.m */; };
+		D27E9C351968551C0075AB50 /* XMPPCapabilities.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D27E9C2F1968551C0075AB50 /* XMPPCapabilities.xcdatamodel */; };
+		D27E9C361968551C0075AB50 /* XMPPMessageArchiving.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D27E9C301968551C0075AB50 /* XMPPMessageArchiving.xcdatamodel */; };
+		D27E9C371968551C0075AB50 /* XMPPRoom.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D27E9C311968551C0075AB50 /* XMPPRoom.xcdatamodel */; };
+		D27E9C381968551C0075AB50 /* XMPPRoomHybrid.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D27E9C321968551C0075AB50 /* XMPPRoomHybrid.xcdatamodel */; };
+		D27E9C391968551C0075AB50 /* XMPPRoster.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D27E9C331968551C0075AB50 /* XMPPRoster.xcdatamodel */; };
+		D27E9C3A1968551C0075AB50 /* XMPPvCard.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D27E9C341968551C0075AB50 /* XMPPvCard.xcdatamodel */; };
+		D2F09E2C1968637300340558 /* YCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F09E2B1968637300340558 /* YCSettingsViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D21F12AF1966ACA8006A8910 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D21F127E1966ACA7006A8910 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D21F12851966ACA7006A8910;
+			remoteInfo = YChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D203EA6619680B1E00669326 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D203EA6819680B3900669326 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D203EA6A19680B4D00669326 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		D21CE98E19680DB8006E19C6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		D21CE99019680DC2006E19C6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D21F12861966ACA7006A8910 /* YChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21F12891966ACA7006A8910 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D21F128B1966ACA7006A8910 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D21F128D1966ACA7006A8910 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D21F12911966ACA7006A8910 /* YChat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YChat-Info.plist"; sourceTree = "<group>"; };
+		D21F12931966ACA7006A8910 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D21F12951966ACA7006A8910 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D21F12971966ACA7006A8910 /* YChat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YChat-Prefix.pch"; sourceTree = "<group>"; };
+		D21F12981966ACA7006A8910 /* YCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCAppDelegate.h; sourceTree = "<group>"; };
+		D21F12991966ACA7006A8910 /* YCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCAppDelegate.m; sourceTree = "<group>"; };
+		D21F129C1966ACA7006A8910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		D21F129F1966ACA7006A8910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D21F12A41966ACA7006A8910 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D21F12AA1966ACA8006A8910 /* YChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21F12AB1966ACA8006A8910 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D21F12B31966ACA8006A8910 /* YChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YChatTests-Info.plist"; sourceTree = "<group>"; };
+		D21F12B51966ACA8006A8910 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D21F12B71966ACA8006A8910 /* YChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YChatTests.m; sourceTree = "<group>"; };
+		D21F12C41966AEFA006A8910 /* YCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YCLoginViewController.h; path = Classes/Controllers/Login/YCLoginViewController.h; sourceTree = "<group>"; };
+		D21F12C51966AEFA006A8910 /* YCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YCLoginViewController.m; path = Classes/Controllers/Login/YCLoginViewController.m; sourceTree = "<group>"; };
+		D21F12CB1966B97C006A8910 /* UITextField+PaddingText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+PaddingText.h"; sourceTree = "<group>"; };
+		D21F12CC1966B97C006A8910 /* UITextField+PaddingText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+PaddingText.m"; sourceTree = "<group>"; };
+		D21F12CF1966BC8C006A8910 /* YCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YCTabBarController.h; path = Classes/Controllers/TabBar/YCTabBarController.h; sourceTree = "<group>"; };
+		D21F12D01966BC8C006A8910 /* YCTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YCTabBarController.m; path = Classes/Controllers/TabBar/YCTabBarController.m; sourceTree = "<group>"; };
+		D21F12DA1966CCAC006A8910 /* YCRecentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YCRecentsViewController.h; path = Classes/Controllers/TabBar/Recents/YCRecentsViewController.h; sourceTree = "<group>"; };
+		D21F12DB1966CCAC006A8910 /* YCRecentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YCRecentsViewController.m; path = Classes/Controllers/TabBar/Recents/YCRecentsViewController.m; sourceTree = "<group>"; };
+		D21F12DE1966CCCF006A8910 /* YCGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YCGroupsViewController.h; path = Classes/Controllers/TabBar/Groups/YCGroupsViewController.h; sourceTree = "<group>"; };
+		D21F12DF1966CCCF006A8910 /* YCGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YCGroupsViewController.m; path = Classes/Controllers/TabBar/Groups/YCGroupsViewController.m; sourceTree = "<group>"; };
+		D21F12E31966CFCB006A8910 /* recent-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-button@2x.png"; sourceTree = "<group>"; };
+		D21F12E51966D096006A8910 /* groups_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groups_button@2x.png"; sourceTree = "<group>"; };
+		D21F12E71966D305006A8910 /* friend-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friend-button.png"; sourceTree = "<group>"; };
+		D21F12E81966D305006A8910 /* setting-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-button@2x.png"; sourceTree = "<group>"; };
+		D21F13031967091C006A8910 /* TUSKXMPPLIB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TUSKXMPPLIB.framework; path = XMPPFramework/TUSKXMPPLIB.framework; sourceTree = "<group>"; };
+		D21F130519670933006A8910 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D21F13071967093F006A8910 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D21F130919670954006A8910 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D21F130B19670964006A8910 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D21F130D19670979006A8910 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D21F130F1967097F006A8910 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D21F13111967099C006A8910 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		D21F13141967419F006A8910 /* YCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCConstants.h; sourceTree = "<group>"; };
+		D21F13151967419F006A8910 /* YCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCConstants.m; sourceTree = "<group>"; };
+		D27E9C2F1968551C0075AB50 /* XMPPCapabilities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPCapabilities.xcdatamodel; sourceTree = "<group>"; };
+		D27E9C301968551C0075AB50 /* XMPPMessageArchiving.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPMessageArchiving.xcdatamodel; sourceTree = "<group>"; };
+		D27E9C311968551C0075AB50 /* XMPPRoom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoom.xcdatamodel; sourceTree = "<group>"; };
+		D27E9C321968551C0075AB50 /* XMPPRoomHybrid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoomHybrid.xcdatamodel; sourceTree = "<group>"; };
+		D27E9C331968551C0075AB50 /* XMPPRoster.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoster.xcdatamodel; sourceTree = "<group>"; };
+		D27E9C341968551C0075AB50 /* XMPPvCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPvCard.xcdatamodel; sourceTree = "<group>"; };
+		D27E9C3C19685B990075AB50 /* YCChatConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCChatConnectionProtocol.h; sourceTree = "<group>"; };
+		D2F09E2A1968637300340558 /* YCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCSettingsViewController.h; sourceTree = "<group>"; };
+		D2F09E2B1968637300340558 /* YCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCSettingsViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D21F12831966ACA7006A8910 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21CE99119680DC2006E19C6 /* ImageIO.framework in Frameworks */,
+				D21CE98F19680DB8006E19C6 /* CoreText.framework in Frameworks */,
+				D21CE98D19680D9D006E19C6 /* libz.1.2.5.dylib in Frameworks */,
+				D203EA6B19680B4D00669326 /* MobileCoreServices.framework in Frameworks */,
+				D203EA6919680B3900669326 /* QuartzCore.framework in Frameworks */,
+				D203EA6719680B1E00669326 /* AVFoundation.framework in Frameworks */,
+				D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */,
+				D21F13101967097F006A8910 /* CoreData.framework in Frameworks */,
+				D21F130E19670979006A8910 /* SystemConfiguration.framework in Frameworks */,
+				D21F130C19670964006A8910 /* libxml2.dylib in Frameworks */,
+				D21F130A19670954006A8910 /* CoreLocation.framework in Frameworks */,
+				D21F13081967093F006A8910 /* CFNetwork.framework in Frameworks */,
+				D21F130619670933006A8910 /* Security.framework in Frameworks */,
+				D21F13041967091C006A8910 /* TUSKXMPPLIB.framework in Frameworks */,
+				D21F128C1966ACA7006A8910 /* CoreGraphics.framework in Frameworks */,
+				D21F128E1966ACA7006A8910 /* UIKit.framework in Frameworks */,
+				D21F128A1966ACA7006A8910 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21F12A71966ACA8006A8910 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21F12AC1966ACA8006A8910 /* XCTest.framework in Frameworks */,
+				D21F12AE1966ACA8006A8910 /* UIKit.framework in Frameworks */,
+				D21F12AD1966ACA8006A8910 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D21F127D1966ACA7006A8910 = {
+			isa = PBXGroup;
+			children = (
+				D21F128F1966ACA7006A8910 /* YChat */,
+				D21F12B11966ACA8006A8910 /* YChatTests */,
+				D21F12881966ACA7006A8910 /* Frameworks */,
+				D21F12871966ACA7006A8910 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D21F12871966ACA7006A8910 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12861966ACA7006A8910 /* YChat.app */,
+				D21F12AA1966ACA8006A8910 /* YChatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D21F12881966ACA7006A8910 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D21CE99019680DC2006E19C6 /* ImageIO.framework */,
+				D21CE98E19680DB8006E19C6 /* CoreText.framework */,
+				D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */,
+				D203EA6A19680B4D00669326 /* MobileCoreServices.framework */,
+				D203EA6819680B3900669326 /* QuartzCore.framework */,
+				D203EA6619680B1E00669326 /* AVFoundation.framework */,
+				D21F13111967099C006A8910 /* libresolv.dylib */,
+				D21F130F1967097F006A8910 /* CoreData.framework */,
+				D21F130D19670979006A8910 /* SystemConfiguration.framework */,
+				D21F130B19670964006A8910 /* libxml2.dylib */,
+				D21F130919670954006A8910 /* CoreLocation.framework */,
+				D21F13071967093F006A8910 /* CFNetwork.framework */,
+				D21F130519670933006A8910 /* Security.framework */,
+				D21F13031967091C006A8910 /* TUSKXMPPLIB.framework */,
+				D21F12891966ACA7006A8910 /* Foundation.framework */,
+				D21F128B1966ACA7006A8910 /* CoreGraphics.framework */,
+				D21F128D1966ACA7006A8910 /* UIKit.framework */,
+				D21F12AB1966ACA8006A8910 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D21F128F1966ACA7006A8910 /* YChat */ = {
+			isa = PBXGroup;
+			children = (
+				D27E9C2E1968551C0075AB50 /* CoreDataModels */,
+				D21F12C11966AE00006A8910 /* Classes */,
+				D21F13001966EEC6006A8910 /* Storyboard */,
+				D21F12E11966CFCB006A8910 /* Images */,
+				D21F12A41966ACA7006A8910 /* Images.xcassets */,
+				D21F12901966ACA7006A8910 /* Supporting Files */,
+			);
+			path = YChat;
+			sourceTree = "<group>";
+		};
+		D21F12901966ACA7006A8910 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12911966ACA7006A8910 /* YChat-Info.plist */,
+				D21F12921966ACA7006A8910 /* InfoPlist.strings */,
+				D21F12951966ACA7006A8910 /* main.m */,
+				D21F12971966ACA7006A8910 /* YChat-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D21F12B11966ACA8006A8910 /* YChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12B71966ACA8006A8910 /* YChatTests.m */,
+				D21F12B21966ACA8006A8910 /* Supporting Files */,
+			);
+			path = YChatTests;
+			sourceTree = "<group>";
+		};
+		D21F12B21966ACA8006A8910 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12B31966ACA8006A8910 /* YChatTests-Info.plist */,
+				D21F12B41966ACA8006A8910 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D21F12C11966AE00006A8910 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D27E9C3B19685B850075AB50 /* Protocol */,
+				D21F131319674117006A8910 /* Constants */,
+				D21F12C81966B97C006A8910 /* Extensions */,
+				D21F12C21966AE16006A8910 /* Controllers */,
+				D21F12981966ACA7006A8910 /* YCAppDelegate.h */,
+				D21F12991966ACA7006A8910 /* YCAppDelegate.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		D21F12C21966AE16006A8910 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12CE1966BC45006A8910 /* TabBar */,
+				D21F12C31966AE3D006A8910 /* Login */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D21F12C31966AE3D006A8910 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12C41966AEFA006A8910 /* YCLoginViewController.h */,
+				D21F12C51966AEFA006A8910 /* YCLoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		D21F12C81966B97C006A8910 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12C91966B97C006A8910 /* Categories */,
+			);
+			name = Extensions;
+			path = Classes/Extensions;
+			sourceTree = "<group>";
+		};
+		D21F12C91966B97C006A8910 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12CA1966B97C006A8910 /* UITextField */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		D21F12CA1966B97C006A8910 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12CB1966B97C006A8910 /* UITextField+PaddingText.h */,
+				D21F12CC1966B97C006A8910 /* UITextField+PaddingText.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		D21F12CE1966BC45006A8910 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D2F09E281968632C00340558 /* Settings */,
+				D21F12DD1966CCB4006A8910 /* Groups */,
+				D21F12D91966CC7B006A8910 /* Recents */,
+				D21F12CF1966BC8C006A8910 /* YCTabBarController.h */,
+				D21F12D01966BC8C006A8910 /* YCTabBarController.m */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		D21F12D91966CC7B006A8910 /* Recents */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12DA1966CCAC006A8910 /* YCRecentsViewController.h */,
+				D21F12DB1966CCAC006A8910 /* YCRecentsViewController.m */,
+			);
+			name = Recents;
+			sourceTree = "<group>";
+		};
+		D21F12DD1966CCB4006A8910 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12DE1966CCCF006A8910 /* YCGroupsViewController.h */,
+				D21F12DF1966CCCF006A8910 /* YCGroupsViewController.m */,
+			);
+			name = Groups;
+			sourceTree = "<group>";
+		};
+		D21F12E11966CFCB006A8910 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12E21966CFCB006A8910 /* Tab_Icons */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		D21F12E21966CFCB006A8910 /* Tab_Icons */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12E71966D305006A8910 /* friend-button.png */,
+				D21F12E81966D305006A8910 /* setting-button@2x.png */,
+				D21F12E51966D096006A8910 /* groups_button@2x.png */,
+				D21F12E31966CFCB006A8910 /* recent-button@2x.png */,
+			);
+			path = Tab_Icons;
+			sourceTree = "<group>";
+		};
+		D21F13001966EEC6006A8910 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				D21F129B1966ACA7006A8910 /* Main_iPhone.storyboard */,
+				D21F129E1966ACA7006A8910 /* Main_iPad.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		D21F131319674117006A8910 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D21F13141967419F006A8910 /* YCConstants.h */,
+				D21F13151967419F006A8910 /* YCConstants.m */,
+			);
+			name = Constants;
+			path = Classes/Constants;
+			sourceTree = "<group>";
+		};
+		D27E9C2E1968551C0075AB50 /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				D27E9C2F1968551C0075AB50 /* XMPPCapabilities.xcdatamodel */,
+				D27E9C301968551C0075AB50 /* XMPPMessageArchiving.xcdatamodel */,
+				D27E9C311968551C0075AB50 /* XMPPRoom.xcdatamodel */,
+				D27E9C321968551C0075AB50 /* XMPPRoomHybrid.xcdatamodel */,
+				D27E9C331968551C0075AB50 /* XMPPRoster.xcdatamodel */,
+				D27E9C341968551C0075AB50 /* XMPPvCard.xcdatamodel */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		D27E9C3B19685B850075AB50 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D27E9C3C19685B990075AB50 /* YCChatConnectionProtocol.h */,
+			);
+			name = Protocol;
+			path = Classes/Protocol;
+			sourceTree = "<group>";
+		};
+		D2F09E281968632C00340558 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D2F09E2A1968637300340558 /* YCSettingsViewController.h */,
+				D2F09E2B1968637300340558 /* YCSettingsViewController.m */,
+			);
+			name = Settings;
+			path = Classes/Controllers/TabBar/Settings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D21F12851966ACA7006A8910 /* YChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21F12BB1966ACA8006A8910 /* Build configuration list for PBXNativeTarget "YChat" */;
+			buildPhases = (
+				D21F12821966ACA7006A8910 /* Sources */,
+				D21F12831966ACA7006A8910 /* Frameworks */,
+				D21F12841966ACA7006A8910 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YChat;
+			productName = YChat;
+			productReference = D21F12861966ACA7006A8910 /* YChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D21F12A91966ACA8006A8910 /* YChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21F12BE1966ACA8006A8910 /* Build configuration list for PBXNativeTarget "YChatTests" */;
+			buildPhases = (
+				D21F12A61966ACA8006A8910 /* Sources */,
+				D21F12A71966ACA8006A8910 /* Frameworks */,
+				D21F12A81966ACA8006A8910 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D21F12B01966ACA8006A8910 /* PBXTargetDependency */,
+			);
+			name = YChatTests;
+			productName = YChatTests;
+			productReference = D21F12AA1966ACA8006A8910 /* YChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D21F127E1966ACA7006A8910 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = YC;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = sharaai;
+				TargetAttributes = {
+					D21F12A91966ACA8006A8910 = {
+						TestTargetID = D21F12851966ACA7006A8910;
+					};
+				};
+			};
+			buildConfigurationList = D21F12811966ACA7006A8910 /* Build configuration list for PBXProject "YChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D21F127D1966ACA7006A8910;
+			productRefGroup = D21F12871966ACA7006A8910 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D21F12851966ACA7006A8910 /* YChat */,
+				D21F12A91966ACA8006A8910 /* YChatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D21F12841966ACA7006A8910 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21F12E91966D305006A8910 /* friend-button.png in Resources */,
+				D21F12EA1966D305006A8910 /* setting-button@2x.png in Resources */,
+				D21F12A01966ACA7006A8910 /* Main_iPad.storyboard in Resources */,
+				D21F12A51966ACA7006A8910 /* Images.xcassets in Resources */,
+				D21F12E61966D096006A8910 /* groups_button@2x.png in Resources */,
+				D21F12E41966CFCB006A8910 /* recent-button@2x.png in Resources */,
+				D21F129D1966ACA7006A8910 /* Main_iPhone.storyboard in Resources */,
+				D21F12941966ACA7006A8910 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21F12A81966ACA8006A8910 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21F12B61966ACA8006A8910 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D21F12821966ACA7006A8910 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21F129A1966ACA7006A8910 /* YCAppDelegate.m in Sources */,
+				D27E9C391968551C0075AB50 /* XMPPRoster.xcdatamodel in Sources */,
+				D2F09E2C1968637300340558 /* YCSettingsViewController.m in Sources */,
+				D21F13161967419F006A8910 /* YCConstants.m in Sources */,
+				D27E9C361968551C0075AB50 /* XMPPMessageArchiving.xcdatamodel in Sources */,
+				D27E9C3A1968551C0075AB50 /* XMPPvCard.xcdatamodel in Sources */,
+				D21F12C61966AEFA006A8910 /* YCLoginViewController.m in Sources */,
+				D27E9C351968551C0075AB50 /* XMPPCapabilities.xcdatamodel in Sources */,
+				D21F12CD1966B97C006A8910 /* UITextField+PaddingText.m in Sources */,
+				D27E9C381968551C0075AB50 /* XMPPRoomHybrid.xcdatamodel in Sources */,
+				D21F12D11966BC8C006A8910 /* YCTabBarController.m in Sources */,
+				D21F12961966ACA7006A8910 /* main.m in Sources */,
+				D21F12DC1966CCAC006A8910 /* YCRecentsViewController.m in Sources */,
+				D27E9C371968551C0075AB50 /* XMPPRoom.xcdatamodel in Sources */,
+				D21F12E01966CCCF006A8910 /* YCGroupsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21F12A61966ACA8006A8910 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21F12B81966ACA8006A8910 /* YChatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D21F12B01966ACA8006A8910 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D21F12851966ACA7006A8910 /* YChat */;
+			targetProxy = D21F12AF1966ACA8006A8910 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D21F12921966ACA7006A8910 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21F12931966ACA7006A8910 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D21F129B1966ACA7006A8910 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21F129C1966ACA7006A8910 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		D21F129E1966ACA7006A8910 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21F129F1966ACA7006A8910 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		D21F12B41966ACA8006A8910 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21F12B51966ACA8006A8910 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D21F12B91966ACA8006A8910 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D21F12BA1966ACA8006A8910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D21F12BC1966ACA8006A8910 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/XMPPFramework";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YChat/YChat-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "YChat/YChat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D21F12BD1966ACA8006A8910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/XMPPFramework";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YChat/YChat-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "YChat/YChat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D21F12BF1966ACA8006A8910 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YChat.app/YChat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YChat/YChat-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "YChatTests/YChatTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D21F12C01966ACA8006A8910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YChat.app/YChat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YChat/YChat-Prefix.pch";
+				INFOPLIST_FILE = "YChatTests/YChatTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D21F12811966ACA7006A8910 /* Build configuration list for PBXProject "YChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21F12B91966ACA8006A8910 /* Debug */,
+				D21F12BA1966ACA8006A8910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D21F12BB1966ACA8006A8910 /* Build configuration list for PBXNativeTarget "YChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21F12BC1966ACA8006A8910 /* Debug */,
+				D21F12BD1966ACA8006A8910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D21F12BE1966ACA8006A8910 /* Build configuration list for PBXNativeTarget "YChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21F12BF1966ACA8006A8910 /* Debug */,
+				D21F12C01966ACA8006A8910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D21F127E1966ACA7006A8910 /* Project object */;
+}
