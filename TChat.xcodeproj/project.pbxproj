@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4FC0D2441968C7180055812C /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D2101968C7170055812C /* Main_iPad.storyboard */; };
+		4FC0D2451968C7180055812C /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D2121968C7170055812C /* Main_iPhone.storyboard */; };
+		4FC0D2461968C7180055812C /* TCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2171968C7170055812C /* TCConstants.m */; };
+		4FC0D2471968C7180055812C /* TCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D21B1968C7170055812C /* TCLoginViewController.m */; };
+		4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D21F1968C7170055812C /* TCGroupsViewController.m */; };
+		4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2221968C7170055812C /* TCRecentsViewController.m */; };
+		4FC0D24A1968C7180055812C /* TCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2251968C7170055812C /* TCSettingsViewController.m */; };
+		4FC0D24B1968C7180055812C /* TCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2271968C7170055812C /* TCTabBarController.m */; };
+		4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D22C1968C7170055812C /* UITextField+PaddingText.m */; };
+		4FC0D24D1968C7180055812C /* XMPPCapabilities.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2301968C7180055812C /* XMPPCapabilities.xcdatamodel */; };
+		4FC0D24E1968C7180055812C /* XMPPMessageArchiving.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2311968C7180055812C /* XMPPMessageArchiving.xcdatamodel */; };
+		4FC0D24F1968C7180055812C /* XMPPRoom.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2321968C7180055812C /* XMPPRoom.xcdatamodel */; };
+		4FC0D2501968C7180055812C /* XMPPRoomHybrid.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2331968C7180055812C /* XMPPRoomHybrid.xcdatamodel */; };
+		4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2341968C7180055812C /* XMPPRoster.xcdatamodel */; };
+		4FC0D2521968C7180055812C /* XMPPvCard.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2351968C7180055812C /* XMPPvCard.xcdatamodel */; };
+		4FC0D2531968C7180055812C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D2361968C7180055812C /* InfoPlist.strings */; };
+		4FC0D2541968C7180055812C /* friend-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23A1968C7180055812C /* friend-button.png */; };
+		4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23B1968C7180055812C /* groups_button@2x.png */; };
+		4FC0D2561968C7180055812C /* recent-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23C1968C7180055812C /* recent-button@2x.png */; };
+		4FC0D2571968C7180055812C /* setting-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23D1968C7180055812C /* setting-button@2x.png */; };
+		4FC0D2581968C7180055812C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23E1968C7180055812C /* Images.xcassets */; };
+		4FC0D2591968C7180055812C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D23F1968C7180055812C /* main.m */; };
+		4FC0D25A1968C7180055812C /* TCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2411968C7180055812C /* TCAppDelegate.m */; };
+		4FC0D25B1968C7180055812C /* TChat-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D2421968C7180055812C /* TChat-Info.plist */; };
+		D203EA6719680B1E00669326 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6619680B1E00669326 /* AVFoundation.framework */; };
+		D203EA6919680B3900669326 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6819680B3900669326 /* QuartzCore.framework */; };
+		D203EA6B19680B4D00669326 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6A19680B4D00669326 /* MobileCoreServices.framework */; };
+		D21CE98D19680D9D006E19C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */; };
+		D21CE98F19680DB8006E19C6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98E19680DB8006E19C6 /* CoreText.framework */; };
+		D21CE99119680DC2006E19C6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE99019680DC2006E19C6 /* ImageIO.framework */; };
+		D21F128A1966ACA7006A8910 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F12891966ACA7006A8910 /* Foundation.framework */; };
+		D21F128C1966ACA7006A8910 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F128B1966ACA7006A8910 /* CoreGraphics.framework */; };
+		D21F128E1966ACA7006A8910 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F128D1966ACA7006A8910 /* UIKit.framework */; };
+		D21F13041967091C006A8910 /* TUSKXMPPLIB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13031967091C006A8910 /* TUSKXMPPLIB.framework */; };
+		D21F130619670933006A8910 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130519670933006A8910 /* Security.framework */; };
+		D21F13081967093F006A8910 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13071967093F006A8910 /* CFNetwork.framework */; };
+		D21F130A19670954006A8910 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130919670954006A8910 /* CoreLocation.framework */; };
+		D21F130C19670964006A8910 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130B19670964006A8910 /* libxml2.dylib */; };
+		D21F130E19670979006A8910 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130D19670979006A8910 /* SystemConfiguration.framework */; };
+		D21F13101967097F006A8910 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130F1967097F006A8910 /* CoreData.framework */; };
+		D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13111967099C006A8910 /* libresolv.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4FC0D2111968C7170055812C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		4FC0D2131968C7170055812C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		4FC0D2161968C7170055812C /* TCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
+		4FC0D2171968C7170055812C /* TCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCConstants.m; sourceTree = "<group>"; };
+		4FC0D21A1968C7170055812C /* TCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginViewController.h; sourceTree = "<group>"; };
+		4FC0D21B1968C7170055812C /* TCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginViewController.m; sourceTree = "<group>"; };
+		4FC0D21E1968C7170055812C /* TCGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGroupsViewController.h; sourceTree = "<group>"; };
+		4FC0D21F1968C7170055812C /* TCGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGroupsViewController.m; sourceTree = "<group>"; };
+		4FC0D2211968C7170055812C /* TCRecentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRecentsViewController.h; sourceTree = "<group>"; };
+		4FC0D2221968C7170055812C /* TCRecentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRecentsViewController.m; sourceTree = "<group>"; };
+		4FC0D2241968C7170055812C /* TCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSettingsViewController.h; sourceTree = "<group>"; };
+		4FC0D2251968C7170055812C /* TCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSettingsViewController.m; sourceTree = "<group>"; };
+		4FC0D2261968C7170055812C /* TCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTabBarController.h; sourceTree = "<group>"; };
+		4FC0D2271968C7170055812C /* TCTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTabBarController.m; sourceTree = "<group>"; };
+		4FC0D22B1968C7170055812C /* UITextField+PaddingText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+PaddingText.h"; sourceTree = "<group>"; };
+		4FC0D22C1968C7170055812C /* UITextField+PaddingText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+PaddingText.m"; sourceTree = "<group>"; };
+		4FC0D22E1968C7170055812C /* TCChatConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatConnectionProtocol.h; sourceTree = "<group>"; };
+		4FC0D2301968C7180055812C /* XMPPCapabilities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPCapabilities.xcdatamodel; sourceTree = "<group>"; };
+		4FC0D2311968C7180055812C /* XMPPMessageArchiving.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPMessageArchiving.xcdatamodel; sourceTree = "<group>"; };
+		4FC0D2321968C7180055812C /* XMPPRoom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoom.xcdatamodel; sourceTree = "<group>"; };
+		4FC0D2331968C7180055812C /* XMPPRoomHybrid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoomHybrid.xcdatamodel; sourceTree = "<group>"; };
+		4FC0D2341968C7180055812C /* XMPPRoster.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoster.xcdatamodel; sourceTree = "<group>"; };
+		4FC0D2351968C7180055812C /* XMPPvCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPvCard.xcdatamodel; sourceTree = "<group>"; };
+		4FC0D2371968C7180055812C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4FC0D23A1968C7180055812C /* friend-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friend-button.png"; sourceTree = "<group>"; };
+		4FC0D23B1968C7180055812C /* groups_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groups_button@2x.png"; sourceTree = "<group>"; };
+		4FC0D23C1968C7180055812C /* recent-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-button@2x.png"; sourceTree = "<group>"; };
+		4FC0D23D1968C7180055812C /* setting-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-button@2x.png"; sourceTree = "<group>"; };
+		4FC0D23E1968C7180055812C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4FC0D23F1968C7180055812C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4FC0D2401968C7180055812C /* TCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCAppDelegate.h; path = ../TCAppDelegate.h; sourceTree = "<group>"; };
+		4FC0D2411968C7180055812C /* TCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCAppDelegate.m; path = ../TCAppDelegate.m; sourceTree = "<group>"; };
+		4FC0D2421968C7180055812C /* TChat-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TChat-Info.plist"; sourceTree = "<group>"; };
+		4FC0D2431968C7180055812C /* TChat-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TChat-Prefix.pch"; sourceTree = "<group>"; };
+		D203EA6619680B1E00669326 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D203EA6819680B3900669326 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D203EA6A19680B4D00669326 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		D21CE98E19680DB8006E19C6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		D21CE99019680DC2006E19C6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D21F12861966ACA7006A8910 /* TChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21F12891966ACA7006A8910 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D21F128B1966ACA7006A8910 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D21F128D1966ACA7006A8910 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D21F12AB1966ACA8006A8910 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D21F13031967091C006A8910 /* TUSKXMPPLIB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TUSKXMPPLIB.framework; path = XMPPFramework/TUSKXMPPLIB.framework; sourceTree = "<group>"; };
+		D21F130519670933006A8910 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D21F13071967093F006A8910 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D21F130919670954006A8910 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D21F130B19670964006A8910 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D21F130D19670979006A8910 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D21F130F1967097F006A8910 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D21F13111967099C006A8910 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D21F12831966ACA7006A8910 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21CE99119680DC2006E19C6 /* ImageIO.framework in Frameworks */,
+				D21CE98F19680DB8006E19C6 /* CoreText.framework in Frameworks */,
+				D21CE98D19680D9D006E19C6 /* libz.1.2.5.dylib in Frameworks */,
+				D203EA6B19680B4D00669326 /* MobileCoreServices.framework in Frameworks */,
+				D203EA6919680B3900669326 /* QuartzCore.framework in Frameworks */,
+				D203EA6719680B1E00669326 /* AVFoundation.framework in Frameworks */,
+				D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */,
+				D21F13101967097F006A8910 /* CoreData.framework in Frameworks */,
+				D21F130E19670979006A8910 /* SystemConfiguration.framework in Frameworks */,
+				D21F130C19670964006A8910 /* libxml2.dylib in Frameworks */,
+				D21F130A19670954006A8910 /* CoreLocation.framework in Frameworks */,
+				D21F13081967093F006A8910 /* CFNetwork.framework in Frameworks */,
+				D21F130619670933006A8910 /* Security.framework in Frameworks */,
+				D21F13041967091C006A8910 /* TUSKXMPPLIB.framework in Frameworks */,
+				D21F128C1966ACA7006A8910 /* CoreGraphics.framework in Frameworks */,
+				D21F128E1966ACA7006A8910 /* UIKit.framework in Frameworks */,
+				D21F128A1966ACA7006A8910 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4FC0D20F1968C7170055812C /* TChat */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2141968C7170055812C /* Classes */,
+				4FC0D22F1968C7170055812C /* CoreDataModels */,
+				4FC0D2381968C7180055812C /* Images */,
+				4FC0D23E1968C7180055812C /* Images.xcassets */,
+				4FC0D2361968C7180055812C /* InfoPlist.strings */,
+				4FC0D23F1968C7180055812C /* main.m */,
+				4FC0D2101968C7170055812C /* Main_iPad.storyboard */,
+				4FC0D2121968C7170055812C /* Main_iPhone.storyboard */,
+				4FC0D2421968C7180055812C /* TChat-Info.plist */,
+				4FC0D2431968C7180055812C /* TChat-Prefix.pch */,
+			);
+			path = TChat;
+			sourceTree = "<group>";
+		};
+		4FC0D2141968C7170055812C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2151968C7170055812C /* Constants */,
+				4FC0D2181968C7170055812C /* Controllers */,
+				4FC0D2401968C7180055812C /* TCAppDelegate.h */,
+				4FC0D2411968C7180055812C /* TCAppDelegate.m */,
+				4FC0D2281968C7170055812C /* Extensions */,
+				4FC0D22D1968C7170055812C /* Protocol */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		4FC0D2151968C7170055812C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2161968C7170055812C /* TCConstants.h */,
+				4FC0D2171968C7170055812C /* TCConstants.m */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		4FC0D2181968C7170055812C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2191968C7170055812C /* Login */,
+				4FC0D21C1968C7170055812C /* TabBar */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4FC0D2191968C7170055812C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D21A1968C7170055812C /* TCLoginViewController.h */,
+				4FC0D21B1968C7170055812C /* TCLoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4FC0D21C1968C7170055812C /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D21D1968C7170055812C /* Groups */,
+				4FC0D2201968C7170055812C /* Recents */,
+				4FC0D2231968C7170055812C /* Settings */,
+				4FC0D2261968C7170055812C /* TCTabBarController.h */,
+				4FC0D2271968C7170055812C /* TCTabBarController.m */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4FC0D21D1968C7170055812C /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D21E1968C7170055812C /* TCGroupsViewController.h */,
+				4FC0D21F1968C7170055812C /* TCGroupsViewController.m */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		4FC0D2201968C7170055812C /* Recents */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2211968C7170055812C /* TCRecentsViewController.h */,
+				4FC0D2221968C7170055812C /* TCRecentsViewController.m */,
+			);
+			path = Recents;
+			sourceTree = "<group>";
+		};
+		4FC0D2231968C7170055812C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2241968C7170055812C /* TCSettingsViewController.h */,
+				4FC0D2251968C7170055812C /* TCSettingsViewController.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		4FC0D2281968C7170055812C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2291968C7170055812C /* Categories */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4FC0D2291968C7170055812C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D22A1968C7170055812C /* UITextField */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4FC0D22A1968C7170055812C /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D22B1968C7170055812C /* UITextField+PaddingText.h */,
+				4FC0D22C1968C7170055812C /* UITextField+PaddingText.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		4FC0D22D1968C7170055812C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D22E1968C7170055812C /* TCChatConnectionProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4FC0D22F1968C7170055812C /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2301968C7180055812C /* XMPPCapabilities.xcdatamodel */,
+				4FC0D2311968C7180055812C /* XMPPMessageArchiving.xcdatamodel */,
+				4FC0D2321968C7180055812C /* XMPPRoom.xcdatamodel */,
+				4FC0D2331968C7180055812C /* XMPPRoomHybrid.xcdatamodel */,
+				4FC0D2341968C7180055812C /* XMPPRoster.xcdatamodel */,
+				4FC0D2351968C7180055812C /* XMPPvCard.xcdatamodel */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		4FC0D2381968C7180055812C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2391968C7180055812C /* Tab_Icons */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		4FC0D2391968C7180055812C /* Tab_Icons */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D23A1968C7180055812C /* friend-button.png */,
+				4FC0D23B1968C7180055812C /* groups_button@2x.png */,
+				4FC0D23C1968C7180055812C /* recent-button@2x.png */,
+				4FC0D23D1968C7180055812C /* setting-button@2x.png */,
+			);
+			path = Tab_Icons;
+			sourceTree = "<group>";
+		};
+		D21F127D1966ACA7006A8910 = {
+			isa = PBXGroup;
+			children = (
+				4FC0D20F1968C7170055812C /* TChat */,
+				D21F12881966ACA7006A8910 /* Frameworks */,
+				D21F12871966ACA7006A8910 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D21F12871966ACA7006A8910 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D21F12861966ACA7006A8910 /* TChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D21F12881966ACA7006A8910 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D21CE99019680DC2006E19C6 /* ImageIO.framework */,
+				D21CE98E19680DB8006E19C6 /* CoreText.framework */,
+				D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */,
+				D203EA6A19680B4D00669326 /* MobileCoreServices.framework */,
+				D203EA6819680B3900669326 /* QuartzCore.framework */,
+				D203EA6619680B1E00669326 /* AVFoundation.framework */,
+				D21F13111967099C006A8910 /* libresolv.dylib */,
+				D21F130F1967097F006A8910 /* CoreData.framework */,
+				D21F130D19670979006A8910 /* SystemConfiguration.framework */,
+				D21F130B19670964006A8910 /* libxml2.dylib */,
+				D21F130919670954006A8910 /* CoreLocation.framework */,
+				D21F13071967093F006A8910 /* CFNetwork.framework */,
+				D21F130519670933006A8910 /* Security.framework */,
+				D21F13031967091C006A8910 /* TUSKXMPPLIB.framework */,
+				D21F12891966ACA7006A8910 /* Foundation.framework */,
+				D21F128B1966ACA7006A8910 /* CoreGraphics.framework */,
+				D21F128D1966ACA7006A8910 /* UIKit.framework */,
+				D21F12AB1966ACA8006A8910 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D21F12851966ACA7006A8910 /* TChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21F12BB1966ACA8006A8910 /* Build configuration list for PBXNativeTarget "TChat" */;
+			buildPhases = (
+				D21F12821966ACA7006A8910 /* Sources */,
+				D21F12831966ACA7006A8910 /* Frameworks */,
+				D21F12841966ACA7006A8910 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TChat;
+			productName = YChat;
+			productReference = D21F12861966ACA7006A8910 /* TChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D21F127E1966ACA7006A8910 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TC;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Tusk Solutions";
+			};
+			buildConfigurationList = D21F12811966ACA7006A8910 /* Build configuration list for PBXProject "TChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D21F127D1966ACA7006A8910;
+			productRefGroup = D21F12871966ACA7006A8910 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D21F12851966ACA7006A8910 /* TChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D21F12841966ACA7006A8910 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FC0D25B1968C7180055812C /* TChat-Info.plist in Resources */,
+				4FC0D2451968C7180055812C /* Main_iPhone.storyboard in Resources */,
+				4FC0D2581968C7180055812C /* Images.xcassets in Resources */,
+				4FC0D2561968C7180055812C /* recent-button@2x.png in Resources */,
+				4FC0D2541968C7180055812C /* friend-button.png in Resources */,
+				4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */,
+				4FC0D2531968C7180055812C /* InfoPlist.strings in Resources */,
+				4FC0D2441968C7180055812C /* Main_iPad.storyboard in Resources */,
+				4FC0D2571968C7180055812C /* setting-button@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D21F12821966ACA7006A8910 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FC0D25A1968C7180055812C /* TCAppDelegate.m in Sources */,
+				4FC0D2501968C7180055812C /* XMPPRoomHybrid.xcdatamodel in Sources */,
+				4FC0D2461968C7180055812C /* TCConstants.m in Sources */,
+				4FC0D24E1968C7180055812C /* XMPPMessageArchiving.xcdatamodel in Sources */,
+				4FC0D2471968C7180055812C /* TCLoginViewController.m in Sources */,
+				4FC0D24B1968C7180055812C /* TCTabBarController.m in Sources */,
+				4FC0D24F1968C7180055812C /* XMPPRoom.xcdatamodel in Sources */,
+				4FC0D24A1968C7180055812C /* TCSettingsViewController.m in Sources */,
+				4FC0D2521968C7180055812C /* XMPPvCard.xcdatamodel in Sources */,
+				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
+				4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */,
+				4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */,
+				4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */,
+				4FC0D2591968C7180055812C /* main.m in Sources */,
+				4FC0D24D1968C7180055812C /* XMPPCapabilities.xcdatamodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4FC0D2101968C7170055812C /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FC0D2111968C7170055812C /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		4FC0D2121968C7170055812C /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FC0D2131968C7170055812C /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		4FC0D2361968C7180055812C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FC0D2371968C7180055812C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D21F12B91966ACA8006A8910 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D21F12BA1966ACA8006A8910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D21F12BC1966ACA8006A8910 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/XMPPFramework";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TChat/TChat-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "TChat/TChat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = TChat;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D21F12BD1966ACA8006A8910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/XMPPFramework";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TChat/TChat-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "TChat/TChat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = TChat;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D21F12811966ACA7006A8910 /* Build configuration list for PBXProject "TChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21F12B91966ACA8006A8910 /* Debug */,
+				D21F12BA1966ACA8006A8910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D21F12BB1966ACA8006A8910 /* Build configuration list for PBXNativeTarget "TChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21F12BC1966ACA8006A8910 /* Debug */,
+				D21F12BD1966ACA8006A8910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D21F127E1966ACA7006A8910 /* Project object */;
+}
