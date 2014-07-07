@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 #import <CFNetwork/CFNetwork.h>
+#import "AFNetworking.h"
 
 /*
  * Import TUSK XMPP CLASSES, CORE and DEPENDENCIES

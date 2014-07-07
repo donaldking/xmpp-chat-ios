@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TCFriendsTableViewCell : UITableViewCell
 

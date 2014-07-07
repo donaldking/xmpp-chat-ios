@@ -8,6 +8,7 @@
 
 #import "TCFriendsViewController.h"
 #import "TCFriendsTableViewCell.h"
+#import "TCConstants.h"
 
 @interface TCFriendsViewController ()
 
@@ -150,6 +151,7 @@
             [friendsCell setValue:@"friendcell" forKey:@"reuseIdentifier"];
             XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
             friendsCell.userJIDLabel.text = user.displayName;
+            [self configurePhotoForCell:friendsCell user:user];
             break;
         }
     }
@@ -163,6 +165,38 @@
     NSLog(@"user %@", user.jidStr);
 }
 
+-(void)configurePhotoForCell:(TCFriendsTableViewCell*)friendCell user:(XMPPUserCoreDataStorageObject *)user{
+    
+    // Our xmppRosterStorgae will cache phtots as they arrive from the xmppvCardAcatarModul
+    // We only need to ask the avatar module for a photo, if the roster doesn't have it
+    
+    if(user.photo != nil)
+    {
+        friendCell.userImageView.image = user.photo;
+    }
+    else
+    {
+        NSData *photoData = [[XAppDelegate xmppvCardAvatarModule] photoDataForJID:user.jid];
+        if(photoData != nil)
+            friendCell.userImageView.image = [UIImage imageWithData:photoData];
+        else
+            friendCell.userImageView.image = [UIImage imageNamed:@"placeholder_profile"];
+    }
+
+    
+    //To do...
+    NSString *displayUsername = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
+    NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",displayUsername];
+  //  NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@",URL_SCHEME,XAppDelegate.currentHost,PROXY_SERVICE,proxyPath];
+
+    NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@", @"http://", XAppDelegate.currentHost, @"service/proxy/proxy.yookos.php?", proxyPath];
+    
+    // Avatar
+    [friendCell.userImageView.layer setCornerRadius:20.0f];
+    [friendCell.userImageView.layer setMasksToBounds:YES];
+    
+    [friendCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"placeholder_profile"]];
+}
 
 /*
 #pragma mark - Navigation
