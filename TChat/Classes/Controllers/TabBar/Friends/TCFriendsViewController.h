@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "TCAppDelegate.h"
+#import "TCFriendsTableViewCell.h"
 
 
 @interface TCFriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,NSFetchedResultsControllerDelegate>
 {
     NSFetchedResultsController *fetchedResultsController;
+    TCFriendsTableViewCell *friendsCell;
   /*  XMPPUserCoreDataStorageObject *user;
     NSInteger selectedRowIndex, selectedSectionIndex;
     BOOL selectionMade;*/

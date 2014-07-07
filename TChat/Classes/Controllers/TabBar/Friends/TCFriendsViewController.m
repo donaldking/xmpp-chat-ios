@@ -7,6 +7,7 @@
 //
 
 #import "TCFriendsViewController.h"
+#import "TCFriendsTableViewCell.h"
 
 @interface TCFriendsViewController ()
 
@@ -88,6 +89,11 @@
 	return [[[self fetchedResultsController] sections] count];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
 - (NSString *)tableView:(UITableView *)sender titleForHeaderInSection:(NSInteger)sectionIndex
 {
 	NSArray *sections = [[self fetchedResultsController] sections];
@@ -133,16 +139,21 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"friendsCell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell == nil)
+    NSArray * nibObjects = [[NSBundle mainBundle] loadNibNamed:@"TCFriendsTableViewCell" owner:nil options:nil];
+    
+    for (id obj in nibObjects)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        if ([obj isKindOfClass:[TCFriendsTableViewCell class]])
+        {
+            friendsCell = (TCFriendsTableViewCell*)obj;
+            [friendsCell setValue:@"friendcell" forKey:@"reuseIdentifier"];
+            XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+            friendsCell.userJIDLabel.text = user.displayName;
+            break;
+        }
     }
-    XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    cell.textLabel.text = user.displayName;
-    return cell;
+    return friendsCell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

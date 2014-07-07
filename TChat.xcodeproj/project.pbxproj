@@ -49,6 +49,9 @@
 		D21F13101967097F006A8910 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130F1967097F006A8910 /* CoreData.framework */; };
 		D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13111967099C006A8910 /* libresolv.dylib */; };
 		D2798D84196B368D008F77F9 /* TCFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798D83196B368D008F77F9 /* TCFriendsViewController.m */; };
+		D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798D88196B48E6008F77F9 /* TCFriendsTableViewCell.m */; };
+		D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2798D89196B48E6008F77F9 /* TCFriendsTableViewCell.xib */; };
+		D2798D8E196B58D7008F77F9 /* placeholder_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = D2798D8D196B58D7008F77F9 /* placeholder_profile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +110,10 @@
 		D21F13111967099C006A8910 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		D2798D82196B368D008F77F9 /* TCFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFriendsViewController.h; sourceTree = "<group>"; };
 		D2798D83196B368D008F77F9 /* TCFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFriendsViewController.m; sourceTree = "<group>"; };
+		D2798D87196B48E6008F77F9 /* TCFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFriendsTableViewCell.h; sourceTree = "<group>"; };
+		D2798D88196B48E6008F77F9 /* TCFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFriendsTableViewCell.m; sourceTree = "<group>"; };
+		D2798D89196B48E6008F77F9 /* TCFriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCFriendsTableViewCell.xib; sourceTree = "<group>"; };
+		D2798D8D196B58D7008F77F9 /* placeholder_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder_profile.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,12 +164,13 @@
 		4FC0D2141968C7170055812C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D2798D85196B4890008F77F9 /* CustomCells */,
+				4FC0D2281968C7170055812C /* Extensions */,
+				4FC0D22D1968C7170055812C /* Protocol */,
 				4FC0D2151968C7170055812C /* Constants */,
 				4FC0D2181968C7170055812C /* Controllers */,
 				4FC0D2401968C7180055812C /* TCAppDelegate.h */,
 				4FC0D2411968C7180055812C /* TCAppDelegate.m */,
-				4FC0D2281968C7170055812C /* Extensions */,
-				4FC0D22D1968C7170055812C /* Protocol */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 		4FC0D2381968C7180055812C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D2798D8C196B58D7008F77F9 /* Common */,
 				4FC0D2391968C7180055812C /* Tab_Icons */,
 			);
 			path = Images;
@@ -350,6 +359,32 @@
 			path = Friends;
 			sourceTree = "<group>";
 		};
+		D2798D85196B4890008F77F9 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				D2798D86196B4890008F77F9 /* FriendsCell */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		D2798D86196B4890008F77F9 /* FriendsCell */ = {
+			isa = PBXGroup;
+			children = (
+				D2798D87196B48E6008F77F9 /* TCFriendsTableViewCell.h */,
+				D2798D88196B48E6008F77F9 /* TCFriendsTableViewCell.m */,
+				D2798D89196B48E6008F77F9 /* TCFriendsTableViewCell.xib */,
+			);
+			path = FriendsCell;
+			sourceTree = "<group>";
+		};
+		D2798D8C196B58D7008F77F9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D2798D8D196B58D7008F77F9 /* placeholder_profile.png */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -403,12 +438,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2798D8E196B58D7008F77F9 /* placeholder_profile.png in Resources */,
 				4FC0D25B1968C7180055812C /* TChat-Info.plist in Resources */,
 				4FC0D2451968C7180055812C /* Main_iPhone.storyboard in Resources */,
 				4FC0D2581968C7180055812C /* Images.xcassets in Resources */,
 				4FC0D2561968C7180055812C /* recent-button@2x.png in Resources */,
 				4FC0D2541968C7180055812C /* friend-button.png in Resources */,
 				4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */,
+				D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */,
 				4FC0D2531968C7180055812C /* InfoPlist.strings in Resources */,
 				4FC0D2441968C7180055812C /* Main_iPad.storyboard in Resources */,
 				4FC0D2571968C7180055812C /* setting-button@2x.png in Resources */,
@@ -433,6 +470,7 @@
 				4FC0D24A1968C7180055812C /* TCSettingsViewController.m in Sources */,
 				4FC0D2521968C7180055812C /* XMPPvCard.xcdatamodel in Sources */,
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
+				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,
 				4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */,
 				4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */,
 				4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */,
