@@ -63,6 +63,8 @@
 		D2798DD2196B692D008F77F9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DC9196B692D008F77F9 /* UIImageView+AFNetworking.m */; };
 		D2798DDB196C44A0008F77F9 /* TChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2798DD9196C44A0008F77F9 /* TChatModel.xcdatamodeld */; };
 		D2798DDF196C45AA008F77F9 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DDE196C45AA008F77F9 /* Chat.m */; };
+		D2798DE6196CA62F008F77F9 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DE5196CA62F008F77F9 /* NSDate+Utilities.m */; };
+		D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DE9196CA73B008F77F9 /* TCUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +150,10 @@
 		D2798DDD196C45AA008F77F9 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
 		D2798DDE196C45AA008F77F9 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		D2798DE2196C4A15008F77F9 /* TChatDefintions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TChatDefintions.h; sourceTree = "<group>"; };
+		D2798DE4196CA62F008F77F9 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		D2798DE5196CA62F008F77F9 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		D2798DE8196CA73B008F77F9 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
+		D2798DE9196CA73B008F77F9 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +199,7 @@
 		4FC0D2141968C7170055812C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D2798DE7196CA705008F77F9 /* HelperClasses */,
 				D2798DDC196C4591008F77F9 /* Model */,
 				D2798D93196B66D0008F77F9 /* Libs */,
 				D2798D85196B4890008F77F9 /* CustomCells */,
@@ -285,6 +292,7 @@
 		4FC0D2291968C7170055812C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D2798DE3196CA5FD008F77F9 /* NSDate */,
 				4FC0D22A1968C7170055812C /* UITextField */,
 			);
 			path = Categories;
@@ -482,6 +490,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D2798DE3196CA5FD008F77F9 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				D2798DE4196CA62F008F77F9 /* NSDate+Utilities.h */,
+				D2798DE5196CA62F008F77F9 /* NSDate+Utilities.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
+		D2798DE7196CA705008F77F9 /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D2798DE8196CA73B008F77F9 /* TCUtility.h */,
+				D2798DE9196CA73B008F77F9 /* TCUtility.m */,
+			);
+			path = HelperClasses;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -582,7 +608,9 @@
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
 				D2798DCA196B692D008F77F9 /* AFHTTPClient.m in Sources */,
 				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,
+				D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */,
 				4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */,
+				D2798DE6196CA62F008F77F9 /* NSDate+Utilities.m in Sources */,
 				D2798DD1196B692D008F77F9 /* AFXMLRequestOperation.m in Sources */,
 				D2798DD0196B692D008F77F9 /* AFURLConnectionOperation.m in Sources */,
 				4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */,
