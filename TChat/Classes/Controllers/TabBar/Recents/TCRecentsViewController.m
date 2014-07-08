@@ -129,10 +129,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         avatarImage.contentMode=UIViewContentModeScaleAspectFill;
         UIImage *avImage = [self configurePhotoForCell:cell user:user];
         avatarImage.image = avImage;
-        avatarImage.layer.cornerRadius = 5.0;
-        avatarImage.layer.masksToBounds = YES;
-        avatarImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        avatarImage.layer.borderWidth = 1.0;
+      //  avatarImage.layer.cornerRadius = 5.0;
+      //  avatarImage.layer.masksToBounds = YES;
+      //  avatarImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+      //  avatarImage.layer.borderWidth = 1.0;
         [bgView addSubview:avatarImage];
         
        /* UIImageView *arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(286,13,27,45)];
