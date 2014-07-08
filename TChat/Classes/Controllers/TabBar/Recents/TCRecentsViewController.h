@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCRecentsViewController : UIViewController
+@interface TCRecentsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    
+}
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray* chats;
 
 @end
