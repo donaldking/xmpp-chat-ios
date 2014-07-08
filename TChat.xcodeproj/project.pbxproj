@@ -61,6 +61,8 @@
 		D2798DD0196B692D008F77F9 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DC5196B692D008F77F9 /* AFURLConnectionOperation.m */; };
 		D2798DD1196B692D008F77F9 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DC7196B692D008F77F9 /* AFXMLRequestOperation.m */; };
 		D2798DD2196B692D008F77F9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DC9196B692D008F77F9 /* UIImageView+AFNetworking.m */; };
+		D2798DDB196C44A0008F77F9 /* TChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2798DD9196C44A0008F77F9 /* TChatModel.xcdatamodeld */; };
+		D2798DDF196C45AA008F77F9 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DDE196C45AA008F77F9 /* Chat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +94,7 @@
 		4FC0D23B1968C7180055812C /* groups_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groups_button@2x.png"; sourceTree = "<group>"; };
 		4FC0D23C1968C7180055812C /* recent-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-button@2x.png"; sourceTree = "<group>"; };
 		4FC0D23D1968C7180055812C /* setting-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-button@2x.png"; sourceTree = "<group>"; };
-		4FC0D23E1968C7180055812C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4FC0D23E1968C7180055812C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TChat/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		4FC0D23F1968C7180055812C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FC0D2401968C7180055812C /* TCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCAppDelegate.h; path = ../TCAppDelegate.h; sourceTree = "<group>"; };
 		4FC0D2411968C7180055812C /* TCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCAppDelegate.m; path = ../TCAppDelegate.m; sourceTree = "<group>"; };
@@ -142,6 +144,10 @@
 		D2798DC7196B692D008F77F9 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		D2798DC8196B692D008F77F9 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		D2798DC9196B692D008F77F9 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		D2798DDA196C44A0008F77F9 /* TChatModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TChatModel.xcdatamodel; sourceTree = "<group>"; };
+		D2798DDD196C45AA008F77F9 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		D2798DDE196C45AA008F77F9 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		D2798DE2196C4A15008F77F9 /* TChatDefintions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TChatDefintions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,13 +184,8 @@
 				4FC0D2141968C7170055812C /* Classes */,
 				4FC0D22F1968C7170055812C /* CoreDataModels */,
 				4FC0D2381968C7180055812C /* Images */,
-				4FC0D23E1968C7180055812C /* Images.xcassets */,
-				4FC0D2361968C7180055812C /* InfoPlist.strings */,
-				4FC0D23F1968C7180055812C /* main.m */,
-				4FC0D2101968C7170055812C /* Main_iPad.storyboard */,
-				4FC0D2121968C7170055812C /* Main_iPhone.storyboard */,
-				4FC0D2421968C7180055812C /* TChat-Info.plist */,
-				4FC0D2431968C7180055812C /* TChat-Prefix.pch */,
+				D2798DE0196C466A008F77F9 /* Storyboard */,
+				D2798DE1196C4681008F77F9 /* Supporting Files */,
 			);
 			path = TChat;
 			sourceTree = "<group>";
@@ -192,6 +193,7 @@
 		4FC0D2141968C7170055812C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D2798DDC196C4591008F77F9 /* Model */,
 				D2798D93196B66D0008F77F9 /* Libs */,
 				D2798D85196B4890008F77F9 /* CustomCells */,
 				4FC0D2281968C7170055812C /* Extensions */,
@@ -209,6 +211,7 @@
 			children = (
 				4FC0D2161968C7170055812C /* TCConstants.h */,
 				4FC0D2171968C7170055812C /* TCConstants.m */,
+				D2798DE2196C4A15008F77F9 /* TChatDefintions.h */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				4FC0D2331968C7180055812C /* XMPPRoomHybrid.xcdatamodel */,
 				4FC0D2341968C7180055812C /* XMPPRoster.xcdatamodel */,
 				4FC0D2351968C7180055812C /* XMPPvCard.xcdatamodel */,
+				D2798DD9196C44A0008F77F9 /* TChatModel.xcdatamodeld */,
 			);
 			path = CoreDataModels;
 			sourceTree = "<group>";
@@ -320,6 +324,7 @@
 		4FC0D2381968C7180055812C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4FC0D23E1968C7180055812C /* Images.xcassets */,
 				D2798D8C196B58D7008F77F9 /* Common */,
 				4FC0D2391968C7180055812C /* Tab_Icons */,
 			);
@@ -448,6 +453,35 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		D2798DDC196C4591008F77F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2798DDD196C45AA008F77F9 /* Chat.h */,
+				D2798DDE196C45AA008F77F9 /* Chat.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D2798DE0196C466A008F77F9 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2101968C7170055812C /* Main_iPad.storyboard */,
+				4FC0D2121968C7170055812C /* Main_iPhone.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		D2798DE1196C4681008F77F9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0D2361968C7180055812C /* InfoPlist.strings */,
+				4FC0D23F1968C7180055812C /* main.m */,
+				4FC0D2421968C7180055812C /* TChat-Info.plist */,
+				4FC0D2431968C7180055812C /* TChat-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,6 +511,15 @@
 				CLASSPREFIX = TC;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tusk Solutions";
+				TargetAttributes = {
+					D21F12851966ACA7006A8910 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = D21F12811966ACA7006A8910 /* Build configuration list for PBXProject "TChat" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -535,6 +578,7 @@
 				4FC0D24F1968C7180055812C /* XMPPRoom.xcdatamodel in Sources */,
 				4FC0D24A1968C7180055812C /* TCSettingsViewController.m in Sources */,
 				4FC0D2521968C7180055812C /* XMPPvCard.xcdatamodel in Sources */,
+				D2798DDF196C45AA008F77F9 /* Chat.m in Sources */,
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
 				D2798DCA196B692D008F77F9 /* AFHTTPClient.m in Sources */,
 				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,
@@ -548,6 +592,7 @@
 				4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */,
 				4FC0D2591968C7180055812C /* main.m in Sources */,
 				4FC0D24D1968C7180055812C /* XMPPCapabilities.xcdatamodel in Sources */,
+				D2798DDB196C44A0008F77F9 /* TChatModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +760,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D2798DD9196C44A0008F77F9 /* TChatModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D2798DDA196C44A0008F77F9 /* TChatModel.xcdatamodel */,
+			);
+			currentVersion = D2798DDA196C44A0008F77F9 /* TChatModel.xcdatamodel */;
+			path = TChatModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D21F127E1966ACA7006A8910 /* Project object */;
 }

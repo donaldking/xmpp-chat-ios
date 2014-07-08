@@ -294,6 +294,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     if ([XAppDelegate.chatConnectionDelegate respondsToSelector:@selector(loginSuccessful)]) {
+        
+        [self goOnline];
         [XAppDelegate.chatConnectionDelegate loginSuccessful];
     }
 }
@@ -314,6 +316,166 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 
+#pragma Mark - XMPP Received Message
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+{
+    if ([message isChatMessageWithBody])
+        [self updateCoreDataWithIncomingMessage:message];
+    else if ([message isChatMessage])
+    {
+        NSArray *elements = [message elementsForXmlns:@"http://jabber.org/protocol/chatstates"];
+        if([elements count] > 0)
+        {
+            for (NSXMLElement *element in elements) {
+                NSString *statusString = @" ";
+                NSString *cleanStatus = [element.name stringByReplacingOccurrencesOfString:@"cha:" withString:@""];
+                if([cleanStatus isEqualToString:@"composing"])
+                    statusString = @" is typing";
+                else if([cleanStatus isEqualToString:@"active"])
+                    statusString = @" is ready";
+                else if([cleanStatus isEqualToString:@"paused"])
+                    statusString = @" is pausing";
+                else if([cleanStatus isEqualToString:@"inactive"])
+                    statusString = @" is not active";
+                else if([cleanStatus isEqualToString:@"gone"])
+                    statusString = @" left this chat";
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                [dict setObject:statusString forKey:@"msg"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kChatStatus object:self userInfo:dict];
+                NSLog(@"StatusString:%@", statusString);
+            }
+        }
+    }
+   
+    
+    
+ /*   NSString *body = [[message elementForName:@"body"] stringValue];
+    
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    //NSLog(@"TOP Received message: [ %@ ] from: %@",message,sender);
+    
+    /*if ([message isChatMessageWithBody] && [[[[message elementForName:@"body"] stringValue] stringByReplacingOccurrencesOfString:@" " withString:@""] length] >=1) {
+     NSString *from = [[message fromStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@/%@",XAppDelegate.currentHost,_XMPP_RESOURCE_NAME] withString:@""];
+     
+     if ([from isEqualToString:XAppDelegate.username]) {
+     NSString *body = [[message elementForName:@"body"] stringValue];
+     
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"LOOP BACK RECEIVED!" message:body delegate:self cancelButtonTitle:Nil otherButtonTitles:@"Dismiss", nil];
+     [alert show];
+     
+     NSLog(@"LOOP BACK RECEIVED!");
+     }
+     
+     }*/
+    
+	/*if ([message isChatMessageWithBody] && [[[[message elementForName:@"body"] stringValue] stringByReplacingOccurrencesOfString:@" " withString:@""] length] >=1)
+	{
+        streamObject = [xmppRosterStorage userForJID:[message from]
+                                          xmppStream:xmppStream
+                                managedObjectContext:[self managedObjectContext_roster]];
+		
+        NSString *body = [[message elementForName:@"body"] stringValue];
+        NSDate *date = [NSDate date];
+        int timestamp = [date timeIntervalSince1970];
+        NSString *dateString = [NSString stringWithFormat:@"%i",timestamp];
+        
+        // Create message to send as dictionary
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [streamObject valueForKey:@"jidStr"],@"sender",
+                                [streamObject valueForKey:@"streamBareJidStr"],@"receiver",
+                                body,@"message",
+                                @"0",@"status",
+                                dateString,@"message_date",
+                                nil];
+        
+        [self receiveAndPersistObjectForEntityName:@"ChatMessages" inManagedObjectContext:self.managedObjectContext withDictionary:params
+                                       andCallback:^(id completionResponse)
+         {
+             if ([completionResponse isEqualToString:@"receiveAndPersistObjectForEntityName:OK" ]) {
+                 
+                 NSMutableDictionary *notifDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                  [streamObject valueForKey:@"displayName"],@"displayName",
+                                                  nil];
+                 [notifDic addEntriesFromDictionary:params];
+                 if ([_messageDelegate respondsToSelector:@selector(newMessageReceived:)]) {
+                     
+                     // Call delegate method new chat message received.
+                     [_messageDelegate newMessageReceived:notifDic];
+                 }
+             }
+         }];
+		
+    }
+    else if([[message elementsForName:@"composing"] count]>=1)
+    {
+        /*
+         * Post composing message alert to delegate.
+         *
+         */
+    /*    if ([_messageDelegate respondsToSelector:@selector(composingMessageReceived:)]) {
+            
+            XMPPUserCoreDataStorageObject *streamObject = [xmppRosterStorage userForJID:[message from]
+                                                                             xmppStream:xmppStream
+                                                                   managedObjectContext:[self managedObjectContext_roster]];
+            NSDictionary *composeParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           [streamObject valueForKey:@"jidStr"],@"jidstr",
+                                           [streamObject valueForKey:@"displayName"],@"displayName",
+                                           nil];
+            [_messageDelegate composingMessageReceived:composeParams];
+        }
+        
+    }*/
+}
+
+
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
+{
+	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(id)error
+{
+	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
+{
+    
+	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	
+	if (!_isXmppConnected)
+	{
+		DDLogError(@"Unable to connect to server. Check xmppStream.hostName");
+	}
+}
+
+-(void) updateCoreDataWithIncomingMessage:(XMPPMessage *)message
+{
+    //determine the sender
+    XMPPUserCoreDataStorageObject *user = [self.xmppRosterStorage userForJID:[message from]
+                                                                  xmppStream:self.xmppStream
+                                                        managedObjectContext:[self managedObjectContext_roster]];
+    Chat *chat = [NSEntityDescription insertNewObjectForEntityForName:@"Chat" inManagedObjectContext:self.managedObjectContext];
+    
+    chat.messageBody = [[message elementForName:@"body"] stringValue];
+    chat.messageDate = [NSDate date];
+    chat.messageStatus = @"received";
+    chat.direction = @"IN";
+    chat.groupNumber = @"";
+    chat.isNew = [NSNumber numberWithBool:YES];
+    chat.hasMedia = [NSNumber numberWithBool:NO];
+    chat.isGroupMessage = [NSNumber numberWithBool:NO];
+    chat.jidString = user.jidStr;
+    
+    NSError *error = nil;
+    if(![self.managedObjectContext save:&error])
+    {
+        NSLog(@"error saving");
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNewMessage object:self userInfo:nil];
+
+}
 
 #pragma mark - Login
 - (void)doLoginForUsername:(NSString*)theUsername andPassword:(NSString*)thePassword andCallback:(requestCompletedBlock)doLoginCompletionResponse;
@@ -423,6 +585,47 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 
+-(void)goOnline
+{
+    XMPPPresence *presence = [XMPPPresence presence];
+    [[self xmppStream] sendElement:presence];
+}
+
+-(void)goOffline{
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
+    [[self xmppStream] sendElement:presence];
+}
+
+-(void)setMeBusy{
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
+    NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+    [show setStringValue:@"dnd"];
+    [status setStringValue:@"Busy!"];
+    
+    [presence addChild:show];
+    [presence addChild:status];
+    [[self xmppStream] sendElement:presence];
+}
+
+-(void)setMeAway{
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
+    NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+    [show setStringValue:@"away"];
+    [status setStringValue:@"Away"];
+    
+    [presence addChild:show];
+    [presence addChild:status];
+    [[self xmppStream] sendElement:presence];
+}
+
+-(void)setMeInvisible{
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"invisible"];
+    [[self xmppStream] sendElement:presence];
+    
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Core Data
@@ -529,8 +732,30 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        [_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+        // suscribe to change notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_mocDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
     }
     return _managedObjectContext;
+}
+
+-(void) _mocDidSaveNotification:(NSNotification *)notification
+{
+    NSManagedObjectContext *savedContext = [notification object];
+    
+    // ignore change notifications for the main MOC
+    if(_managedObjectContext == savedContext)
+        return;
+    
+    if(_managedObjectContext.persistentStoreCoordinator != savedContext.persistentStoreCoordinator)
+    {
+        // that's another database
+        return;
+    }
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [_managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+    });
 }
 
 // Returns the managed object model for the application.
@@ -540,7 +765,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"YookosChatiPhone" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TChatModel" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -553,7 +778,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"YookosChatiPhone.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"TChatModel.sqlite"];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];

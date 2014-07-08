@@ -170,6 +170,9 @@
     // Our xmppRosterStorgae will cache phtots as they arrive from the xmppvCardAcatarModul
     // We only need to ask the avatar module for a photo, if the roster doesn't have it
     
+    [friendCell.userImageView.layer setCornerRadius:20.0f];
+    [friendCell.userImageView.layer setMasksToBounds:YES];
+    
     if(user.photo != nil)
     {
         friendCell.userImageView.image = user.photo;
@@ -185,7 +188,7 @@
 
     
     //To do...
-    NSString *displayUsername = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
+   /* NSString *displayUsername = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
     NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",displayUsername];
   //  NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@",URL_SCHEME,XAppDelegate.currentHost,PROXY_SERVICE,proxyPath];
 
@@ -195,7 +198,7 @@
     [friendCell.userImageView.layer setCornerRadius:20.0f];
     [friendCell.userImageView.layer setMasksToBounds:YES];
     
-    [friendCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"placeholder_profile"]];
+    [friendCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"placeholder_profile"]];*/
 }
 
 /*
