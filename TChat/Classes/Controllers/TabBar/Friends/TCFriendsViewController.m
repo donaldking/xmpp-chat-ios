@@ -50,11 +50,14 @@
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPUserCoreDataStorageObject"
 		                                          inManagedObjectContext:moc];
 		
-		NSSortDescriptor *sd1 = [[NSSortDescriptor alloc] initWithKey:@"sectionNum" ascending:YES];
+        
+	//	NSSortDescriptor *sd1 = [[NSSortDescriptor alloc] initWithKey:@"sectionNum" ascending:YES];
 		NSSortDescriptor *sd2 = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:YES];
 		
-		NSArray *sortDescriptors = [NSArray arrayWithObjects:sd1, sd2, nil];
+	//	NSArray *sortDescriptors = [NSArray arrayWithObjects:sd1, sd2, nil];
 		
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:sd2, nil];
+        
 		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 		[fetchRequest setEntity:entity];
 		[fetchRequest setSortDescriptors:sortDescriptors];
@@ -62,7 +65,7 @@
 		
 		fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
 		                                                               managedObjectContext:moc
-		                                                                 sectionNameKeyPath:@"sectionNum"
+		                                                                 sectionNameKeyPath:nil
 		                                                                          cacheName:nil];
 		[fetchedResultsController setDelegate:self];
 		
@@ -112,6 +115,7 @@
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"Number of sections: %d", [[[self fetchedResultsController] sections] count]);
 	return [[[self fetchedResultsController] sections] count];
 }
 
@@ -152,20 +156,30 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
 	NSArray *sections = [[self fetchedResultsController] sections];
-	
+	NSInteger numberOfValidRows = 0;
 	if (sectionIndex < [sections count])
 	{
 		id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:sectionIndex];
         
-        if(segmentStatus == SegmentStatus_All && sectionIndex == 0)
-            return 0;
-        else if(segmentStatus == SegmentStatus_Online && sectionIndex != 0)
-            return 0;
+        NSLog(@"sectionInfo.numberOfObjects : %d, %@", sectionInfo.numberOfObjects, sectionInfo);
+        
+        if(segmentStatus == SegmentStatus_All)
+           numberOfValidRows = sectionInfo.numberOfObjects;
         else
-            return sectionInfo.numberOfObjects;
-	}
+        {
+            NSLog(@"sectionInfo.numberOfObjects: %d", sectionInfo.numberOfObjects);
+            for(int index = 0; index < sectionInfo.numberOfObjects; index++)
+            {
+                XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:sectionIndex]];
+        
+                NSString *presenceTYPE = user.primaryResource.presence.type;
+                if(segmentStatus == SegmentStatus_Online && [presenceTYPE isEqualToString:@"available"])
+                    numberOfValidRows++;
+            }
+        }
+    }
 	
-	return 0;
+	return numberOfValidRows;
 }
 
 
@@ -181,7 +195,13 @@
             friendsCell = (TCFriendsTableViewCell*)obj;
             [friendsCell setValue:@"friendcell" forKey:@"reuseIdentifier"];
             XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-            friendsCell.userJIDLabel.text = user.displayName;
+            
+            NSString *presenceTYPE = user.primaryResource.presence.type;
+            if([presenceTYPE isEqualToString:@"available"])
+                 friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
+            else
+                friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];
+           // friendsCell.userJIDLabel.text = user.displayName;
             [self configurePhotoForCell:friendsCell user:user];
             break;
         }
