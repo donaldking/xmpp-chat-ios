@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCRecentChatTableViewCell.h"
 
 @interface TCRecentsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
-    
+    TCRecentChatTableViewCell *recentChatCell;
 }
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray* chats;
