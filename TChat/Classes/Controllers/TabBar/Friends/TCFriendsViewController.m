@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    segmentStatus = SegmentStatus_All;
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,6 +86,29 @@
 }
 
 
+
+- (IBAction) statusSegmentedControlChanged:(id)sender
+{
+	UISegmentedControl* segmentedControl = (UISegmentedControl*)sender;
+
+	switch (segmentedControl.selectedSegmentIndex)
+	{
+		case 0:
+		{
+            segmentStatus = SegmentStatus_All;
+			break;
+		}
+		case 1:
+		{
+            segmentStatus = SegmentStatus_Online;
+			break;
+		}
+	}
+    
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - TableView Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -94,7 +119,7 @@
 {
     return 60;
 }
-
+/*
 - (NSString *)tableView:(UITableView *)sender titleForHeaderInSection:(NSInteger)sectionIndex
 {
 	NSArray *sections = [[self fetchedResultsController] sections];
@@ -122,7 +147,7 @@
 	}
 	
 	return @"";
-}
+}*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
@@ -131,7 +156,13 @@
 	if (sectionIndex < [sections count])
 	{
 		id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:sectionIndex];
-		return sectionInfo.numberOfObjects;
+        
+        if(segmentStatus == SegmentStatus_All && sectionIndex == 0)
+            return 0;
+        else if(segmentStatus == SegmentStatus_Online && sectionIndex != 0)
+            return 0;
+        else
+            return sectionInfo.numberOfObjects;
 	}
 	
 	return 0;

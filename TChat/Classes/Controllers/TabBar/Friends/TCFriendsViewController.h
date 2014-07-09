@@ -11,17 +11,28 @@
 #import "TCAppDelegate.h"
 #import "TCFriendsTableViewCell.h"
 
+enum SegmentStatus
+{
+    SegmentStatus_All,
+    SegmentStatus_Online
+};
+
 
 @interface TCFriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,NSFetchedResultsControllerDelegate>
 {
     NSFetchedResultsController *fetchedResultsController;
     TCFriendsTableViewCell *friendsCell;
+    enum SegmentStatus segmentStatus;
   /*  XMPPUserCoreDataStorageObject *user;
     NSInteger selectedRowIndex, selectedSectionIndex;
     BOOL selectionMade;*/
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *statusSegment;
+
+- (IBAction) statusSegmentedControlChanged:(id) sender;
+
 /*@property (nonatomic, strong) IBOutlet UIButton *goOnlineButton;
 @property (nonatomic, strong) TSKFriendsCell *friendsCell;
 @property (nonatomic, strong) TSKChatiPhoneViewController *chatViewController;

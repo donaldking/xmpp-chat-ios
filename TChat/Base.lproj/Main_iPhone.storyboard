@@ -158,7 +158,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MQp-94-diY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="38" width="320" height="530"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -185,17 +185,30 @@
                                     <outlet property="delegate" destination="L5I-pE-C4i" id="K6I-pd-vci"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="DOD-gg-d2r">
+                                <rect key="frame" x="40" y="69" width="241" height="29"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Online"/>
+                                </segments>
+                                <color key="tintColor" red="0.19616507859999999" green="0.69482783879999999" blue="0.94983657529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="statusSegmentedControlChanged:" destination="L5I-pE-C4i" eventType="valueChanged" id="n0e-xk-Xb4"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="vPf-LE-eYc"/>
                     <connections>
+                        <outlet property="statusSegment" destination="DOD-gg-d2r" id="Rbk-3u-dbM"/>
                         <outlet property="tableView" destination="MQp-94-diY" id="dYD-Hh-vRP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XvO-nt-Kkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="1066"/>
+            <point key="canvasLocation" x="2665" y="1076"/>
         </scene>
         <!--Settings View Controller - Setting-->
         <scene sceneID="MbG-1v-a16">
