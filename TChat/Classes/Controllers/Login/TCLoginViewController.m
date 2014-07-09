@@ -242,7 +242,7 @@ typedef enum ScrollDirection{
   /*  [XAppDelegate teardownStream];
     [XAppDelegate clearObjectsForEntityName:@"CurrentUser"
                      inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
-                         //
+                         //but
                      }];
     
     [self performSelector:@selector(restartLogin) withObject:nil afterDelay:2.0];
