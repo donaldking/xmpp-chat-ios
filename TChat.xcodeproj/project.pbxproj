@@ -63,6 +63,10 @@
 		D2798DD2196B692D008F77F9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DC9196B692D008F77F9 /* UIImageView+AFNetworking.m */; };
 		D2798DDB196C44A0008F77F9 /* TChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2798DD9196C44A0008F77F9 /* TChatModel.xcdatamodeld */; };
 		D2798DDF196C45AA008F77F9 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DDE196C45AA008F77F9 /* Chat.m */; };
+		D2798DE6196CA62F008F77F9 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DE5196CA62F008F77F9 /* NSDate+Utilities.m */; };
+		D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DE9196CA73B008F77F9 /* TCUtility.m */; };
+		D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */; };
+		D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +152,13 @@
 		D2798DDD196C45AA008F77F9 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
 		D2798DDE196C45AA008F77F9 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		D2798DE2196C4A15008F77F9 /* TChatDefintions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TChatDefintions.h; sourceTree = "<group>"; };
+		D2798DE4196CA62F008F77F9 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		D2798DE5196CA62F008F77F9 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		D2798DE8196CA73B008F77F9 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
+		D2798DE9196CA73B008F77F9 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
+		D2798DEF196CAD83008F77F9 /* TCRecentChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRecentChatTableViewCell.h; sourceTree = "<group>"; };
+		D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRecentChatTableViewCell.m; sourceTree = "<group>"; };
+		D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRecentChatTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +204,7 @@
 		4FC0D2141968C7170055812C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D2798DE7196CA705008F77F9 /* HelperClasses */,
 				D2798DDC196C4591008F77F9 /* Model */,
 				D2798D93196B66D0008F77F9 /* Libs */,
 				D2798D85196B4890008F77F9 /* CustomCells */,
@@ -285,6 +297,7 @@
 		4FC0D2291968C7170055812C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D2798DE3196CA5FD008F77F9 /* NSDate */,
 				4FC0D22A1968C7170055812C /* UITextField */,
 			);
 			path = Categories;
@@ -396,6 +409,7 @@
 		D2798D85196B4890008F77F9 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				D2798DEB196CAD25008F77F9 /* RecentChatCell */,
 				D2798D86196B4890008F77F9 /* FriendsCell */,
 			);
 			path = CustomCells;
@@ -482,6 +496,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D2798DE3196CA5FD008F77F9 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				D2798DE4196CA62F008F77F9 /* NSDate+Utilities.h */,
+				D2798DE5196CA62F008F77F9 /* NSDate+Utilities.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
+		D2798DE7196CA705008F77F9 /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D2798DE8196CA73B008F77F9 /* TCUtility.h */,
+				D2798DE9196CA73B008F77F9 /* TCUtility.m */,
+			);
+			path = HelperClasses;
+			sourceTree = "<group>";
+		};
+		D2798DEB196CAD25008F77F9 /* RecentChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				D2798DEF196CAD83008F77F9 /* TCRecentChatTableViewCell.h */,
+				D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */,
+				D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */,
+			);
+			path = RecentChatCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -549,6 +591,7 @@
 				4FC0D2451968C7180055812C /* Main_iPhone.storyboard in Resources */,
 				4FC0D2581968C7180055812C /* Images.xcassets in Resources */,
 				4FC0D2561968C7180055812C /* recent-button@2x.png in Resources */,
+				D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */,
 				4FC0D2541968C7180055812C /* friend-button.png in Resources */,
 				4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */,
 				D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */,
@@ -582,11 +625,14 @@
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
 				D2798DCA196B692D008F77F9 /* AFHTTPClient.m in Sources */,
 				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,
+				D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */,
 				4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */,
+				D2798DE6196CA62F008F77F9 /* NSDate+Utilities.m in Sources */,
 				D2798DD1196B692D008F77F9 /* AFXMLRequestOperation.m in Sources */,
 				D2798DD0196B692D008F77F9 /* AFURLConnectionOperation.m in Sources */,
 				4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */,
 				D2798DCC196B692D008F77F9 /* AFImageRequestOperation.m in Sources */,
+				D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */,
 				D2798DCD196B692D008F77F9 /* AFJSONRequestOperation.m in Sources */,
 				D2798DCF196B692D008F77F9 /* AFPropertyListRequestOperation.m in Sources */,
 				4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */,

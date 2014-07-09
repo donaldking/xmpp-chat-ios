@@ -170,8 +170,8 @@
     // Our xmppRosterStorgae will cache phtots as they arrive from the xmppvCardAcatarModul
     // We only need to ask the avatar module for a photo, if the roster doesn't have it
     
-    [friendCell.userImageView.layer setCornerRadius:20.0f];
-    [friendCell.userImageView.layer setMasksToBounds:YES];
+   // [friendCell.userImageView.layer setCornerRadius:20.0f];
+   // [friendCell.userImageView.layer setMasksToBounds:YES];
     
     if(user.photo != nil)
     {
