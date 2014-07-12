@@ -50,8 +50,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     _XMPP_RESOURCE_NAME = [[NSString stringWithFormat:@"TChat-iOS-%@-%@",[[UIDevice currentDevice] localizedModel],[[[UIDevice currentDevice] identifierForVendor] UUIDString]] stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"Resource name: %@",_XMPP_RESOURCE_NAME);
     
+    [self LoadEmoticonFromPlistNamed:@"TC_EmoticonSymbols"];
+    _ApiMethods = [TCAPIMethods new];
+    
     [self prepareXmppChat];
 
+    
   //  [self.window makeKeyAndVisible];
     
     
@@ -84,6 +88,22 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+-(void)LoadEmoticonFromPlistNamed:(NSString*)plistName{
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:plistName ofType:@"plist"];
+    NSDictionary *list = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    
+    _emoticonsArray = [list objectForKey:@"Emoticons"];
+}
+
+-(NSURL*)getResourcePath:(NSString*)resource ofType:(NSString*)type{
+    
+    NSString * resourcePath = [[NSBundle mainBundle] pathForResource:resource ofType:type];
+    return [NSURL fileURLWithPath:resourcePath];
+}
+
 
 #pragma mark XMPP
 

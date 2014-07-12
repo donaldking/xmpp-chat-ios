@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TCAppDelegate.h"
+#import "TCChatConnectionProtocol.h"
 
-@interface TCLoginViewController : UIViewController <UIScrollViewDelegate,UITextFieldDelegate>
+@interface TCLoginViewController : UIViewController <UIScrollViewDelegate,UITextFieldDelegate, TCChatConnectionProtocol>
 {
     CGRect keyboardBounds;
     BOOL keyBordHideByScroll;

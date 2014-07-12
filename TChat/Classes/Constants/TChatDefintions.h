@@ -12,4 +12,11 @@
 #define kNewMessage     @"kNewMessage"
 #define kChatStatus     @"kChatStatus"
 
+#define MAIN_SCREEN                             [UIScreen mainScreen]
+// Props
+#define ScreenWidth                             [MAIN_SCREEN bounds].size.width
+#define ScreenHeight                            [MAIN_SCREEN bounds].size.height
+
+#define URL_SCHEME_ @"http://";
+
 #endif

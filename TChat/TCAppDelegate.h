@@ -13,6 +13,10 @@
 #import <CFNetwork/CFNetwork.h>
 #import "AFNetworking.h"
 #import "TChatDefintions.h"
+#import "TCChatMessageProtocol.h"
+#import "TCAppDelegate.h"
+#import "TCAPIMethods.h"
+#import "SORelativeDateTransformer.h"
 
 /*
  * Import TUSK XMPP CLASSES, CORE and DEPENDENCIES
@@ -43,7 +47,13 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 	XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
 }
 
+@property (nonatomic, strong) id<TCChatMessageProtocol> chatMessageDelegate;
 @property (nonatomic, strong) id<TCChatConnectionProtocol> chatConnectionDelegate;
+
+@property (nonatomic, strong) TCAPIMethods *ApiMethods;
+@property (nonatomic, strong) id activeChatBuddyJidStr;
+
+@property (nonatomic, retain) NSMutableArray *emoticonsArray;
 
 @property (nonatomic) BOOL isXmppConnected;
 @property (nonatomic) BOOL allowSelfSignedCertificates;
@@ -109,6 +119,8 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 - (void) clearObjectForEntityName:(NSString*)entityName withPredicate:(NSPredicate*)predicate inManagedObjectContext:(NSManagedObjectContext*)context andCallback:(requestCompletedBlock)completionResponse;
 - (void) checkIfObjectExistsForEntityName:(NSString*)entityName withPredicate:(NSPredicate*)predicate
                   inManagedObjectContext:(NSManagedObjectContext*)context andCallback:(requestCompletedBlock)completionResponse;
+
+-(id)getResourcePath:(NSString*)resource ofType:(NSString*)type;
 
 #pragma mark - CoreData
 - (void) saveContext;

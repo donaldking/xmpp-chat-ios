@@ -48,6 +48,17 @@
 		D21F130E19670979006A8910 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130D19670979006A8910 /* SystemConfiguration.framework */; };
 		D21F13101967097F006A8910 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130F1967097F006A8910 /* CoreData.framework */; };
 		D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13111967099C006A8910 /* libresolv.dylib */; };
+		D261619C19703151002B77C7 /* TCChatConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D261619B19703151002B77C7 /* TCChatConversationViewController.m */; };
+		D26161A119703BB1002B77C7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A019703BB1002B77C7 /* MBProgressHUD.m */; };
+		D26161A519703CB4002B77C7 /* TCEmoticonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A419703CB4002B77C7 /* TCEmoticonViewController.m */; };
+		D26161A919703DA9002B77C7 /* TCEmoticonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A819703DA9002B77C7 /* TCEmoticonTableViewCell.m */; };
+		D26161AB19703F0D002B77C7 /* TC_EmoticonSymbols.plist in Resources */ = {isa = PBXBuildFile; fileRef = D26161AA19703F0D002B77C7 /* TC_EmoticonSymbols.plist */; };
+		D26161B0197041F3002B77C7 /* TCMyChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161AF197041F3002B77C7 /* TCMyChatCell.m */; };
+		D26161B319704209002B77C7 /* TCFriendChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161B219704209002B77C7 /* TCFriendChatCell.m */; };
+		D26161B719708FE5002B77C7 /* TCAPIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161B619708FE5002B77C7 /* TCAPIMethods.m */; };
+		D26161BB19709288002B77C7 /* UIColor+HexToRgb.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161BA19709288002B77C7 /* UIColor+HexToRgb.m */; };
+		D261658919709D9D002B77C7 /* SORelativeDateTransformer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D261658619709D9D002B77C7 /* SORelativeDateTransformer.bundle */; };
+		D261658A19709D9D002B77C7 /* SORelativeDateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D261658819709D9D002B77C7 /* SORelativeDateTransformer.m */; };
 		D2798D84196B368D008F77F9 /* TCFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798D83196B368D008F77F9 /* TCFriendsViewController.m */; };
 		D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798D88196B48E6008F77F9 /* TCFriendsTableViewCell.m */; };
 		D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2798D89196B48E6008F77F9 /* TCFriendsTableViewCell.xib */; };
@@ -123,6 +134,27 @@
 		D21F130D19670979006A8910 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D21F130F1967097F006A8910 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D21F13111967099C006A8910 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		D261619A19703151002B77C7 /* TCChatConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatConversationViewController.h; sourceTree = "<group>"; };
+		D261619B19703151002B77C7 /* TCChatConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChatConversationViewController.m; sourceTree = "<group>"; };
+		D261619D19703B2A002B77C7 /* TCChatMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatMessageProtocol.h; sourceTree = "<group>"; };
+		D261619F19703BB1002B77C7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		D26161A019703BB1002B77C7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		D26161A319703CB4002B77C7 /* TCEmoticonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEmoticonViewController.h; sourceTree = "<group>"; };
+		D26161A419703CB4002B77C7 /* TCEmoticonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEmoticonViewController.m; sourceTree = "<group>"; };
+		D26161A719703DA9002B77C7 /* TCEmoticonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEmoticonTableViewCell.h; sourceTree = "<group>"; };
+		D26161A819703DA9002B77C7 /* TCEmoticonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEmoticonTableViewCell.m; sourceTree = "<group>"; };
+		D26161AA19703F0D002B77C7 /* TC_EmoticonSymbols.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TC_EmoticonSymbols.plist; sourceTree = "<group>"; };
+		D26161AE197041F3002B77C7 /* TCMyChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMyChatCell.h; sourceTree = "<group>"; };
+		D26161AF197041F3002B77C7 /* TCMyChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyChatCell.m; sourceTree = "<group>"; };
+		D26161B119704209002B77C7 /* TCFriendChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFriendChatCell.h; sourceTree = "<group>"; };
+		D26161B219704209002B77C7 /* TCFriendChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFriendChatCell.m; sourceTree = "<group>"; };
+		D26161B519708FE5002B77C7 /* TCAPIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAPIMethods.h; sourceTree = "<group>"; };
+		D26161B619708FE5002B77C7 /* TCAPIMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAPIMethods.m; sourceTree = "<group>"; };
+		D26161B919709288002B77C7 /* UIColor+HexToRgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexToRgb.h"; sourceTree = "<group>"; };
+		D26161BA19709288002B77C7 /* UIColor+HexToRgb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexToRgb.m"; sourceTree = "<group>"; };
+		D261658619709D9D002B77C7 /* SORelativeDateTransformer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SORelativeDateTransformer.bundle; sourceTree = "<group>"; };
+		D261658719709D9D002B77C7 /* SORelativeDateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SORelativeDateTransformer.h; sourceTree = "<group>"; };
+		D261658819709D9D002B77C7 /* SORelativeDateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SORelativeDateTransformer.m; sourceTree = "<group>"; };
 		D2798D82196B368D008F77F9 /* TCFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFriendsViewController.h; sourceTree = "<group>"; };
 		D2798D83196B368D008F77F9 /* TCFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFriendsViewController.m; sourceTree = "<group>"; };
 		D2798D87196B48E6008F77F9 /* TCFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFriendsTableViewCell.h; sourceTree = "<group>"; };
@@ -204,6 +236,7 @@
 		4FC0D2141968C7170055812C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D26161B419708F9D002B77C7 /* NetworkMethods */,
 				D2798DE7196CA705008F77F9 /* HelperClasses */,
 				D2798DDC196C4591008F77F9 /* Model */,
 				D2798D93196B66D0008F77F9 /* Libs */,
@@ -231,6 +264,7 @@
 		4FC0D2181968C7170055812C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D26161981970311B002B77C7 /* Common */,
 				4FC0D2191968C7170055812C /* Login */,
 				4FC0D21C1968C7170055812C /* TabBar */,
 			);
@@ -297,6 +331,7 @@
 		4FC0D2291968C7170055812C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D26161B819709288002B77C7 /* UIColor */,
 				D2798DE3196CA5FD008F77F9 /* NSDate */,
 				4FC0D22A1968C7170055812C /* UITextField */,
 			);
@@ -316,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC0D22E1968C7170055812C /* TCChatConnectionProtocol.h */,
+				D261619D19703B2A002B77C7 /* TCChatMessageProtocol.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -397,6 +433,97 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D26161981970311B002B77C7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D26161A219703C8F002B77C7 /* Emoticon */,
+				D26161991970311B002B77C7 /* ChatConversation */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D26161991970311B002B77C7 /* ChatConversation */ = {
+			isa = PBXGroup;
+			children = (
+				D261619A19703151002B77C7 /* TCChatConversationViewController.h */,
+				D261619B19703151002B77C7 /* TCChatConversationViewController.m */,
+			);
+			path = ChatConversation;
+			sourceTree = "<group>";
+		};
+		D261619E19703BB1002B77C7 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D261619F19703BB1002B77C7 /* MBProgressHUD.h */,
+				D26161A019703BB1002B77C7 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		D26161A219703C8F002B77C7 /* Emoticon */ = {
+			isa = PBXGroup;
+			children = (
+				D26161A319703CB4002B77C7 /* TCEmoticonViewController.h */,
+				D26161A419703CB4002B77C7 /* TCEmoticonViewController.m */,
+			);
+			path = Emoticon;
+			sourceTree = "<group>";
+		};
+		D26161A619703D21002B77C7 /* EmoticonCell */ = {
+			isa = PBXGroup;
+			children = (
+				D26161A719703DA9002B77C7 /* TCEmoticonTableViewCell.h */,
+				D26161A819703DA9002B77C7 /* TCEmoticonTableViewCell.m */,
+			);
+			path = EmoticonCell;
+			sourceTree = "<group>";
+		};
+		D26161AC197041B7002B77C7 /* FriendChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				D26161B119704209002B77C7 /* TCFriendChatCell.h */,
+				D26161B219704209002B77C7 /* TCFriendChatCell.m */,
+			);
+			path = FriendChatCell;
+			sourceTree = "<group>";
+		};
+		D26161AD197041B7002B77C7 /* MyChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				D26161AE197041F3002B77C7 /* TCMyChatCell.h */,
+				D26161AF197041F3002B77C7 /* TCMyChatCell.m */,
+			);
+			path = MyChatCell;
+			sourceTree = "<group>";
+		};
+		D26161B419708F9D002B77C7 /* NetworkMethods */ = {
+			isa = PBXGroup;
+			children = (
+				D26161B519708FE5002B77C7 /* TCAPIMethods.h */,
+				D26161B619708FE5002B77C7 /* TCAPIMethods.m */,
+			);
+			path = NetworkMethods;
+			sourceTree = "<group>";
+		};
+		D26161B819709288002B77C7 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				D26161B919709288002B77C7 /* UIColor+HexToRgb.h */,
+				D26161BA19709288002B77C7 /* UIColor+HexToRgb.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		D261658519709D78002B77C7 /* SORelativeDateTransformer */ = {
+			isa = PBXGroup;
+			children = (
+				D261658619709D9D002B77C7 /* SORelativeDateTransformer.bundle */,
+				D261658719709D9D002B77C7 /* SORelativeDateTransformer.h */,
+				D261658819709D9D002B77C7 /* SORelativeDateTransformer.m */,
+			);
+			path = SORelativeDateTransformer;
+			sourceTree = "<group>";
+		};
 		D2798D81196B3668008F77F9 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +536,9 @@
 		D2798D85196B4890008F77F9 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				D26161AC197041B7002B77C7 /* FriendChatCell */,
+				D26161AD197041B7002B77C7 /* MyChatCell */,
+				D26161A619703D21002B77C7 /* EmoticonCell */,
 				D2798DEB196CAD25008F77F9 /* RecentChatCell */,
 				D2798D86196B4890008F77F9 /* FriendsCell */,
 			);
@@ -436,6 +566,8 @@
 		D2798D93196B66D0008F77F9 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D261658519709D78002B77C7 /* SORelativeDateTransformer */,
+				D261619E19703BB1002B77C7 /* MBProgressHUD */,
 				D2798D94196B66D0008F77F9 /* AFNetworking */,
 			);
 			path = Libs;
@@ -492,6 +624,7 @@
 				4FC0D23F1968C7180055812C /* main.m */,
 				4FC0D2421968C7180055812C /* TChat-Info.plist */,
 				4FC0D2431968C7180055812C /* TChat-Prefix.pch */,
+				D26161AA19703F0D002B77C7 /* TC_EmoticonSymbols.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -594,9 +727,11 @@
 				D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */,
 				4FC0D2541968C7180055812C /* friend-button.png in Resources */,
 				4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */,
+				D261658919709D9D002B77C7 /* SORelativeDateTransformer.bundle in Resources */,
 				D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */,
 				4FC0D2531968C7180055812C /* InfoPlist.strings in Resources */,
 				4FC0D2441968C7180055812C /* Main_iPad.storyboard in Resources */,
+				D26161AB19703F0D002B77C7 /* TC_EmoticonSymbols.plist in Resources */,
 				4FC0D2571968C7180055812C /* setting-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,9 +747,13 @@
 				D2798DD2196B692D008F77F9 /* UIImageView+AFNetworking.m in Sources */,
 				4FC0D2501968C7180055812C /* XMPPRoomHybrid.xcdatamodel in Sources */,
 				D2798DCB196B692D008F77F9 /* AFHTTPRequestOperation.m in Sources */,
+				D26161A119703BB1002B77C7 /* MBProgressHUD.m in Sources */,
 				4FC0D2461968C7180055812C /* TCConstants.m in Sources */,
 				D2798DCE196B692D008F77F9 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				D261619C19703151002B77C7 /* TCChatConversationViewController.m in Sources */,
+				D26161B719708FE5002B77C7 /* TCAPIMethods.m in Sources */,
 				4FC0D24E1968C7180055812C /* XMPPMessageArchiving.xcdatamodel in Sources */,
+				D26161A519703CB4002B77C7 /* TCEmoticonViewController.m in Sources */,
 				4FC0D2471968C7180055812C /* TCLoginViewController.m in Sources */,
 				D2798D84196B368D008F77F9 /* TCFriendsViewController.m in Sources */,
 				4FC0D24B1968C7180055812C /* TCTabBarController.m in Sources */,
@@ -625,11 +764,15 @@
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
 				D2798DCA196B692D008F77F9 /* AFHTTPClient.m in Sources */,
 				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,
+				D261658A19709D9D002B77C7 /* SORelativeDateTransformer.m in Sources */,
 				D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */,
 				4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */,
+				D26161B0197041F3002B77C7 /* TCMyChatCell.m in Sources */,
 				D2798DE6196CA62F008F77F9 /* NSDate+Utilities.m in Sources */,
 				D2798DD1196B692D008F77F9 /* AFXMLRequestOperation.m in Sources */,
+				D26161A919703DA9002B77C7 /* TCEmoticonTableViewCell.m in Sources */,
 				D2798DD0196B692D008F77F9 /* AFURLConnectionOperation.m in Sources */,
+				D26161B319704209002B77C7 /* TCFriendChatCell.m in Sources */,
 				4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */,
 				D2798DCC196B692D008F77F9 /* AFImageRequestOperation.m in Sources */,
 				D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */,
@@ -639,6 +782,7 @@
 				4FC0D2591968C7180055812C /* main.m in Sources */,
 				4FC0D24D1968C7180055812C /* XMPPCapabilities.xcdatamodel in Sources */,
 				D2798DDB196C44A0008F77F9 /* TChatModel.xcdatamodeld in Sources */,
+				D26161BB19709288002B77C7 /* UIColor+HexToRgb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +904,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TChat;
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -780,6 +925,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TChat;
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -10,4 +10,9 @@
 
 @implementation TCConstants
 
+NSString *URL_SCHEME = @"http://";
+NSString *XMPP_UAT_HOST = @"uat.yookoschat.com";
+NSString *XMPP_LIVE_HOST = @"yookoschat.com";
+NSString *PROXY_SERVICE = @"service/proxy/proxy.yookos.php?";
+
 @end

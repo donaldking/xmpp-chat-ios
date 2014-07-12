@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define URL_SCHEME @"http://";
-#define XMPP_UAT_HOST @"uat.yookoschat.com";
-#define XMPP_LIVE_HOST @"yookoschat.com";
-#define PROXY_SERVICE @"service/proxy/proxy.yookos.php?";
 
 typedef NS_ENUM(int, PresenceStatus){
     online = 0,
@@ -20,6 +16,24 @@ typedef NS_ENUM(int, PresenceStatus){
     offline,
 };
 
+
+typedef NS_ENUM(int,DIRECTION) {
+    NONE,
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN,
+    CRAZY,
+};
+
+#define PLACEHOLDER_IMAGE @"placeholder_profile"
+
 @interface TCConstants : NSObject
+
+extern NSString * URL_SCHEME;
+extern NSString * XMPP_UAT_HOST;
+extern NSString * XMPP_LIVE_HOST;
+extern NSString * PROXY_SERVICE;
+
 
 @end
