@@ -11,8 +11,10 @@
 #import "TCAppDelegate.h"
 #import "TCConstants.h"
 #import "TCUtility.h"
+#import "TCChatConversationViewController.h"
 #import <TUSKXMPPLIB/DDLog.h>
 #import <TUSKXMPPLIB/DDTTYLogger.h>
+
 
 #if DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -177,6 +179,22 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Chat* chat = [self.chats objectAtIndex:indexPath.row];
+    
+    XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
+                                           userForJID:[XMPPJID jidWithString:chat.jidString]
+                                           xmppStream:XAppDelegate.xmppStream
+                                           managedObjectContext:XAppDelegate.managedObjectContext_roster];
+    
+    TCChatConversationViewController *chatCoversationViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"chatConversationView"];
+    chatCoversationViewController.chatUserObject = user;
+    
+    chatCoversationViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:chatCoversationViewController animated:YES];
+    
+    
   /*  if (self.conversationVC)
         self.conversationVC = nil;
     Chat* chat = [self.chats objectAtIndex:indexPath.row];

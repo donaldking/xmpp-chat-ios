@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *date;
 @property (nonatomic, strong) IBOutlet UILabel *name;
+@property (nonatomic, strong) IBOutlet UILabel *message;
 @property (nonatomic, strong) IBOutlet UIImageView *avatar;
 //@property (nonatomic, strong) IBOutlet DTAttributedTextContentView *message;
 

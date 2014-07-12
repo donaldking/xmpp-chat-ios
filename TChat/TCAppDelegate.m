@@ -54,7 +54,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     _ApiMethods = [TCAPIMethods new];
     
     [self prepareXmppChat];
-
+  
+    _storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     
   //  [self.window makeKeyAndVisible];
     
@@ -504,6 +505,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [self connectForUsername:theUsername andPasswrod:thePassword andCallBack:^(id completionResponse) {
         
+        //TODO.... corretcly store in keychain along with password
+        _username = theUsername;
         // Persist username!
       //  NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theUsername,@"username", nil];
       //  NSLog(@"Will persist to model: %@",params);

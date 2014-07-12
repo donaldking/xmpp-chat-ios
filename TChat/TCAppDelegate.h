@@ -65,7 +65,7 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 @property (nonatomic) PresenceStatus presence;
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) UIStoryboard *stroyboard;
+@property (nonatomic, strong) UIStoryboard *storyboard;
 @property (nonatomic, strong) UINavigationController *navController;
 
 @property (nonatomic, strong) NSString *thisPassword;

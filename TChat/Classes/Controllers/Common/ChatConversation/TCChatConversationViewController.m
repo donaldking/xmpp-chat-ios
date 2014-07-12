@@ -9,6 +9,8 @@
 #import "TCChatConversationViewController.h"
 #import <CoreData/CoreData.h>
 #import "TChatDefintions.h"
+#import "TCUtility.h"
+
 
 static CGFloat padding = 20.0;
 static CGFloat phoneKeyboardHeight = 216;
@@ -63,7 +65,7 @@ static CGRect keyboardEmoticonRect;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES];
+  //  [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -102,9 +104,11 @@ static CGRect keyboardEmoticonRect;
                                      [NSString stringWithFormat:@"service/get_message.php?sender=%@&receiver=%@",sender,receiver],@"api",
                                      nil];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
+  //  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
     
-    [XAppDelegate checkIfObjectExistsForEntityName:@"ChatMessages" withPredicate:predicate inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(jidString LIKE[c] %@)",_buddy];
+    
+    [XAppDelegate checkIfObjectExistsForEntityName:@"Chat" withPredicate:predicate inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
         if ([completionResponse isEqualToString:@"checkIfObjectExistsForEntityName:YES"]) {
             /*
              * Do nothing as message already loaded from server
@@ -155,10 +159,10 @@ static CGRect keyboardEmoticonRect;
     
     fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"ChatMessages" inManagedObjectContext:XAppDelegate.managedObjectContext];
+                                   entityForName:@"Chat" inManagedObjectContext:XAppDelegate.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"message_date" ascending:YES];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"messageDate" ascending:YES];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:5];
@@ -168,7 +172,10 @@ static CGRect keyboardEmoticonRect;
                                         managedObjectContext:XAppDelegate.managedObjectContext sectionNameKeyPath:nil
                                                    cacheName:nil];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
+  //  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(jidString LIKE[c] %@)",_buddy];
+    
     [fetchRequest setPredicate:predicate];
     
     _fetchedResultsController = theFetchedResultsController;
@@ -262,7 +269,7 @@ static CGRect keyboardEmoticonRect;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSManagedObject *messageObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *message = [messageObject valueForKey:@"message"];
+    NSString *message = [messageObject valueForKey:@"messageBody"];
     
     CGSize textSize = {268, 10000.0f};
     CGSize size = [message sizeWithFont:[UIFont fontWithName:@"Helvetica Neue" size:14] constrainedToSize:textSize lineBreakMode:NSLineBreakByWordWrapping];
@@ -274,15 +281,15 @@ static CGRect keyboardEmoticonRect;
 -(void)configureMyChatCell:(id)cell atIndexPath:(NSIndexPath*)indexPath
 {
     NSManagedObject *messageObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *mMessage =  [messageObject valueForKey:@"message"];
+    NSString *mMessage =  [messageObject valueForKey:@"messageBody"];
     
     CGSize textSize = {268, 10000.0f};
     CGSize size = [mMessage sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:14]constrainedToSize:textSize lineBreakMode:NSLineBreakByWordWrapping];
     size.height += padding;
     
     // Avatar
-    [_myChatCell.avatar.layer setCornerRadius:15.0f];
-    [_myChatCell.avatar.layer setMasksToBounds:YES];
+    //[_myChatCell.avatar.layer setCornerRadius:15.0f];
+    //[_myChatCell.avatar.layer setMasksToBounds:YES];
     
     NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",XAppDelegate.username];
     NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@",URL_SCHEME,XAppDelegate.currentHost,PROXY_SERVICE,proxyPath];
@@ -291,6 +298,8 @@ static CGRect keyboardEmoticonRect;
     // Name
     [_myChatCell.name setText:@"Me"];
     
+    
+    _myChatCell.message.text = [messageObject valueForKey:@"messageBody"];
     
     // Message
    /* [_myChatCell.message setFrame:CGRectMake(_myChatCell.message.frame.origin.x, _myChatCell.message.frame.origin.y, _myChatCell.message.frame.size.width, size.height)];
@@ -303,26 +312,29 @@ static CGRect keyboardEmoticonRect;
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithHTMLData:data documentAttributes:NULL];
     [_myChatCell.message setAttributedString:attrString];*/
     
+    NSString *timeStamp = [NSString stringWithFormat:@"%@", [TCUtility dayLabelForMessage:[messageObject valueForKey:@"messageDate"]]];
+    _myChatCell.date.text = timeStamp;
+    
     // Date
-    NSString *date = [messageObject valueForKey:@"message_date"];
+    /*NSString *date = [messageObject valueForKey:@"message_date"];
     int timestamp = [[NSString stringWithFormat:@"%@",date] intValue];
     NSDate *d = [NSDate dateWithTimeIntervalSince1970:timestamp];
     NSString *ago = [[SORelativeDateTransformer registeredTransformer] transformedValue:d];
-    [_myChatCell.date setText:ago];
+    [_myChatCell.date setText:ago];*/
 }
 
 -(void)configureFriendChatCell:(id)cell atIndexPath:(NSIndexPath*)indexPath
 {
     NSManagedObject *messageObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *fMessage = [messageObject valueForKey:@"message"];
+    NSString *fMessage = [messageObject valueForKey:@"messageBody"];
     
     CGSize textSize = {268, 10000.0f};
     CGSize size = [fMessage sizeWithFont:[UIFont fontWithName:@"Helvetica Neue" size:14]constrainedToSize:textSize lineBreakMode:NSLineBreakByWordWrapping];
     size.height +=(padding/2);
     
     // Avatar
-    [_friendChatCell.avatar.layer setCornerRadius:15.0f];
-    [_friendChatCell.avatar.layer setMasksToBounds:YES];
+    //[_friendChatCell.avatar.layer setCornerRadius:15.0f];
+    //[_friendChatCell.avatar.layer setMasksToBounds:YES];
     
     NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",[[_chatUserObject valueForKey:@"jidStr"] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""]];
     NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@",URL_SCHEME,XAppDelegate.currentHost,PROXY_SERVICE,proxyPath];
@@ -330,6 +342,8 @@ static CGRect keyboardEmoticonRect;
     
     // Name
     [_friendChatCell.name setText:[_chatUserObject valueForKey:@"displayName"]];
+    
+     _friendChatCell.message.text = [messageObject valueForKey:@"messageBody"];
     
     // Message
    /* [_friendChatCell.message setFrame:CGRectMake(_friendChatCell.message.frame.origin.x, _friendChatCell.message.frame.origin.y, _friendChatCell.message.frame.size.width, size.height)];
@@ -340,12 +354,15 @@ static CGRect keyboardEmoticonRect;
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithHTMLData:data documentAttributes:NULL];
     [_friendChatCell.message setAttributedString:attrString];*/
     
+    NSString *timeStamp = [NSString stringWithFormat:@"%@", [TCUtility dayLabelForMessage:[messageObject valueForKey:@"messageDate"]]];
+    _friendChatCell.date.text = timeStamp;
+    
     // Date
-    NSString *date = [messageObject valueForKey:@"message_date"];
+  /*  NSString *date = [messageObject valueForKey:@"messageDate"];
     int timestamp = [[NSString stringWithFormat:@"%@",date] intValue];
     NSDate *d = [NSDate dateWithTimeIntervalSince1970:timestamp];
     NSString *ago = [[SORelativeDateTransformer registeredTransformer] transformedValue:d];
-    [_friendChatCell.date setText:ago];
+    [_friendChatCell.date setText:ago];*/
     
 }
 /*
@@ -378,8 +395,11 @@ static CGRect keyboardEmoticonRect;
     static NSString *friendChatCellIdentifier = @"friendChatCell";
     
     NSManagedObject *messageObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *senderJid = [messageObject valueForKey:@"sender"];
-    if ([senderJid isEqualToString:_currentUser]) {
+  //  NSString *senderJid = [messageObject valueForKey:@"sender"];
+  //  if ([senderJid isEqualToString:_currentUser])
+    NSString *senderDir = [messageObject valueForKey:@"direction"];
+    if ([senderDir isEqualToString:@"OUT"])
+    {
         
         // Me
         _myChatCell = (TCMyChatCell*)[self.tableView dequeueReusableCellWithIdentifier:myChatCellIdentifier];
@@ -542,7 +562,7 @@ static CGRect keyboardEmoticonRect;
 #pragma mark - chat message lifecycle
 -(IBAction)sendMessageAction:(id)sender
 {
-    NSString *message = _textView.text;
+  /*  NSString *message = _textView.text;
     if ([[message stringByReplacingOccurrencesOfString:@" " withString:@""] length] >=1) {
 #if !(TARGET_IPHONE_SIMULATOR)
         [XAppDelegate.sendMessageSound play];
@@ -574,7 +594,7 @@ static CGRect keyboardEmoticonRect;
         [self apiPostWithDictionary:params];
         
     }
-    [self.textView setText:@""];
+    [self.textView setText:@""];*/
 }
 
 -(void)apiPostWithDictionary:(NSDictionary *)dictionary{
