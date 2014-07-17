@@ -298,7 +298,9 @@ static CGRect keyboardEmoticonRect;
     
     if (ABS(differenceInDays) == 0)
     {
-        _myChatCell.date.text = @"Today";
+        //_myChatCell.date.text = @"Today";
+        NSString *ago = [[SORelativeDateTransformer registeredTransformer] transformedValue:msg_date];
+        [_myChatCell.date setText:ago];
     }
     else if (ABS(differenceInDays) == 1)
     {
@@ -385,7 +387,9 @@ static CGRect keyboardEmoticonRect;
     
     if (ABS(differenceInDays) == 0)
     {
-        _friendChatCell.date.text = @"Today";
+       // _friendChatCell.date.text = @"Today";
+        NSString *ago = [[SORelativeDateTransformer registeredTransformer] transformedValue:msg_date];
+        [_friendChatCell.date setText:ago];
     }
     else if (ABS(differenceInDays) == 1)
     {
@@ -637,7 +641,7 @@ static CGRect keyboardEmoticonRect;
 
 - (IBAction)emoticonAction:(UIButton *)sender {
     
-    if (emoticonInputViewShown) {
+  /*  if (emoticonInputViewShown) {
         [_textView resignFirstResponder];
         [_textView setInputView:nil];
         [_textView becomeFirstResponder];
@@ -653,7 +657,7 @@ static CGRect keyboardEmoticonRect;
         [_textView becomeFirstResponder];
         
         emoticonInputViewShown = YES;
-    }
+    }*/
     
 }
 

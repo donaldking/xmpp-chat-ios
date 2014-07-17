@@ -18,5 +18,6 @@ typedef void(^getCompletedBlock) (id completionResponse);
 
 -(void)doPostWithDictionary:(NSDictionary*)dictionary andCallback:(postCompletedBlock)completionResponse;
 -(void)doGetWithDictionary:(NSDictionary*)dictionary andCallback:(getCompletedBlock)completionResponse;
+-(void)doGetRecentChatWithDictionary:(NSDictionary*)dictionary andCallback:(getCompletedBlock)completionResponse;
 
 @end

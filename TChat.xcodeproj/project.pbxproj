@@ -79,6 +79,7 @@
 		D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */; };
 		D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */; };
 		D2E8A3561976B5AC006CD97E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E8A35B19788606006CD97E /* RecentChat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A35A19788606006CD97E /* RecentChat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,6 +195,8 @@
 		D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRecentChatTableViewCell.xib; sourceTree = "<group>"; };
 		D2E8A3541976B5AC006CD97E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		D2E8A35919788606006CD97E /* RecentChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentChat.h; sourceTree = "<group>"; };
+		D2E8A35A19788606006CD97E /* RecentChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentChat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -607,6 +610,8 @@
 			children = (
 				D2798DDD196C45AA008F77F9 /* Chat.h */,
 				D2798DDE196C45AA008F77F9 /* Chat.m */,
+				D2E8A35919788606006CD97E /* RecentChat.h */,
+				D2E8A35A19788606006CD97E /* RecentChat.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -766,6 +771,7 @@
 				4FC0D24A1968C7180055812C /* TCSettingsViewController.m in Sources */,
 				4FC0D2521968C7180055812C /* XMPPvCard.xcdatamodel in Sources */,
 				D2798DDF196C45AA008F77F9 /* Chat.m in Sources */,
+				D2E8A35B19788606006CD97E /* RecentChat.m in Sources */,
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
 				D2798DCA196B692D008F77F9 /* AFHTTPClient.m in Sources */,
 				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,

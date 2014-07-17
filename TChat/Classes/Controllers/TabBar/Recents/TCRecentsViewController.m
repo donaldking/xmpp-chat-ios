@@ -61,7 +61,25 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 -(void)loadData
 {
-    if (self.chats)
+    NSString *sender = XAppDelegate.username;
+    
+    NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
+                                     [NSString stringWithFormat:@"mobileservices/v1/get_recents.php?sender=%@",sender],@"api",
+                                     nil];
+
+    
+    [XAppDelegate.ApiMethods doGetRecentChatWithDictionary:dicToApi andCallback:^(id completionResponse) {
+        NSLog(@"Completion response: %@",completionResponse);
+        
+        if ([completionResponse isEqualToString:@"doGetWithDictionary:OK"]) {
+            NSLog(@"received success response");
+            //TODO
+        }
+    }];
+
+    
+    /*if (self.chats)
         self.chats =nil;
     self.chats = [[NSMutableArray alloc]init];
     
@@ -92,7 +110,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [self.chats addObject:[self LatestChatRecordForJID:jid]];
     }
     //reload the table view
-    [self.tableView reloadData];
+    [self.tableView reloadData];*/
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark UITableView
