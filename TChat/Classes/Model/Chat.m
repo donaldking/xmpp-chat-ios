@@ -20,11 +20,14 @@
 @dynamic jidString;
 @dynamic localfileName;
 @dynamic mediaType;
-@dynamic messageBody;
-@dynamic messageDate;
-@dynamic messageStatus;
+@dynamic message;
+@dynamic message_date;
+@dynamic status;
 @dynamic mimeType;
 @dynamic roomJID;
 @dynamic roomName;
+
+@dynamic sender;
+@dynamic receiver;
 
 @end

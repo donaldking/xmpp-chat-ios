@@ -10,14 +10,20 @@
         <attribute name="jidString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="localfileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mediaType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="messageBody" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="messageDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="messageStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message_date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mimeType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="receiver" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomJID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CurrentUser" syncable="YES">
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="-63" positionY="-18" width="128" height="270"/>
+        <element name="Chat" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="CurrentUser" positionX="-63" positionY="108" width="128" height="60"/>
     </elements>
 </model>

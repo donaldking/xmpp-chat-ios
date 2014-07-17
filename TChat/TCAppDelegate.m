@@ -8,6 +8,8 @@
 
 #import "TCAppDelegate.h"
 
+#import "TCTabBarController.h"
+
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -45,6 +47,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    _keyChain = [[KeychainItemWrapper alloc] initWithIdentifier:[[NSBundle mainBundle] bundleIdentifier]  accessGroup:nil];
+    
      _currentHost = XMPP_UAT_HOST;
     
     _XMPP_RESOURCE_NAME = [[NSString stringWithFormat:@"TChat-iOS-%@-%@",[[UIDevice currentDevice] localizedModel],[[[UIDevice currentDevice] identifierForVendor] UUIDString]] stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -59,8 +63,28 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
   //  [self.window makeKeyAndVisible];
     
+    [self bootStrap];
     
     return YES;
+}
+
+
+-(void)bootStrap{
+    
+    if ([self getCredentialsFromKeychain]) {
+        [self loginToChat];
+    }
+}
+
+-(void)loginToChat{
+    [self doLoginForUsername:_username andPassword:_password andCallback:^(id completionResponse) {
+        //
+        NSLog(@"Login completion: %@",completionResponse);
+        
+        TCTabBarController *tabBarController=[_storyboard instantiateViewControllerWithIdentifier:@"tabBar"];
+        [XAppDelegate.window setRootViewController:tabBarController];
+
+    }];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -368,85 +392,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             }
         }
     }
-   
-    
-    
- /*   NSString *body = [[message elementForName:@"body"] stringValue];
-    
-	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-    //NSLog(@"TOP Received message: [ %@ ] from: %@",message,sender);
-    
-    /*if ([message isChatMessageWithBody] && [[[[message elementForName:@"body"] stringValue] stringByReplacingOccurrencesOfString:@" " withString:@""] length] >=1) {
-     NSString *from = [[message fromStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@/%@",XAppDelegate.currentHost,_XMPP_RESOURCE_NAME] withString:@""];
-     
-     if ([from isEqualToString:XAppDelegate.username]) {
-     NSString *body = [[message elementForName:@"body"] stringValue];
-     
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"LOOP BACK RECEIVED!" message:body delegate:self cancelButtonTitle:Nil otherButtonTitles:@"Dismiss", nil];
-     [alert show];
-     
-     NSLog(@"LOOP BACK RECEIVED!");
-     }
-     
-     }*/
-    
-	/*if ([message isChatMessageWithBody] && [[[[message elementForName:@"body"] stringValue] stringByReplacingOccurrencesOfString:@" " withString:@""] length] >=1)
-	{
-        streamObject = [xmppRosterStorage userForJID:[message from]
-                                          xmppStream:xmppStream
-                                managedObjectContext:[self managedObjectContext_roster]];
-		
-        NSString *body = [[message elementForName:@"body"] stringValue];
-        NSDate *date = [NSDate date];
-        int timestamp = [date timeIntervalSince1970];
-        NSString *dateString = [NSString stringWithFormat:@"%i",timestamp];
-        
-        // Create message to send as dictionary
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [streamObject valueForKey:@"jidStr"],@"sender",
-                                [streamObject valueForKey:@"streamBareJidStr"],@"receiver",
-                                body,@"message",
-                                @"0",@"status",
-                                dateString,@"message_date",
-                                nil];
-        
-        [self receiveAndPersistObjectForEntityName:@"ChatMessages" inManagedObjectContext:self.managedObjectContext withDictionary:params
-                                       andCallback:^(id completionResponse)
-         {
-             if ([completionResponse isEqualToString:@"receiveAndPersistObjectForEntityName:OK" ]) {
-                 
-                 NSMutableDictionary *notifDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                  [streamObject valueForKey:@"displayName"],@"displayName",
-                                                  nil];
-                 [notifDic addEntriesFromDictionary:params];
-                 if ([_messageDelegate respondsToSelector:@selector(newMessageReceived:)]) {
-                     
-                     // Call delegate method new chat message received.
-                     [_messageDelegate newMessageReceived:notifDic];
-                 }
-             }
-         }];
-		
-    }
-    else if([[message elementsForName:@"composing"] count]>=1)
-    {
-        /*
-         * Post composing message alert to delegate.
-         *
-         */
-    /*    if ([_messageDelegate respondsToSelector:@selector(composingMessageReceived:)]) {
-            
-            XMPPUserCoreDataStorageObject *streamObject = [xmppRosterStorage userForJID:[message from]
-                                                                             xmppStream:xmppStream
-                                                                   managedObjectContext:[self managedObjectContext_roster]];
-            NSDictionary *composeParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                           [streamObject valueForKey:@"jidStr"],@"jidstr",
-                                           [streamObject valueForKey:@"displayName"],@"displayName",
-                                           nil];
-            [_messageDelegate composingMessageReceived:composeParams];
-        }
-        
-    }*/
 }
 
 
@@ -477,17 +422,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     XMPPUserCoreDataStorageObject *user = [self.xmppRosterStorage userForJID:[message from]
                                                                   xmppStream:self.xmppStream
                                                         managedObjectContext:[self managedObjectContext_roster]];
+    
+    NSDate *date = [NSDate date];
+    int timestamp = [date timeIntervalSince1970];
+    NSString *dateString = [NSString stringWithFormat:@"%i",timestamp];
+    
     Chat *chat = [NSEntityDescription insertNewObjectForEntityForName:@"Chat" inManagedObjectContext:self.managedObjectContext];
     
-    chat.messageBody = [[message elementForName:@"body"] stringValue];
-    chat.messageDate = [NSDate date];
-    chat.messageStatus = @"received";
-    chat.direction = @"IN";
-    chat.groupNumber = @"";
-    chat.isNew = [NSNumber numberWithBool:YES];
-    chat.hasMedia = [NSNumber numberWithBool:NO];
-    chat.isGroupMessage = [NSNumber numberWithBool:NO];
-    chat.jidString = user.jidStr;
+    chat.message = [[message elementForName:@"body"] stringValue];
+    chat.message_date = dateString;
+    chat.status = @"0";
+    chat.sender = user.jidStr;
+    chat.receiver = user.streamBareJidStr;
     
     NSError *error = nil;
     if(![self.managedObjectContext save:&error])
@@ -506,12 +452,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self connectForUsername:theUsername andPasswrod:thePassword andCallBack:^(id completionResponse) {
         
         //TODO.... corretcly store in keychain along with password
-        _username = theUsername;
-        // Persist username!
-      //  NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theUsername,@"username", nil];
-      //  NSLog(@"Will persist to model: %@",params);
+       // _username = theUsername;
+      /*  // Persist username!
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theUsername,@"username", nil];
+        NSLog(@"Will persist to model: %@",params);
         
-    /*    [self persistObjectForEntityName:@"CurrentUser" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
+        [self persistObjectForEntityName:@"CurrentUser" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
             //
             NSLog(@"Persistence response: %@",completionResponse);
             if ([completionResponse isEqualToString:@"persistObjectForEntityName:OK"]) {
@@ -519,9 +465,48 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                 NSLog(@"Username persisted");
             }
-        }];*/
+        }];
+        */
+        if ([self saveCredentials:@{@"username" : theUsername, @"password" : thePassword}])
+        {
+            NSLog(@"Credential Saved");
+        }
         
     }];
+}
+
+
+-(BOOL)saveCredentials:(NSDictionary*)dictionary
+{
+    if([TCUtility saveToKeyChain:[dictionary valueForKey:@"username"] andPassword:[dictionary valueForKey:@"password"]])
+    {
+        if([XAppDelegate getCredentialsFromKeychain]){
+            return YES;
+        }else{
+            return NO;
+        }
+            
+    }
+    else{
+        return NO;
+    }
+    
+    return 0;
+}
+
+-(BOOL)getCredentialsFromKeychain
+{
+    // Pull SC and username to memory
+    XAppDelegate.username = [XAppDelegate.keyChain objectForKey:(__bridge id)kSecAttrAccount];
+    XAppDelegate.password = [XAppDelegate.keyChain objectForKey:(__bridge id)kSecValueData];
+    
+    //NSLog(@"username: %@ Password: %@",XAppDelegate.currentUserId, XAppDelegate.password);
+    if ([XAppDelegate.username length] >=1 && [XAppDelegate.password length] >=1) {
+        return YES;
+    }else{
+        return NO;
+    }
+    return 0;
 }
 
 - (BOOL) connectForUsername:(NSString*)theUsername andPasswrod:(NSString*)thePassword andCallBack:(requestCompletedBlock)responseBlock
@@ -741,6 +726,60 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         completionResponse(@"receiveAndPersistObjectForEntityName:ERROR");
     }
     
+}
+
+
+#pragma Mark - XMPP Send Message
+- (void)sendAndPersistObjectForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
+                           withDictionary:(NSDictionary*)dictionary andCallback:(requestCompletedBlock)completionResponse
+{
+    NSManagedObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+    
+    // Persist objects
+    [newObject setValuesForKeysWithDictionary:dictionary];
+    
+    NSError *error;
+    if([XAppDelegate.managedObjectContext save:&error])
+    {
+        completionResponse(@"persistObjectForEntityName:OK");
+        NSLog(@"persisted for entity name: %@",entityName);
+        
+        NSString *messageStr = [dictionary valueForKey:@"message"];
+        
+        if ([messageStr length] >0)
+        {
+            NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+            [body setStringValue:messageStr];
+            
+            NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+            [message addAttributeWithName:@"type" stringValue:@"chat"];
+            [message addAttributeWithName:@"to" stringValue:[dictionary valueForKey:@"receiver"]];
+            [message addChild:body];
+            
+            [xmppStream sendElement:message];
+            
+            // Do LoopBack
+            [self loopBackWithDictionary:dictionary andMessage:messageStr];
+        }
+        
+    }
+    else{
+        completionResponse(@"persistObjectForEntityName:ERROR");
+    }
+}
+
+-(void)loopBackWithDictionary:(NSDictionary*)dictionary andMessage:(NSString *)messageStr{
+    
+    // Loop back
+    NSXMLElement *bodyLoopBack = [NSXMLElement elementWithName:@"body"];
+    [bodyLoopBack setStringValue:messageStr];
+    
+    NSXMLElement *messageLoopBack = [NSXMLElement elementWithName:@"message"];
+    [messageLoopBack addAttributeWithName:@"type" stringValue:@"chat"];
+    [messageLoopBack addAttributeWithName:@"to" stringValue:[dictionary valueForKey:@"sender"]];
+    [messageLoopBack addChild:bodyLoopBack];
+    
+    [xmppStream sendElement:messageLoopBack];
 }
 
 // Returns the managed object context for the application.

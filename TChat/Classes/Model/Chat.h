@@ -21,11 +21,14 @@
 @property (nonatomic, retain) NSString * jidString;
 @property (nonatomic, retain) NSString * localfileName;
 @property (nonatomic, retain) NSString * mediaType;
-@property (nonatomic, retain) NSString * messageBody;
-@property (nonatomic, retain) NSDate * messageDate;
-@property (nonatomic, retain) NSString * messageStatus;
+@property (nonatomic, retain) NSString * message;
+@property (nonatomic, retain) NSString * message_date;
+@property (nonatomic, retain) NSString * status;
 @property (nonatomic, retain) NSString * mimeType;
 @property (nonatomic, retain) NSString * roomJID;
 @property (nonatomic, retain) NSString * roomName;
+
+@property (nonatomic, retain) NSString * receiver;
+@property (nonatomic, retain) NSString * sender;
 
 @end

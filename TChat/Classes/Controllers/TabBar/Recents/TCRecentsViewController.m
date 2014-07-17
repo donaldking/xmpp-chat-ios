@@ -68,6 +68,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Chat"
                                               inManagedObjectContext:XAppDelegate.managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
     //skip Group messages
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isGroupMessage == %@",[NSNumber numberWithBool:NO]];
     //fetch distinct only jidString attribute
@@ -78,6 +79,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"jidString"]];
     [fetchRequest setFetchBatchSize:50];
     
+   // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)", _buddy, _currentUser, _currentUser,_buddy];
+
+
     NSError *error=nil;
     NSArray *fetchedObjects = [XAppDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     for (NSManagedObject *obj in fetchedObjects)
@@ -98,7 +102,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
@@ -133,10 +136,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             
            // NSString *chatMessage = [NSString stringWithFormat:@"%@: %@",[TCUtility dayLabelForMessage:chat.messageDate],chat.messageBody];
          
-            NSString *chatMessage = [NSString stringWithFormat:@"%@", chat.messageBody];
+            NSString *chatMessage = [NSString stringWithFormat:@"%@", chat.message];
             recentChatCell.chatMsgLabel.text = chatMessage;
             
-            NSString *timeStamp = [NSString stringWithFormat:@"%@", [TCUtility dayLabelForMessage:chat.messageDate]];
+            //NSString *timeStamp = [NSString stringWithFormat:@"%@", [TCUtility dayLabelForMessage:chat.messageDate]];
+            NSString *timeStamp = [NSString stringWithFormat:@"%@", chat.message_date];
             recentChatCell.timeStampLabel.text = timeStamp;
             
             break;

@@ -78,6 +78,7 @@
 		D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DE9196CA73B008F77F9 /* TCUtility.m */; };
 		D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */; };
 		D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */; };
+		D2E8A3561976B5AC006CD97E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,6 +192,8 @@
 		D2798DEF196CAD83008F77F9 /* TCRecentChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRecentChatTableViewCell.h; sourceTree = "<group>"; };
 		D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRecentChatTableViewCell.m; sourceTree = "<group>"; };
 		D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRecentChatTableViewCell.xib; sourceTree = "<group>"; };
+		D2E8A3541976B5AC006CD97E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -641,6 +644,8 @@
 		D2798DE7196CA705008F77F9 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				D2E8A3541976B5AC006CD97E /* KeychainItemWrapper.h */,
+				D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */,
 				D2798DE8196CA73B008F77F9 /* TCUtility.h */,
 				D2798DE9196CA73B008F77F9 /* TCUtility.m */,
 			);
@@ -767,6 +772,7 @@
 				D261658A19709D9D002B77C7 /* SORelativeDateTransformer.m in Sources */,
 				D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */,
 				4FC0D2491968C7180055812C /* TCRecentsViewController.m in Sources */,
+				D2E8A3561976B5AC006CD97E /* KeychainItemWrapper.m in Sources */,
 				D26161B0197041F3002B77C7 /* TCMyChatCell.m in Sources */,
 				D2798DE6196CA62F008F77F9 /* NSDate+Utilities.m in Sources */,
 				D2798DD1196B692D008F77F9 /* AFXMLRequestOperation.m in Sources */,

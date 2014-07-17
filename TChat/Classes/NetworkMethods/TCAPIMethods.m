@@ -61,7 +61,7 @@
                                     @"0",@"status",
                                     nil];
             
-            [XAppDelegate receiveAndPersistObjectForEntityName:@"ChatMessages" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
+            [XAppDelegate receiveAndPersistObjectForEntityName:@"Chat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
                 //
             }];
             

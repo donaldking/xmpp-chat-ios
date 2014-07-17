@@ -9,6 +9,7 @@
 #import "TCFriendsViewController.h"
 #import "TCFriendsTableViewCell.h"
 #import "TCConstants.h"
+#import "TCChatConversationViewController.h"
 
 @interface TCFriendsViewController ()
 
@@ -214,6 +215,13 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     NSLog(@"user %@", user.jidStr);
+    
+    TCChatConversationViewController *chatCoversationViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"chatConversationView"];
+    chatCoversationViewController.chatUserObject = user;
+    
+    chatCoversationViewController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:chatCoversationViewController animated:YES];
 }
 
 -(void)configurePhotoForCell:(TCFriendsTableViewCell*)friendCell user:(XMPPUserCoreDataStorageObject *)user{

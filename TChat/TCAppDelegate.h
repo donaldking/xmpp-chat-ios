@@ -17,6 +17,8 @@
 #import "TCAppDelegate.h"
 #import "TCAPIMethods.h"
 #import "SORelativeDateTransformer.h"
+#import "KeychainItemWrapper.h"
+#import "TCUtility.h"
 
 /*
  * Import TUSK XMPP CLASSES, CORE and DEPENDENCIES
@@ -46,6 +48,8 @@ typedef void(^requestCompletedBlock) (id completionResponse);
     XMPPCapabilities *xmppCapabilities;
 	XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
 }
+
+@property (nonatomic, strong) KeychainItemWrapper *keyChain;
 
 @property (nonatomic, strong) id<TCChatMessageProtocol> chatMessageDelegate;
 @property (nonatomic, strong) id<TCChatConnectionProtocol> chatConnectionDelegate;

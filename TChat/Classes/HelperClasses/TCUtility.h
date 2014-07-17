@@ -14,5 +14,5 @@
 +(BOOL )createUser:(NSString *)username password:(NSString *)password name:(NSString *)name email:(NSString *)email;
 +(NSString *)dayLabelForMessage:(NSDate *)msgDate;
 + (NSString*) createUniqueFileNameWithoutExtension;
-
++ (BOOL)saveToKeyChain:(NSString*)username andPassword:(NSString*)password;
 @end

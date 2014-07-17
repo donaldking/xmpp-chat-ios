@@ -8,6 +8,7 @@
 
 #import "TCUtility.h"
 #import "NSDate+Utilities.h"
+#import "TCAppDelegate.h"
 
 @implementation TCUtility
 
@@ -54,4 +55,19 @@
     return ret;
     
 }
+
+
++ (BOOL)saveToKeyChain:(NSString*)username andPassword:(NSString*)password
+{
+    if ([username length]>=1) {
+        [XAppDelegate.keyChain setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    }
+    if ([password length] >=1) {
+        [XAppDelegate.keyChain setObject:password forKey:(__bridge id)kSecValueData];
+    }
+    
+    return YES;
+}
+
+
 @end
