@@ -313,18 +313,25 @@
                                     <outlet property="delegate" destination="L5I-pE-C4i" id="K6I-pd-vci"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="DOD-gg-d2r">
-                                <rect key="frame" x="40" y="69" width="241" height="29"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <segments>
-                                    <segment title="All"/>
-                                    <segment title="Online"/>
-                                </segments>
-                                <color key="tintColor" red="0.19616507859999999" green="0.69482783879999999" blue="0.94983657529999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="statusSegmentedControlChanged:" destination="L5I-pE-C4i" eventType="valueChanged" id="n0e-xk-Xb4"/>
-                                </connections>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" id="yNY-Jg-3Uk">
+                                <rect key="frame" x="0.0" y="64" width="320" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="DOD-gg-d2r">
+                                        <rect key="frame" x="40" y="5" width="241" height="29"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <segments>
+                                            <segment title="All"/>
+                                            <segment title="Online"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.19616507859999999" green="0.69482783879999999" blue="0.94983657529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="statusSegmentedControlChanged:" destination="L5I-pE-C4i" eventType="valueChanged" id="n0e-xk-Xb4"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

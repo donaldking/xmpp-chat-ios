@@ -19,13 +19,10 @@
         <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CurrentUser" syncable="YES">
-        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="RecentChat" representedClassName="RecentChat" syncable="YES">
         <attribute name="chatWithUser" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created_at" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="message_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +32,6 @@
     </entity>
     <elements>
         <element name="Chat" positionX="-63" positionY="-18" width="128" height="300"/>
-        <element name="CurrentUser" positionX="-63" positionY="108" width="128" height="60"/>
-        <element name="RecentChat" positionX="-54" positionY="117" width="128" height="178"/>
+        <element name="RecentChat" positionX="-54" positionY="117" width="128" height="180"/>
     </elements>
 </model>

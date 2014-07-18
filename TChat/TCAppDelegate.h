@@ -106,6 +106,8 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 - (void) disconnect;
 
 - (void) doLogout;
+- (void)cleanAllData;
+
 - (void) getUserProfileObjectAndCallback:(requestCompletedBlock)getUserProfileCompletionResponse;
 - (void) checkIfObjectExistsForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
                              andCallback:(requestCompletedBlock)completionResponse;
@@ -118,6 +120,13 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 
 -(void) notifyWhichViewIsActive;
 -(void) newChatNotificationFromBuddy:(NSString *)buddy withMessage:(NSString *)message;
+
+- (NSArray*)fetchObjectsForEntityName:(NSString*)entityName withPredicate:(NSPredicate*)predicate
+               inManagedObjectContext:(NSManagedObjectContext*)context setResultType:(NSFetchRequestResultType)resultType;
+- (void)updateAttributeForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
+                      withDictionary:(NSDictionary*)dictionary andPredicate:(NSPredicate*)prediacte andCallback:(requestCompletedBlock)completionResponse;
+- (void)persistObjectForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
+                    withDictionary:(NSDictionary*)dictionary andCallback:(requestCompletedBlock)completionResponse;
 - (void) clearObjectsForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
                       andCallback:(requestCompletedBlock)completionResponse;
 - (void) clearObjectForEntityName:(NSString*)entityName withPredicate:(NSPredicate*)predicate inManagedObjectContext:(NSManagedObjectContext*)context andCallback:(requestCompletedBlock)completionResponse;

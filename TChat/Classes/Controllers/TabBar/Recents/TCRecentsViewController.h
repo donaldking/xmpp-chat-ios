@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "TCRecentChatTableViewCell.h"
+#import "MBProgressHUD.h"
 
-@interface TCRecentsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface TCRecentsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSFetchedResultsControllerDelegate,MBProgressHUDDelegate>
 {
     TCRecentChatTableViewCell *recentChatCell;
+    NSManagedObject *object;
+    NSFetchRequest *fetchRequest;
+    NSEntityDescription *entityDesc;
 }
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray* chats;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end

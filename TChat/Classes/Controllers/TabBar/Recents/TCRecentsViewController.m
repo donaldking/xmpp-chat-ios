@@ -75,6 +75,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         if ([completionResponse isEqualToString:@"doGetWithDictionary:OK"]) {
             NSLog(@"received success response");
             //TODO
+            [self.tableView reloadData];
         }
     }];
 
@@ -112,18 +113,69 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //reload the table view
     [self.tableView reloadData];*/
 }
+
+
+
+#pragma mark - NSFetchedResultsController
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"RecentChat" inManagedObjectContext:XAppDelegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"time_stamp" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    [fetchRequest setFetchBatchSize:5];
+    
+    NSFetchedResultsController *theFetchedResultsController =
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                        managedObjectContext:XAppDelegate.managedObjectContext sectionNameKeyPath:nil
+                                                   cacheName:nil];
+    
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
+    //[fetchRequest setPredicate:predicate];
+    
+    _fetchedResultsController = theFetchedResultsController;
+    _fetchedResultsController.delegate = self;
+    
+    NSError *error = nil;
+    if (![_fetchedResultsController performFetch:&error])
+    {
+        NSLog(@"Error performing fetch: %@", error);
+    }
+    return _fetchedResultsController;
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"Controller did change!");
+    
+    [self.tableView reloadData];
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark UITableView
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 1;
+    NSLog(@"Number of sections: %d", [[[self fetchedResultsController] sections] count]);
+	return [[[self fetchedResultsController] sections] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.chats.count;
+	//return self.chats.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo =  [[_fetchedResultsController sections] objectAtIndex:section];
+     NSLog(@"Number of Rows in section: %d", [sectionInfo numberOfObjects]);
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,29 +190,41 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             recentChatCell = (TCRecentChatTableViewCell*)obj;
             [recentChatCell setValue:@"recentChatcell" forKey:@"reuseIdentifier"];
     
-            Chat* chat = [self.chats objectAtIndex:indexPath.row];
             
-            XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
-                                                   userForJID:[XMPPJID jidWithString:chat.jidString]
-                                                   xmppStream:XAppDelegate.xmppStream
-                                                   managedObjectContext:XAppDelegate.managedObjectContext_roster];
+            NSManagedObject *recentObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
             
-            recentChatCell.userImageView.image = [self configurePhotoForCell:recentChatCell user:user];
+            recentChatCell.userJIDLabel.text = [recentObject valueForKey:@"name"];
+            recentChatCell.chatMsgLabel.text = [recentObject valueForKey:@"message"];;
             
             
-            NSString *userName = [chat.jidString stringByReplacingOccurrencesOfString:@"uat.yookoschat.com" withString:@""];
-            userName = [userName stringByReplacingOccurrencesOfString:@"@" withString:@""];
-            recentChatCell.userJIDLabel.text = userName;
+             NSString *displayUsername = [recentObject valueForKey:@"name"];
             
-           // NSString *chatMessage = [NSString stringWithFormat:@"%@: %@",[TCUtility dayLabelForMessage:chat.messageDate],chat.messageBody];
-         
-            NSString *chatMessage = [NSString stringWithFormat:@"%@", chat.message];
-            recentChatCell.chatMsgLabel.text = chatMessage;
+             NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",displayUsername];
+             
+             NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@", @"http://", XAppDelegate.currentHost, @"service/proxy/proxy.yookos.php?", proxyPath];
+             [recentChatCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:PLACEHOLDER_IMAGE]];
             
-            //NSString *timeStamp = [NSString stringWithFormat:@"%@", [TCUtility dayLabelForMessage:chat.messageDate]];
-            NSString *timeStamp = [NSString stringWithFormat:@"%@", chat.message_date];
-            recentChatCell.timeStampLabel.text = timeStamp;
             
+            NSInteger timestamp = [[recentObject valueForKey:@"time_stamp"] integerValue];
+            NSDate *msg_date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+            
+            
+            NSInteger differenceInDays = [TCUtility numberOfDaysBetDates: [TCUtility formattedDateFor:msg_date]];
+            
+            if (ABS(differenceInDays) == 0)
+            {
+                //_myChatCell.date.text = @"Today";
+                NSString *ago = [[SORelativeDateTransformer registeredTransformer] transformedValue:msg_date];
+                [recentChatCell.timeStampLabel setText:ago];
+            }
+            else if (ABS(differenceInDays) == 1)
+            {
+                recentChatCell.timeStampLabel.text = @"Yesterday";
+            }
+            else
+            {
+                recentChatCell.timeStampLabel.text = [TCUtility getDateFromString:[TCUtility formattedDateFor:msg_date]];
+            }
             break;
         }
     }
@@ -171,7 +235,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		
 		// Delete the conversation.
-        Chat* chat = [self.chats objectAtIndex:indexPath.row];
+     /*   Chat* chat = [self.chats objectAtIndex:indexPath.row];
         //this is only the latest chat within a conversation but we need to delete all chats in the conversation
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Chat"
                                                   inManagedObjectContext:XAppDelegate.managedObjectContext];
@@ -193,7 +257,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             DDLogError(@"error saving");
         }
         //reload the array with data
-        [self loadData];
+        [self loadData];*/
     }
     
 }
@@ -202,17 +266,22 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Chat* chat = [self.chats objectAtIndex:indexPath.row];
+   // Chat* chat = [self.chats objectAtIndex:indexPath.row];
+    
+    NSManagedObject *recentObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
-                                           userForJID:[XMPPJID jidWithString:chat.jidString]
+                                           userForJID:[XMPPJID jidWithString:[recentObject valueForKey:@"chatWithUser"]]
                                            xmppStream:XAppDelegate.xmppStream
                                            managedObjectContext:XAppDelegate.managedObjectContext_roster];
     
+
     TCChatConversationViewController *chatCoversationViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"chatConversationView"];
-    chatCoversationViewController.chatUserObject = user;
+    chatCoversationViewController.chatUserObject =  user;;
     
     chatCoversationViewController.hidesBottomBarWhenPushed = YES;
+    
+    chatCoversationViewController.navigationItem.title = [recentObject valueForKey:@"name"];
     
     [self.navigationController pushViewController:chatCoversationViewController animated:YES];
     

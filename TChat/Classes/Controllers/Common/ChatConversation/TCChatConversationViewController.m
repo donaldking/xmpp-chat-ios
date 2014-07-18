@@ -117,7 +117,7 @@ static CGRect keyboardEmoticonRect;
         }
         else{
             [XAppDelegate.ApiMethods doGetWithDictionary:dicToApi andCallback:^(id completionResponse) {
-                NSLog(@"Completion response: %@",completionResponse);
+                //NSLog(@"Completion response: %@",completionResponse);
                 
                 if ([completionResponse isEqualToString:@"doGetWithDictionary:OK"]) {
                     [HUD hide:YES];
@@ -187,7 +187,7 @@ static CGRect keyboardEmoticonRect;
 	if (![[self fetchedResultsController] performFetch:&error])
     {
 		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		//NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
     
@@ -225,17 +225,17 @@ static CGRect keyboardEmoticonRect;
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            NSLog(@"Insert");
+            //NSLog(@"Insert");
             break;
             
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            NSLog(@"Delete");
+            //NSLog(@"Delete");
             break;
             
         case NSFetchedResultsChangeUpdate:
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-            NSLog(@"Update");
+            //NSLog(@"Update");
             break;
             
         case NSFetchedResultsChangeMove:
@@ -294,7 +294,7 @@ static CGRect keyboardEmoticonRect;
     NSDate *msg_date = [NSDate dateWithTimeIntervalSince1970:timestamp];
     
     
-    NSInteger differenceInDays = [self numberOfDaysBetDates: [self formattedDateFor:msg_date]];
+    NSInteger differenceInDays = [TCUtility numberOfDaysBetDates: [TCUtility formattedDateFor:msg_date]];
     
     if (ABS(differenceInDays) == 0)
     {
@@ -308,60 +308,13 @@ static CGRect keyboardEmoticonRect;
     }
     else
     {
-        _myChatCell.date.text = [self getDateFromString:[self formattedDateFor:msg_date]];
+        _myChatCell.date.text = [TCUtility getDateFromString:[TCUtility formattedDateFor:msg_date]];
     }
         
   //  NSString *ago = [[SORelativeDateTransformer registeredTransformer] transformedValue:d];
   //  [_myChatCell.date setText:ago];
   //  NSString *timeStamp = [NSString stringWithFormat:@"%@", [TCUtility dayLabelForMessage:[messageObject valueForKey:@"messageDate"]]];
   //  _myChatCell.date.text = timeStamp;
-}
-
--(NSString*) formattedDateFor:(NSDate*)msg_date
-{
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *stringFromDate = [formatter stringFromDate:msg_date];
-    return  stringFromDate;
-}
-
--(NSString *)getDateFromString:(NSString *)string
-{
-    
-    NSString * dateString = [NSString stringWithFormat: @"%@",string];
-    
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate* myDate = [dateFormatter dateFromString:dateString];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy"];
-    NSString *stringFromDate = [formatter stringFromDate:myDate];
-    
-    NSLog(@"%@", stringFromDate);
-    return stringFromDate;
-}
-
--(NSInteger) numberOfDaysBetDates:(NSString *)dateString
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    NSDate *startDate = [NSDate date];
-    NSLog(@"%@",startDate);
-    
-    NSDate *endDate =  [dateFormatter dateFromString:dateString];
-
-    NSLog(@"%@",endDate);
-    
-    
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
-                                                        fromDate:startDate
-                                                          toDate:endDate
-                                                         options:0];
-    return components.day;
 }
 
 -(void)configureFriendChatCell:(id)cell atIndexPath:(NSIndexPath*)indexPath
@@ -383,7 +336,7 @@ static CGRect keyboardEmoticonRect;
     NSDate *msg_date = [NSDate dateWithTimeIntervalSince1970:timestamp];
     
     
-    NSInteger differenceInDays = [self numberOfDaysBetDates: [self formattedDateFor:msg_date]];
+    NSInteger differenceInDays = [TCUtility numberOfDaysBetDates: [TCUtility formattedDateFor:msg_date]];
     
     if (ABS(differenceInDays) == 0)
     {
@@ -397,7 +350,7 @@ static CGRect keyboardEmoticonRect;
     }
     else
     {
-        _friendChatCell.date.text = [self getDateFromString:[self formattedDateFor:msg_date]];
+        _friendChatCell.date.text = [TCUtility getDateFromString:[TCUtility formattedDateFor:msg_date]];
     }
     
 }

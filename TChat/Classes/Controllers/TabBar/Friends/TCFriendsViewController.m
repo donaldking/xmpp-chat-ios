@@ -221,6 +221,8 @@
     
     chatCoversationViewController.hidesBottomBarWhenPushed = YES;
     
+    chatCoversationViewController.navigationItem.title = user.displayName;
+    
     [self.navigationController pushViewController:chatCoversationViewController animated:YES];
 }
 

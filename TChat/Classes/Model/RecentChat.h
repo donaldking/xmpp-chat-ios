@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * created_at;
 @property (nonatomic, retain) NSString * message_id;
-@property (nonatomic, retain) NSNumber * isRead;
+@property (nonatomic, retain) NSString * isRead;
 @property (nonatomic, retain) NSString * message;
 @property (nonatomic, retain) NSString * receiver;
 @property (nonatomic, retain) NSString * sender;

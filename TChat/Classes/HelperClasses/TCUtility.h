@@ -15,4 +15,9 @@
 +(NSString *)dayLabelForMessage:(NSDate *)msgDate;
 + (NSString*) createUniqueFileNameWithoutExtension;
 + (BOOL)saveToKeyChain:(NSString*)username andPassword:(NSString*)password;
+
++(NSString*) formattedDateFor:(NSDate*)msg_date;
++(NSString *)getDateFromString:(NSString *)string;
++(NSInteger) numberOfDaysBetDates:(NSString *)dateString;
+
 @end

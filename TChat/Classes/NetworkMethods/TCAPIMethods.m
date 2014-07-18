@@ -8,6 +8,7 @@
 
 #import "TCAPIMethods.h"
 #import "TCAppDelegate.h"
+#import "RecentChat.h"
 
 @implementation TCAPIMethods
 
@@ -48,7 +49,7 @@
         NSData *data = [[operation responseString] dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
-        NSLog(@"Will persist total objects: %i",values.count);
+        //NSLog(@"Will persist total objects: %i",values.count);
         
         [values enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
@@ -65,7 +66,7 @@
                 //
             }];
             
-            NSLog(@"Persisted object at index %i", idx);
+            //NSLog(@"Persisted object at index %i", idx);
             
         }];
         completionResponse(@"doGetWithDictionary:OK");
@@ -95,28 +96,54 @@
         NSData *data = [[operation responseString] dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
-        NSLog(@"Will persist total objects: %i",values.count);
+        //NSLog(@"Will persist total objects: %i",values.count);
         
         [values enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
             NSDictionary *lastMessage = [[values valueForKey:@"lastMessage"] objectAtIndex:idx];
             // Create message to send as dictionary
-            NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [[values valueForKey:@"chatWithUser"] objectAtIndex:idx],@"chatWithUser",
                                     [[values valueForKey:@"name"] objectAtIndex:idx],@"name",
                                     [lastMessage valueForKey:@"created_at"],@"created_at",
                                     [lastMessage valueForKey:@"id"],@"message_id",
-                                    [[lastMessage valueForKey:@"isRead"] boolValue],@"isRead",
+                                    [lastMessage valueForKey:@"isRead"],@"isRead",
                                     [lastMessage valueForKey:@"message"],@"message",
                                     [lastMessage valueForKey:@"receiver"],@"receiver",
                                     [lastMessage valueForKey:@"sender"],@"sender",
                                     [lastMessage valueForKey:@"time_stamp"],@"time_stamp",
                                     nil];
-            
-            [XAppDelegate receiveAndPersistObjectForEntityName:@"RecentChat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
-                 NSLog(@"Persisted RecentChat object at index %i", idx);
+        
+            //NSLog(@"id:%@", [[values valueForKey:@"chatWithUser"] objectAtIndex:idx]);
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"chatWithUser=%@", [[values valueForKey:@"chatWithUser"] objectAtIndex:idx]];
+ 
+            [XAppDelegate checkIfObjectExistsForEntityName:@"RecentChat" withPredicate:predicate inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
+                if ([completionResponse isEqualToString:@"checkIfObjectExistsForEntityName:YES"]) {
+                    [XAppDelegate updateAttributeForEntityName:@"RecentChat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andPredicate:predicate andCallback:^(id completionResponse){
+                        //NSLog(@"update Recent Chat model");
+                    }];
+                }
+                else{
+                    [XAppDelegate persistObjectForEntityName:@"RecentChat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andCallback:^(id completionResponse){
+                        //NSLog(@"persist Recent Chat model");
+                    }];
+                }
             }];
+
+            /*RecentChat *recentChatObject = [NSEntityDescription insertNewObjectForEntityForName:@"RecentChat" inManagedObjectContext:XAppDelegate.managedObjectContext];
             
+            // Persist objects
+            [recentChatObject setValuesForKeysWithDictionary:dictionary];
+            
+            NSError *error;
+            if([XAppDelegate.managedObjectContext save:&error])
+            {
+                completionResponse(@"receiveAndPersistObjectForEntityName:OK");
+            }
+            else{
+                completionResponse(@"receiveAndPersistObjectForEntityName:ERROR");
+            }
+            */
             
         }];
         completionResponse(@"doGetWithDictionary:OK");

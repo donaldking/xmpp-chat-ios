@@ -52,7 +52,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
      _currentHost = XMPP_UAT_HOST;
     
     _XMPP_RESOURCE_NAME = [[NSString stringWithFormat:@"TChat-iOS-%@-%@",[[UIDevice currentDevice] localizedModel],[[[UIDevice currentDevice] identifierForVendor] UUIDString]] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"Resource name: %@",_XMPP_RESOURCE_NAME);
+    ////NSLog(@"Resource name: %@",_XMPP_RESOURCE_NAME);
     
     [self LoadEmoticonFromPlistNamed:@"TC_EmoticonSymbols"];
     _ApiMethods = [TCAPIMethods new];
@@ -79,7 +79,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)loginToChat{
     [self doLoginForUsername:_username andPassword:_password andCallback:^(id completionResponse) {
         //
-        NSLog(@"Login completion: %@",completionResponse);
+        ////NSLog(@"Login completion: %@",completionResponse);
         
         TCTabBarController *tabBarController=[_storyboard instantiateViewControllerWithIdentifier:@"tabBar"];
         [XAppDelegate.window setRootViewController:tabBarController];
@@ -141,7 +141,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)setupStream
 {
-    NSLog(@"--XMPPSetup Stream");
+    //NSLog(@"--XMPPSetup Stream");
 	NSAssert(xmppStream == nil, @"Method setupStream invoked multiple times");
 	
 	// Setup xmpp stream
@@ -388,7 +388,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
                 [dict setObject:statusString forKey:@"msg"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kChatStatus object:self userInfo:dict];
-                NSLog(@"StatusString:%@", statusString);
+                //NSLog(@"StatusString:%@", statusString);
             }
         }
     }
@@ -438,7 +438,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSError *error = nil;
     if(![self.managedObjectContext save:&error])
     {
-        NSLog(@"error saving");
+        //NSLog(@"error saving");
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kNewMessage object:self userInfo:nil];
 
@@ -447,7 +447,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - Login
 - (void)doLoginForUsername:(NSString*)theUsername andPassword:(NSString*)thePassword andCallback:(requestCompletedBlock)doLoginCompletionResponse;
 {
-    //NSLog(@"[%@ %@]",[self class],NSStringFromSelector(_cmd));
+    ////NSLog(@"[%@ %@]",[self class],NSStringFromSelector(_cmd));
     
     [self connectForUsername:theUsername andPasswrod:thePassword andCallBack:^(id completionResponse) {
         
@@ -455,21 +455,21 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
        // _username = theUsername;
       /*  // Persist username!
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theUsername,@"username", nil];
-        NSLog(@"Will persist to model: %@",params);
+        //NSLog(@"Will persist to model: %@",params);
         
         [self persistObjectForEntityName:@"CurrentUser" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
             //
-            NSLog(@"Persistence response: %@",completionResponse);
+            //NSLog(@"Persistence response: %@",completionResponse);
             if ([completionResponse isEqualToString:@"persistObjectForEntityName:OK"]) {
                 //[self bootStrap];
                 
-                NSLog(@"Username persisted");
+                //NSLog(@"Username persisted");
             }
         }];
         */
         if ([self saveCredentials:@{@"username" : theUsername, @"password" : thePassword}])
         {
-            NSLog(@"Credential Saved");
+            //NSLog(@"Credential Saved");
         }
         
     }];
@@ -500,7 +500,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     XAppDelegate.username = [XAppDelegate.keyChain objectForKey:(__bridge id)kSecAttrAccount];
     XAppDelegate.password = [XAppDelegate.keyChain objectForKey:(__bridge id)kSecValueData];
     
-    //NSLog(@"username: %@ Password: %@",XAppDelegate.currentUserId, XAppDelegate.password);
+    ////NSLog(@"username: %@ Password: %@",XAppDelegate.currentUserId, XAppDelegate.password);
     if ([XAppDelegate.username length] >=1 && [XAppDelegate.password length] >=1) {
         return YES;
     }else{
@@ -527,7 +527,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSError *error = nil;
     if (![xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error]) {
         
-        NSLog(@"conn result: Error");
+        //NSLog(@"conn result: Error");
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error connecting"
                                                             message:[NSString stringWithFormat:@"Can't connect to server %@", [error localizedDescription]]
@@ -549,7 +549,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - Do Logout
 -(void)doLogout
 {
-    NSLog(@"My jid: %@",[xmppStream myJID]);
+    //NSLog(@"My jid: %@",[xmppStream myJID]);
     
     @try {
         self.username = nil;
@@ -559,38 +559,35 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         self.presence = 0;
     }
     @catch (NSException *exception) {
-        NSLog(@"Error resetting params on logout");
+        //NSLog(@"Error resetting params on logout");
     }
     @finally {
-        NSLog(@"Params reset finally block");
+        //NSLog(@"Params reset finally block");
     }
+    [self cleanAllData];
     
-   /* [self clearObjectsForEntityName:@"CurrentUser" inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
-        //
+    [self teardownStream];
+    //NSLog(@"Calling logoutNotification");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"logoutNotification" object:nil];
+    
+}
+
+
+-(void)cleanAllData
+{
+    // Reset all credentials
+    [self clearObjectsForEntityName:@"Chat" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
+    }];
+    [self clearObjectsForEntityName:@"RecentChat" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
     }];
     
-    [self clearObjectsForEntityName:@"ChatMessages" inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
-        //
-        if ([completionResponse isEqualToString:@"clearObjectsForEntityName:OK"]) {
-            
-            [xmppvCardStorage clearvCardTempForJID:[xmppStream myJID] xmppStream:xmppStream];
-            [xmppRosterStorage clearAllUsersAndResourcesForXMPPStream:xmppStream];
-            [xmppRosterStorage clearAllResourcesForXMPPStream:xmppStream];
-        }
-    }];*/
-    
-    //TO Remove as its in above
     [xmppvCardStorage clearvCardTempForJID:[xmppStream myJID] xmppStream:xmppStream];
     [xmppRosterStorage clearAllUsersAndResourcesForXMPPStream:xmppStream];
     [xmppRosterStorage clearAllResourcesForXMPPStream:xmppStream];
     
-    
-    
-    [self teardownStream];
-    NSLog(@"Calling logoutNotification");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"logoutNotification" object:nil];
-    
+    [XAppDelegate.keyChain resetKeychainItem];
 }
+
 
 
 -(void)goOnline
@@ -658,13 +655,63 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
 }
 
 #pragma mark - Core Data stack
+
+
+- (NSArray*)fetchObjectsForEntityName:(NSString*)entityName withPredicate:(NSPredicate*)predicate
+               inManagedObjectContext:(NSManagedObjectContext*)context setResultType:(NSFetchRequestResultType)resultType
+{
+    NSError *error;
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    [request setResultType:resultType]; // Added for debugging
+    [request setPredicate:predicate];
+    
+    return [context executeFetchRequest:request error:&error];
+}
+
+
+- (void)updateAttributeForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
+                      withDictionary:(NSDictionary*)dictionary andPredicate:(NSPredicate*)prediacte andCallback:(requestCompletedBlock)completionResponse
+{
+    NSError *error;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    [request setPredicate:prediacte];
+    
+    NSManagedObject *object = [[context executeFetchRequest:request error:&error] lastObject];
+    if (error) {
+        // //NSLog(@"ERROR PERFOMING FETCH!");
+        completionResponse(@"persistObjectForEntityName:ERROR");
+    }
+    if(!object)
+    {
+        // //NSLog(@"NO OBJECT FOUND!");
+        completionResponse(@"persistObjectForEntityName:ERROR");
+    }
+    else if (object) {
+        
+        // Persist objects
+        [object setValuesForKeysWithDictionary:dictionary];
+        
+        if([context save:&error])
+        {
+            //// //NSLog(@"updated for entity name: %@",entityName);
+            completionResponse(@"persistObjectForEntityName:OK");
+        }
+        else{
+            completionResponse(@"persistObjectForEntityName:ERROR");
+        }
+    }
+}
+
+
 - (void)persistObjectForEntityName:(NSString*)entityName inManagedObjectContext:(NSManagedObjectContext*)context
                     withDictionary:(NSDictionary*)dictionary andCallback:(requestCompletedBlock)completionResponse
 {
@@ -677,7 +724,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if([XAppDelegate.managedObjectContext save:&error])
     {
         completionResponse(@"persistObjectForEntityName:OK");
-        NSLog(@"persisted for entity name: %@",entityName);
+        //NSLog(@"persisted for entity name: %@",entityName);
     }
     else{
         completionResponse(@"persistObjectForEntityName:ERROR");
@@ -699,7 +746,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if ([allObjects count]>=1)
     {
         completionResponse(@"checkIfObjectExistsForEntityName:YES");
-        NSLog(@"Object exists for entity name: %@",entityName);
+        //NSLog(@"Object exists for entity name: %@",entityName);
         
     }
     else
@@ -711,7 +758,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)receiveAndPersistObjectForEntityName:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)context withDictionary:(NSDictionary *)dictionary andCallback:(requestCompletedBlock)completionResponse
 {
     
-    NSLog(@"Saving dictionary: %@",dictionary);
+    //NSLog(@"Saving dictionary: %@",dictionary);
     NSManagedObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
     
     // Persist objects
@@ -742,7 +789,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if([XAppDelegate.managedObjectContext save:&error])
     {
         completionResponse(@"persistObjectForEntityName:OK");
-        NSLog(@"persisted for entity name: %@",entityName);
+        //NSLog(@"persisted for entity name: %@",entityName);
         
         NSString *messageStr = [dictionary valueForKey:@"message"];
         
@@ -868,7 +915,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -899,7 +946,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
     else{
         completionResponse(@"clearObjectsForEntityName:OK");
-        NSLog(@"Object cleared for entity name: %@",entityName);
+        //NSLog(@"Object cleared for entity name: %@",entityName);
     }
 }
 
@@ -910,7 +957,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [fetchObject setEntity:entityToDelete];
     
-    NSLog(@"Predicate val: %@",predicate);
+    //NSLog(@"Predicate val: %@",predicate);
     [fetchObject setPredicate:predicate];
     
     NSError *error = nil;
@@ -928,7 +975,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
     else{
         completionResponse(@"clearObject:OK");
-        NSLog(@"Object cleared for entity name: %@",entityName);
+        //NSLog(@"Object cleared for entity name: %@",entityName);
     }
     
 }
@@ -941,7 +988,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [fetchAllObjects setEntity:entityToCheck];
     
-    NSLog(@"Predicate val: %@",predicate);
+    //NSLog(@"Predicate val: %@",predicate);
     [fetchAllObjects setPredicate:predicate];
     
     [fetchAllObjects setIncludesPropertyValues:NO];
@@ -952,7 +999,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if ([allObjects count]>=1)
     {
         completionResponse(@"checkIfObjectExistsForEntityName:YES");
-        NSLog(@"Object exists for entity name: %@",entityName);
+        //NSLog(@"Object exists for entity name: %@",entityName);
         
     }
     else

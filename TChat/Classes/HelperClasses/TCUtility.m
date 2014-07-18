@@ -70,4 +70,52 @@
 }
 
 
++(NSString*) formattedDateFor:(NSDate*)msg_date
+{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *stringFromDate = [formatter stringFromDate:msg_date];
+    return  stringFromDate;
+}
+
++(NSString *)getDateFromString:(NSString *)string
+{
+    
+    NSString * dateString = [NSString stringWithFormat: @"%@",string];
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate* myDate = [dateFormatter dateFromString:dateString];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy"];
+    NSString *stringFromDate = [formatter stringFromDate:myDate];
+    
+    NSLog(@"%@", stringFromDate);
+    return stringFromDate;
+}
+
++(NSInteger) numberOfDaysBetDates:(NSString *)dateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *startDate = [NSDate date];
+    NSLog(@"%@",startDate);
+    
+    NSDate *endDate =  [dateFormatter dateFromString:dateString];
+    
+    NSLog(@"%@",endDate);
+    
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                                                        fromDate:startDate
+                                                          toDate:endDate
+                                                         options:0];
+    return components.day;
+}
+
+
 @end

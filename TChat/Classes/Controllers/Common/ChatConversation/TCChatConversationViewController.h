@@ -12,11 +12,10 @@
 #import "TCEmoticonViewController.h"
 #import "TCMyChatCell.h"
 #import "TCFriendChatCell.h"
-//#import "DTLazyImageView.h"
 
 @interface TCChatConversationViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,
             UIScrollViewDelegate,NSFetchedResultsControllerDelegate,UITextViewDelegate,TCChatMessageProtocol,
-            MBProgressHUDDelegate/*,DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate*/>
+            MBProgressHUDDelegate>
 {
     NSManagedObject *object;
     NSFetchRequest *fetchRequest;
