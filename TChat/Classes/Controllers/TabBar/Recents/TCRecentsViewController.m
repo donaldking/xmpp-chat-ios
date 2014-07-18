@@ -197,8 +197,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             recentChatCell.chatMsgLabel.text = [recentObject valueForKey:@"message"];;
             
             
-             NSString *displayUsername = [recentObject valueForKey:@"name"];
-            
+             NSString *displayUsername = [[recentObject valueForKey:@"name"] stringByReplacingOccurrencesOfString:@" " withString:@""];
+                  
              NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",displayUsername];
              
              NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@", @"http://", XAppDelegate.currentHost, @"service/proxy/proxy.yookos.php?", proxyPath];

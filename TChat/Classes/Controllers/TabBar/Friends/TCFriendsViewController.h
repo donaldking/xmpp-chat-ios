@@ -28,6 +28,7 @@ enum SegmentStatus
     BOOL selectionMade;*/
 }
 
+@property (nonatomic, strong) NSMutableArray* onlineFriendsList;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *statusSegment;
 

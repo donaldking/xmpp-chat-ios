@@ -34,6 +34,12 @@
     segmentStatus = SegmentStatus_All;
 }
 
+-(void)  viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self loadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -85,10 +91,54 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     NSLog(@"Controller did change!");
+    //reload our data
+    [self loadData];
     
     [self.tableView reloadData];
+    
 }
 
+-(void) loadData
+{
+    if(self.onlineFriendsList)
+        self.onlineFriendsList =nil;
+    
+    self.onlineFriendsList = [[NSMutableArray alloc]init];
+    
+    
+    NSManagedObjectContext *moc = [XAppDelegate managedObjectContext_roster];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPUserCoreDataStorageObject"
+                                              inManagedObjectContext:moc];
+    
+    
+	//	NSSortDescriptor *sd1 = [[NSSortDescriptor alloc] initWithKey:@"sectionNum" ascending:YES];
+    NSSortDescriptor *sd2 = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:YES];
+    
+
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sd2, nil];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setFetchBatchSize:25];
+
+    //just get those friend who are online
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"primaryResource != nil"];
+    //fetch distinct only jidString attribute
+    [fetchRequest setPredicate:predicate];
+
+    
+    NSError *error=nil;
+    NSArray *fetchedObjects = [moc executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *obj in fetchedObjects)
+    {
+        XMPPUserCoreDataStorageObject *user = (XMPPUserCoreDataStorageObject*) obj;
+        
+        NSString *presenceTYPE = user.primaryResource.presence.type;
+        [self.onlineFriendsList addObject:user];
+    }
+}
 
 
 - (IBAction) statusSegmentedControlChanged:(id)sender
@@ -169,14 +219,15 @@
         else
         {
             NSLog(@"sectionInfo.numberOfObjects: %d", sectionInfo.numberOfObjects);
-            for(int index = 0; index < sectionInfo.numberOfObjects; index++)
+            numberOfValidRows = _onlineFriendsList.count;
+           /* for(int index = 0; index < sectionInfo.numberOfObjects; index++)
             {
                 XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:sectionIndex]];
         
                 NSString *presenceTYPE = user.primaryResource.presence.type;
                 if(segmentStatus == SegmentStatus_Online && [presenceTYPE isEqualToString:@"available"])
                     numberOfValidRows++;
-            }
+            }*/
         }
     }
 	
@@ -195,15 +246,29 @@
         {
             friendsCell = (TCFriendsTableViewCell*)obj;
             [friendsCell setValue:@"friendcell" forKey:@"reuseIdentifier"];
-            XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
             
-            NSString *presenceTYPE = user.primaryResource.presence.type;
-            if([presenceTYPE isEqualToString:@"available"])
-                 friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
+            if(segmentStatus == SegmentStatus_All) {
+                XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+                
+                NSString *presenceTYPE = user.primaryResource.presence.type;
+                if(segmentStatus == SegmentStatus_Online && [presenceTYPE isEqualToString:@"available"])
+                    friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
+                else
+                    friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];
+                // friendsCell.userJIDLabel.text = user.displayName;
+                [self configurePhotoForCell:friendsCell user:user];
+            }
             else
-                friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];
-           // friendsCell.userJIDLabel.text = user.displayName;
-            [self configurePhotoForCell:friendsCell user:user];
+            {
+                XMPPUserCoreDataStorageObject *user = [[self onlineFriendsList] objectAtIndex:indexPath.row];
+                
+                NSString *presenceTYPE = user.primaryResource.presence.type;
+                if([presenceTYPE isEqualToString:@"available"])
+                    friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
+                
+                [self configurePhotoForCell:friendsCell user:user];
+
+            }
             break;
         }
     }
@@ -234,7 +299,7 @@
    // [friendCell.userImageView.layer setCornerRadius:20.0f];
    // [friendCell.userImageView.layer setMasksToBounds:YES];
     
-    if(user.photo != nil)
+   /* if(user.photo != nil)
     {
         friendCell.userImageView.image = user.photo;
     }
@@ -245,21 +310,17 @@
             friendCell.userImageView.image = [UIImage imageWithData:photoData];
         else
             friendCell.userImageView.image = [UIImage imageNamed:@"placeholder_profile"];
-    }
+    }*/
 
     
     //To do...
-   /* NSString *displayUsername = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
+    NSString *displayUsername = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
     NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",displayUsername];
   //  NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@",URL_SCHEME,XAppDelegate.currentHost,PROXY_SERVICE,proxyPath];
 
     NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@", @"http://", XAppDelegate.currentHost, @"service/proxy/proxy.yookos.php?", proxyPath];
     
-    // Avatar
-    [friendCell.userImageView.layer setCornerRadius:20.0f];
-    [friendCell.userImageView.layer setMasksToBounds:YES];
-    
-    [friendCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"placeholder_profile"]];*/
+    [friendCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:PLACEHOLDER_IMAGE]];
 }
 
 /*
