@@ -251,7 +251,7 @@
                 XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
                 
                 NSString *presenceTYPE = user.primaryResource.presence.type;
-                if(segmentStatus == SegmentStatus_Online && [presenceTYPE isEqualToString:@"available"])
+                if([presenceTYPE isEqualToString:@"available"])
                     friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
                 else
                     friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];
