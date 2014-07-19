@@ -17,6 +17,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
+@interface TCAppDelegate()
+//ch.08
+@property (nonatomic,strong) XMPPMUC *xmppMUC;
+@property (nonatomic,strong) XMPPRoomCoreDataStorage *xmppRoomCoreDataStore;
+
+@end
+
 @implementation TCAppDelegate
 
 @synthesize xmppStream;
@@ -228,6 +235,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     xmppCapabilities.autoFetchHashedCapabilities = NO;
     xmppCapabilities.autoFetchNonHashedCapabilities = NO;
     
+    
+    //ch.08
+    //ROOM
+    self.xmppRoomCoreDataStore = [XMPPRoomCoreDataStorage sharedInstance];
+    self.xmppMUC = [[XMPPMUC alloc] initWithDispatchQueue:dispatch_get_main_queue()];
+    
 	// Activate xmpp modules
     
 	[xmppReconnect         activate:xmppStream];
@@ -235,12 +248,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	[xmppvCardTempModule   activate:xmppStream];
 	[xmppvCardAvatarModule activate:xmppStream];
 	[xmppCapabilities      activate:xmppStream];
+    //ch.08
+    //ROOM
+    [self.xmppMUC              activate:self.xmppStream];
     
 	// Add ourself as a delegate to anything we may be interested in
     
 	[xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 	[xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
+    //ch.08
+    [self.xmppMUC addDelegate:self delegateQueue:dispatch_get_main_queue()];
+
 	// Optional:
 	//
 	// Replace me with the proper domain and port.
@@ -265,13 +283,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	[xmppStream removeDelegate:self];
 	[xmppRoster removeDelegate:self];
-	
+    //ch.08
+    [self.xmppMUC     removeDelegate:self];
+    
 	[xmppReconnect deactivate];
 	[xmppRoster deactivate];
 	[xmppvCardTempModule deactivate];
 	[xmppvCardAvatarModule deactivate];
 	[xmppCapabilities deactivate];
-	
+	//ch.08
+    [self.xmppMUC     deactivate];
+    
 	[xmppStream disconnect];
 	
 	xmppStream = nil;
@@ -283,6 +305,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	xmppvCardAvatarModule = nil;
 	xmppCapabilities = nil;
 	xmppCapabilitiesStorage = nil;
+    
+    //ch.08
+    self.xmppMUC=nil;
 }
 
 #pragma XMPPStream Delegate

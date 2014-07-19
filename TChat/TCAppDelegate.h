@@ -36,7 +36,7 @@
 typedef void(^chatMessageSentResponseBlock) (NSString *response);
 typedef void(^requestCompletedBlock) (id completionResponse);
 
-@interface TCAppDelegate : UIResponder <UIApplicationDelegate, XMPPReconnectDelegate, TCChatConnectionProtocol>
+@interface TCAppDelegate : UIResponder <UIApplicationDelegate, XMPPReconnectDelegate, TCChatConnectionProtocol, XMPPMUCDelegate,XMPPRoomDelegate>
 {
     XMPPStream *xmppStream;
     XMPPReconnect *xmppReconnect;
@@ -95,6 +95,9 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 @property (nonatomic, strong, readonly) XMPPCapabilities *xmppCapabilities;
 @property (nonatomic, strong, readonly) XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
 
+//Group Chat
+@property (nonatomic,strong, readonly) XMPPMUC *xmppMUC;
+@property (nonatomic,strong, readonly) XMPPRoomCoreDataStorage *xmppRoomCoreDataStore;
 
 
 - (void) prepareXmppChat;
