@@ -579,9 +579,12 @@ static CGRect keyboardEmoticonRect;
     [mDic setValue:[[mDic valueForKey:@"receiver"] stringByReplacingOccurrencesOfString:
                     [NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""] forKey:@"receiver"];
     
+    //http://dev.yookoschat.com/mobileservices/v1/store_message.php?sender=zoepraise&receiver=donaldking&message=KINGKING&mid=longguid
+    
     NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                      [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
                                      @"mobileservices/v1/store_message.php",@"api",
+                                     [TCUtility GetUUID],@"mid",
                                      nil];
     
     [dicToApi addEntriesFromDictionary:mDic];

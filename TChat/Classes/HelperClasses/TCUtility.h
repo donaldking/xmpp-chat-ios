@@ -19,5 +19,6 @@
 +(NSString*) formattedDateFor:(NSDate*)msg_date;
 +(NSString *)getDateFromString:(NSString *)string;
 +(NSInteger) numberOfDaysBetDates:(NSString *)dateString;
++ (NSString *)GetUUID;
 
 @end
