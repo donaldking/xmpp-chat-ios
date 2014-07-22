@@ -128,20 +128,8 @@
                                             <action selector="sendMessageAction:" destination="jiR-sD-5qv" eventType="touchUpInside" id="IzF-1C-Lqf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ybo-oA-UAu">
-                                        <rect key="frame" x="7" y="7" width="32" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="E">
-                                            <color key="titleColor" red="0.072533308350000006" green="0.39945799580000002" blue="0.48611582879999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="emoticonAction:" destination="jiR-sD-5qv" eventType="touchUpInside" id="qsl-yz-8of"/>
-                                        </connections>
-                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" id="ouS-a4-iba">
-                                        <rect key="frame" x="41" y="9" width="212" height="30"/>
+                                        <rect key="frame" x="8" y="9" width="253" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
