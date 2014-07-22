@@ -102,7 +102,7 @@ static CGRect keyboardEmoticonRect;
     
     NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                      [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
-                                     [NSString stringWithFormat:@"service/get_message.php?sender=%@&receiver=%@",sender,receiver],@"api",
+                                     [NSString stringWithFormat:@"mobileservices/v1/get_message.php?sender=%@&receiver=%@",sender,receiver],@"api",
                                      nil];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)", _buddy, _currentUser, _currentUser,_buddy];
@@ -581,7 +581,7 @@ static CGRect keyboardEmoticonRect;
     
     NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                      [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
-                                     @"service/store_message.php",@"api",
+                                     @"mobileservices/v1/store_message.php",@"api",
                                      nil];
     
     [dicToApi addEntriesFromDictionary:mDic];
