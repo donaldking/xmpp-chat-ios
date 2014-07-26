@@ -259,7 +259,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Groups" id="kbh-vj-vsa"/>
+                    <navigationItem key="navigationItem" title="Groups" id="kbh-vj-vsa">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="PMJ-U3-E1C">
+                            <connections>
+                                <action selector="creatGroupBtnClick:" destination="ovw-CP-eQ5" id="Q0V-Sp-SDj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z5a-aY-kfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -332,6 +338,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XvO-nt-Kkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2665" y="1076"/>
+        </scene>
+        <!--Create Group View Controller-->
+        <scene sceneID="Jxd-7W-dsI">
+            <objects>
+                <viewController storyboardIdentifier="createGroup" id="xn6-I9-RXN" customClass="TCCreateGroupViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4jV-3v-pLP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qki-Lc-4GI">
+                                <rect key="frame" x="132" y="249" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" id="Tkl-84-qgm" customClass="TCCustomNavBar">
+                                <rect key="frame" x="0.0" y="18" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.02494130395" green="0.70179641400000004" blue="0.96620244570000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Create Group" id="qPi-e3-YNo">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="w8O-1b-XMf">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="backAction:" destination="xn6-I9-RXN" id="GEj-u5-CfT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="ItG-IW-vPV">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="doneAction:" destination="xn6-I9-RXN" id="7Sz-Xm-mdB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gv8-SR-SV6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3795" y="832"/>
         </scene>
         <!--Settings View Controller - Setting-->
         <scene sceneID="MbG-1v-a16">
@@ -477,6 +527,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EJ-OX-u9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3233" y="70"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wIk-Mv-83a">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W6s-hK-vQp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s7e-pg-RTe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PBS-6C-jdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3269" y="832"/>
         </scene>
     </scenes>
     <resources>

@@ -30,8 +30,13 @@
         <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time_stamp" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Room" representedClassName="Room" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roomJID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Chat" positionX="-63" positionY="-18" width="128" height="300"/>
         <element name="RecentChat" positionX="-54" positionY="117" width="128" height="180"/>
+        <element name="Room" positionX="-54" positionY="117" width="128" height="73"/>
     </elements>
 </model>

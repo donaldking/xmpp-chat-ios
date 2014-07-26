@@ -19,4 +19,8 @@
 
 #define URL_SCHEME_ @"http://";
 
+//Storage
+#define USE_MEMORY_STORAGE 1
+#define USE_HYBRID_STORAGE 0
+
 #endif

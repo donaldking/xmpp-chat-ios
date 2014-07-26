@@ -307,7 +307,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	xmppCapabilitiesStorage = nil;
     
     //ch.08
-    self.xmppMUC=nil;
+    self.xmppMUC = nil;
 }
 
 #pragma XMPPStream Delegate
@@ -525,7 +525,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     XAppDelegate.username = [XAppDelegate.keyChain objectForKey:(__bridge id)kSecAttrAccount];
     XAppDelegate.password = [XAppDelegate.keyChain objectForKey:(__bridge id)kSecValueData];
     
-    ////NSLog(@"username: %@ Password: %@",XAppDelegate.currentUserId, XAppDelegate.password);
+    NSLog(@"username: %@ Password: %@",XAppDelegate.username, XAppDelegate.password);
+    
     if ([XAppDelegate.username length] >=1 && [XAppDelegate.password length] >=1) {
         return YES;
     }else{

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCAppDelegate.h"
 
 @interface TCGroupsViewController : UIViewController
+
+- (IBAction) creatGroupBtnClick:(id) sender;
 
 @end

@@ -78,6 +78,9 @@
 		D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DE9196CA73B008F77F9 /* TCUtility.m */; };
 		D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */; };
 		D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */; };
+		D2CAF13F1981931900DAEB3B /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF13E1981931900DAEB3B /* Room.m */; };
+		D2CAF1421981BA5D00DAEB3B /* TCCreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF1411981BA5D00DAEB3B /* TCCreateGroupViewController.m */; };
+		D2CAF14D1983F39B00DAEB3B /* TCCustomNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF14C1983F39B00DAEB3B /* TCCustomNavBar.m */; };
 		D2E8A3561976B5AC006CD97E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D2E8A35B19788606006CD97E /* RecentChat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A35A19788606006CD97E /* RecentChat.m */; };
 /* End PBXBuildFile section */
@@ -193,6 +196,12 @@
 		D2798DEF196CAD83008F77F9 /* TCRecentChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRecentChatTableViewCell.h; sourceTree = "<group>"; };
 		D2798DF0196CAD83008F77F9 /* TCRecentChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRecentChatTableViewCell.m; sourceTree = "<group>"; };
 		D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRecentChatTableViewCell.xib; sourceTree = "<group>"; };
+		D2CAF13D1981931900DAEB3B /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		D2CAF13E1981931900DAEB3B /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		D2CAF1401981BA5D00DAEB3B /* TCCreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCreateGroupViewController.h; sourceTree = "<group>"; };
+		D2CAF1411981BA5D00DAEB3B /* TCCreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCreateGroupViewController.m; sourceTree = "<group>"; };
+		D2CAF14B1983F39B00DAEB3B /* TCCustomNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCustomNavBar.h; sourceTree = "<group>"; };
+		D2CAF14C1983F39B00DAEB3B /* TCCustomNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCustomNavBar.m; sourceTree = "<group>"; };
 		D2E8A3541976B5AC006CD97E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		D2E8A35919788606006CD97E /* RecentChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentChat.h; sourceTree = "<group>"; };
@@ -304,6 +313,8 @@
 			children = (
 				4FC0D21E1968C7170055812C /* TCGroupsViewController.h */,
 				4FC0D21F1968C7170055812C /* TCGroupsViewController.m */,
+				D2CAF1401981BA5D00DAEB3B /* TCCreateGroupViewController.h */,
+				D2CAF1411981BA5D00DAEB3B /* TCCreateGroupViewController.m */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -337,6 +348,7 @@
 		4FC0D2291968C7170055812C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D2CAF14A1983F39000DAEB3B /* CustomNavBar */,
 				D26161B819709288002B77C7 /* UIColor */,
 				D2798DE3196CA5FD008F77F9 /* NSDate */,
 				4FC0D22A1968C7170055812C /* UITextField */,
@@ -612,6 +624,8 @@
 				D2798DDE196C45AA008F77F9 /* Chat.m */,
 				D2E8A35919788606006CD97E /* RecentChat.h */,
 				D2E8A35A19788606006CD97E /* RecentChat.m */,
+				D2CAF13D1981931900DAEB3B /* Room.h */,
+				D2CAF13E1981931900DAEB3B /* Room.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -665,6 +679,15 @@
 				D2798DF1196CAD83008F77F9 /* TCRecentChatTableViewCell.xib */,
 			);
 			path = RecentChatCell;
+			sourceTree = "<group>";
+		};
+		D2CAF14A1983F39000DAEB3B /* CustomNavBar */ = {
+			isa = PBXGroup;
+			children = (
+				D2CAF14B1983F39B00DAEB3B /* TCCustomNavBar.h */,
+				D2CAF14C1983F39B00DAEB3B /* TCCustomNavBar.m */,
+			);
+			path = CustomNavBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -753,6 +776,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2CAF13F1981931900DAEB3B /* Room.m in Sources */,
 				4FC0D25A1968C7180055812C /* TCAppDelegate.m in Sources */,
 				D2798DD2196B692D008F77F9 /* UIImageView+AFNetworking.m in Sources */,
 				4FC0D2501968C7180055812C /* XMPPRoomHybrid.xcdatamodel in Sources */,
@@ -763,6 +787,7 @@
 				D261619C19703151002B77C7 /* TCChatConversationViewController.m in Sources */,
 				D26161B719708FE5002B77C7 /* TCAPIMethods.m in Sources */,
 				4FC0D24E1968C7180055812C /* XMPPMessageArchiving.xcdatamodel in Sources */,
+				D2CAF1421981BA5D00DAEB3B /* TCCreateGroupViewController.m in Sources */,
 				D26161A519703CB4002B77C7 /* TCEmoticonViewController.m in Sources */,
 				4FC0D2471968C7180055812C /* TCLoginViewController.m in Sources */,
 				D2798D84196B368D008F77F9 /* TCFriendsViewController.m in Sources */,
@@ -774,6 +799,7 @@
 				D2E8A35B19788606006CD97E /* RecentChat.m in Sources */,
 				4FC0D24C1968C7180055812C /* UITextField+PaddingText.m in Sources */,
 				D2798DCA196B692D008F77F9 /* AFHTTPClient.m in Sources */,
+				D2CAF14D1983F39B00DAEB3B /* TCCustomNavBar.m in Sources */,
 				D2798D8A196B48E6008F77F9 /* TCFriendsTableViewCell.m in Sources */,
 				D261658A19709D9D002B77C7 /* SORelativeDateTransformer.m in Sources */,
 				D2798DEA196CA73B008F77F9 /* TCUtility.m in Sources */,
