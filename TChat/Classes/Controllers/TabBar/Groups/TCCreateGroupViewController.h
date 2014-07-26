@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCFriendsTableViewCell.h"
+#import "TCAppDelegate.h"
 
-@interface TCCreateGroupViewController : UIViewController
+@interface TCCreateGroupViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,NSFetchedResultsControllerDelegate>
+{
+    NSFetchedResultsController *fetchedResultsController;
+    TCFriendsTableViewCell *friendsCell;
+}
+
+@property (nonatomic, strong) NSMutableArray* selectedIndex;
 
 - (IBAction)doneAction:(UIBarButtonItem *)sender;
 - (IBAction)backAction:(UIBarButtonItem *)sender;
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

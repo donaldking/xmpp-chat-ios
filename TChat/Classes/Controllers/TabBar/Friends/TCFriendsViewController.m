@@ -101,7 +101,7 @@
 -(void) loadData
 {
     if(self.onlineFriendsList)
-        self.onlineFriendsList =nil;
+        self.onlineFriendsList = nil;
     
     self.onlineFriendsList = [[NSMutableArray alloc]init];
     
