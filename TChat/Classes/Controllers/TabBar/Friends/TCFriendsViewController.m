@@ -215,7 +215,7 @@
         NSLog(@"sectionInfo.numberOfObjects : %d, %@", sectionInfo.numberOfObjects, sectionInfo);
         
         if(segmentStatus == SegmentStatus_All)
-           numberOfValidRows = sectionInfo.numberOfObjects;
+           numberOfValidRows = sectionInfo.numberOfObjects; 
         else
         {
             NSLog(@"sectionInfo.numberOfObjects: %d", sectionInfo.numberOfObjects);
