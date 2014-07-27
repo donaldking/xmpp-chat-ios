@@ -155,6 +155,13 @@
     
     [operationQueue addOperation:operation];
 }
+/*
+/mobileservices/v1/create_group.php
+PARAMS: group_id,
+group_name,
+admin_name, (JID OF THE LOGGED IN USER)
+password, send blank string for this for now
+*/
 
 
 

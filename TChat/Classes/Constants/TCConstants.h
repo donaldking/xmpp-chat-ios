@@ -32,6 +32,7 @@ typedef NS_ENUM(int,DIRECTION) {
 
 extern NSString * URL_SCHEME;
 extern NSString * XMPP_UAT_HOST;
+extern NSString * XMPP_CONFERENCE_UAT_HOST;
 extern NSString * XMPP_LIVE_HOST;
 extern NSString * PROXY_SERVICE;
 

@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TCFriendsTableViewCell.h"
 #import "TCAppDelegate.h"
+#import "MBProgressHUD.h"
 
-@interface TCCreateGroupViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,NSFetchedResultsControllerDelegate>
+@interface TCCreateGroupViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,NSFetchedResultsControllerDelegate,XMPPStreamDelegate,XMPPMUCDelegate, MBProgressHUDDelegate>
 {
     NSFetchedResultsController *fetchedResultsController;
     TCFriendsTableViewCell *friendsCell;
+    MBProgressHUD *HUD;
 }
 
 @property (nonatomic, strong) NSMutableArray* selectedIndex;
@@ -22,5 +24,7 @@
 - (IBAction)backAction:(UIBarButtonItem *)sender;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+
 
 @end
