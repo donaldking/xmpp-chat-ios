@@ -8,4 +8,7 @@
 - (BOOL)isGroupChatMessageWithBody;
 - (BOOL)isGroupChatMessageWithSubject;
 
+//ch.08
+- (BOOL)isGroupChatInvite;
+
 @end

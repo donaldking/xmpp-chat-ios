@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TCAppDelegate.h"
 
-@interface TCGroupsViewController : UIViewController
+@interface TCGroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 - (IBAction) creatGroupBtnClick:(id) sender;
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

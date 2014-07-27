@@ -27,6 +27,7 @@
 #import <TUSKXMPPLIB/TUSKXMPPLIB.h>
 #import <TUSKXMPPLIB/DDLog.h>
 #import <TUSKXMPPLIB/DDTTYLogger.h>
+#import <TUSKXMPPLIB/XMPPMessage+XEP0045.h>
 
 #import "TCChatConnectionProtocol.h"
 #import "TCConstants.h"

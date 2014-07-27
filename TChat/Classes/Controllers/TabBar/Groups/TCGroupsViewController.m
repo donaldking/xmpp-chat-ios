@@ -11,8 +11,8 @@
 #import "Room.h"
 
 @interface TCGroupsViewController ()
-@property (nonatomic,strong) NSString *currentRoomString;
-@property (nonatomic,strong) XMPPRoom* currentRoom;
+@property (nonatomic,strong) NSMutableArray *rooms;
+
 @end
 
 @implementation TCGroupsViewController
@@ -32,6 +32,34 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadData];
+}
+
+
+-(void)loadData
+{
+    if (self.rooms)
+        self.rooms =nil;
+    self.rooms = [[NSMutableArray alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Room"
+                                              inManagedObjectContext:XAppDelegate.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    NSError *error=nil;
+    NSArray *fetchedObjects = [XAppDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *obj in fetchedObjects)
+    {
+        Room *currentRoom = (Room *)obj;
+        [self.rooms addObject:currentRoom];
+    }
+    //reload the table view
+    [self.tableView reloadData];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -43,13 +71,37 @@
     
     TCCreateGroupViewController *creatGroupController=[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"createGroup"]; //or the homeController
     [self presentViewController:creatGroupController animated:YES completion:nil];
-    
-    /*
-    UIStoryboard *storyboard  = [UIStoryboard storyboardWithName:@"addRetailerStoryboardNew" bundle:[NSBundle mainBundle]];
-    UIViewController *vc = [storyboard instantiateInitialViewController];
-    // NSLog(@"Self: %@",[self class]);
-    [self presentViewController:vc animated:YES completion:nil];*/
 }
+
+
+#pragma mark UITableView Delegates
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+{
+	return self.rooms.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil)
+    {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:CellIdentifier];
+    }
+	
+	Room *room = [self.rooms objectAtIndex:indexPath.row];
+	
+	cell.textLabel.text = room.name;
+	
+	return cell;
+}
+
 
 /*
 #pragma mark - Navigation
@@ -61,57 +113,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-/*
--(NSString *) myCleanJID
-{
-    NSString *currentUser = [NSString stringWithFormat:@"%@@%@",XAppDelegate.username,XAppDelegate.currentHost];
-    currentUser = XAppDelegate.username;
-    
-    return currentUser;
-}
 
-
--(void)createRoom
-{
-    Room  *newRoom =[NSEntityDescription
-                     insertNewObjectForEntityForName:@"Room"
-                     inManagedObjectContext:XAppDelegate.managedObjectContext];
-    newRoom.name =  @"SKGroup";//self.currentRoomString;
-    newRoom.roomJID = [NSString stringWithFormat:@"%@_%@%@",[self myCleanJID],self.currentRoom,XMPP_CONFERENCE_UAT_HOST];//kxmppConferenceServer
-    NSError *error = nil;
-    if (![XAppDelegate.managedObjectContext save:&error])
-    {
-        NSLog(@"error saving");
-    }
-    else
-    {
-        //Create the room
-        //Create a unique name
-        NSString *roomJIDString = [NSString stringWithFormat:@"%@_%@%@",[self myCleanJID],self.currentRoomString,kxmppConferenceServer];
-        XMPPJID *roomJID = [XMPPJID jidWithString:roomJIDString];
-#if USE_MEMORY_STORAGE
-        xmppRoomStorage = [[XMPPRoomMemoryStorage alloc] init];
-#elif USE_HYBRID_STORAGE
-        xmppRoomStorage = [XMPPRoomHybridStorage sharedInstance];
-#endif
-        //Clean first
-        if (self.currentRoom)
-        {
-            [self.currentRoom removeDelegate:self delegateQueue:dispatch_get_main_queue()];
-            [self.currentRoom deactivate];
-            self.currentRoom=nil;
-            
-        }
-        
-        self.currentRoom = [[XMPPRoom alloc] initWithRoomStorage:xmppRoomStorage jid:roomJID];
-        [self.currentRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
-        [self.currentRoom activate:[self xmppStream]];
-        
-        //joining will create the room
-        //We now use a hardcoded nickname of course this should be configurable in some kind of settings option
-        [self.currentRoom joinRoomUsingNickname:kMyNickName history:nil];
-        
-    }
-}
-*/
 @end

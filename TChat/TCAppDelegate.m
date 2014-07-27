@@ -441,6 +441,49 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	}
 }
 
+
+#pragma mark MUC Delegate
+- (void)xmppMUC:(XMPPMUC *)sender didReceiveRoomInvitation:(XMPPMessage *)message
+{
+    //isGroupChatInvite is defined in XMPPMessage+0045 category
+    if ([message isGroupChatInvite])
+    {
+        NSString *roomJidString = [message fromStr];
+/*#if USE_MEMORY_STORAGE
+        xmppRoomStorage = [[XMPPRoomMemoryStorage alloc] init];
+#elif USE_HYBRID_STORAGE
+        xmppRoomStorage = [XMPPRoomCoreDataStorage sharedInstance];
+#endif
+        
+        XMPPRoom *newRoom = [[XMPPRoom alloc] initWithRoomStorage:xmppRoomStorage jid:[XMPPJID jidWithString:roomJidString]];
+        [newRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+        [newRoom activate:[self xmppStream]];
+        //Add it to CoreData
+        Room  *room =[NSEntityDescription
+                      insertNewObjectForEntityForName:@"Room"
+                      inManagedObjectContext:self.managedObjectContext];
+        room.roomJID = roomJidString;
+        //clean the name
+        NSString *roomName = [roomJidString stringByReplacingOccurrencesOfString:kxmppConferenceServer  withString:@""];
+        roomName=[roomName stringByReplacingOccurrencesOfString:@"@" withString:@""];
+        
+        
+        room.name = roomName;
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error])
+        {
+            NSLog(@"error saving");
+        }*/
+    }
+}
+- (void)xmppMUC:(XMPPMUC *)sender didReceiveRoomInvitationDecline:(XMPPMessage *)message
+{
+    NSLog(@"didReceiveRoomInvitationDecline %@", message);
+    //DDLogInfo(@"%@: %@  %@", THIS_FILE, THIS_METHOD,message);
+}
+
+
+
 -(void) updateCoreDataWithIncomingMessage:(XMPPMessage *)message
 {
     //determine the sender
@@ -605,6 +648,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self clearObjectsForEntityName:@"Chat" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
     }];
     [self clearObjectsForEntityName:@"RecentChat" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
+    }];
+    [self clearObjectsForEntityName:@"Room" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
     }];
     
     [xmppvCardStorage clearvCardTempForJID:[xmppStream myJID] xmppStream:xmppStream];
