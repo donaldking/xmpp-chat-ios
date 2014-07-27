@@ -81,6 +81,7 @@
 		D2CAF13F1981931900DAEB3B /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF13E1981931900DAEB3B /* Room.m */; };
 		D2CAF1421981BA5D00DAEB3B /* TCCreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF1411981BA5D00DAEB3B /* TCCreateGroupViewController.m */; };
 		D2CAF14D1983F39B00DAEB3B /* TCCustomNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF14C1983F39B00DAEB3B /* TCCustomNavBar.m */; };
+		D2CAF1521985984600DAEB3B /* TCGroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAF1511985984600DAEB3B /* TCGroupChatViewController.m */; };
 		D2E8A3561976B5AC006CD97E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D2E8A35B19788606006CD97E /* RecentChat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A35A19788606006CD97E /* RecentChat.m */; };
 /* End PBXBuildFile section */
@@ -202,6 +203,8 @@
 		D2CAF1411981BA5D00DAEB3B /* TCCreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCreateGroupViewController.m; sourceTree = "<group>"; };
 		D2CAF14B1983F39B00DAEB3B /* TCCustomNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCustomNavBar.h; sourceTree = "<group>"; };
 		D2CAF14C1983F39B00DAEB3B /* TCCustomNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCustomNavBar.m; sourceTree = "<group>"; };
+		D2CAF1501985984600DAEB3B /* TCGroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGroupChatViewController.h; sourceTree = "<group>"; };
+		D2CAF1511985984600DAEB3B /* TCGroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGroupChatViewController.m; sourceTree = "<group>"; };
 		D2E8A3541976B5AC006CD97E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		D2E8A3551976B5AC006CD97E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		D2E8A35919788606006CD97E /* RecentChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentChat.h; sourceTree = "<group>"; };
@@ -463,8 +466,8 @@
 		D26161991970311B002B77C7 /* ChatConversation */ = {
 			isa = PBXGroup;
 			children = (
-				D261619A19703151002B77C7 /* TCChatConversationViewController.h */,
-				D261619B19703151002B77C7 /* TCChatConversationViewController.m */,
+				D2CAF14F198597B900DAEB3B /* Group_Chat */,
+				D2CAF14E198597AA00DAEB3B /* Normal_Chat */,
 			);
 			path = ChatConversation;
 			sourceTree = "<group>";
@@ -690,6 +693,24 @@
 			path = CustomNavBar;
 			sourceTree = "<group>";
 		};
+		D2CAF14E198597AA00DAEB3B /* Normal_Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D261619A19703151002B77C7 /* TCChatConversationViewController.h */,
+				D261619B19703151002B77C7 /* TCChatConversationViewController.m */,
+			);
+			name = Normal_Chat;
+			sourceTree = "<group>";
+		};
+		D2CAF14F198597B900DAEB3B /* Group_Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D2CAF1501985984600DAEB3B /* TCGroupChatViewController.h */,
+				D2CAF1511985984600DAEB3B /* TCGroupChatViewController.m */,
+			);
+			name = Group_Chat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -779,6 +800,7 @@
 				D2CAF13F1981931900DAEB3B /* Room.m in Sources */,
 				4FC0D25A1968C7180055812C /* TCAppDelegate.m in Sources */,
 				D2798DD2196B692D008F77F9 /* UIImageView+AFNetworking.m in Sources */,
+				D2CAF1521985984600DAEB3B /* TCGroupChatViewController.m in Sources */,
 				4FC0D2501968C7180055812C /* XMPPRoomHybrid.xcdatamodel in Sources */,
 				D2798DCB196B692D008F77F9 /* AFHTTPRequestOperation.m in Sources */,
 				D26161A119703BB1002B77C7 /* MBProgressHUD.m in Sources */,

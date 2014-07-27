@@ -29,5 +29,6 @@
 
 @dynamic sender;
 @dynamic receiver;
+@dynamic messageType;
 
 @end

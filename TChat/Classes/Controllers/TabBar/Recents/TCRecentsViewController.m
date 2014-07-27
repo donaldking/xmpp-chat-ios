@@ -12,6 +12,7 @@
 #import "TCConstants.h"
 #import "TCUtility.h"
 #import "TCChatConversationViewController.h"
+#import "TCGroupChatViewController.h"
 #import <TUSKXMPPLIB/DDLog.h>
 #import <TUSKXMPPLIB/DDTTYLogger.h>
 
@@ -80,38 +81,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }];
 
     
-    /*if (self.chats)
-        self.chats =nil;
-    self.chats = [[NSMutableArray alloc]init];
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Chat"
-                                              inManagedObjectContext:XAppDelegate.managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    //skip Group messages
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isGroupMessage == %@",[NSNumber numberWithBool:NO]];
-    //fetch distinct only jidString attribute
-    [fetchRequest setPredicate:predicate];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setReturnsDistinctResults:YES];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"jidString"]];
-    [fetchRequest setFetchBatchSize:50];
-    
-   // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)", _buddy, _currentUser, _currentUser,_buddy];
-
-
-    NSError *error=nil;
-    NSArray *fetchedObjects = [XAppDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *obj in fetchedObjects)
-    {
-        NSMutableDictionary *found = (NSMutableDictionary *)obj;
-        NSString *jid = [found valueForKey:@"jidString"];
-        //only add the latest one
-        [self.chats addObject:[self LatestChatRecordForJID:jid]];
-    }
-    //reload the table view
-    [self.tableView reloadData];*/
 }
 
 
@@ -269,21 +238,39 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
    // Chat* chat = [self.chats objectAtIndex:indexPath.row];
     
     NSManagedObject *recentObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
-                                           userForJID:[XMPPJID jidWithString:[recentObject valueForKey:@"chatWithUser"]]
-                                           xmppStream:XAppDelegate.xmppStream
-                                           managedObjectContext:XAppDelegate.managedObjectContext_roster];
-    
 
-    TCChatConversationViewController *chatCoversationViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"chatConversationView"];
-    chatCoversationViewController.chatUserObject =  user;;
+    if([[recentObject valueForKey:@"isGroupMessage"] boolValue])
+    {
+        TCGroupChatViewController *groupChatViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"groupChatView"];
+        
+        groupChatViewController.chatWithUser = [ [recentObject valueForKey:@"chatWithUser"] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XMPP_CONFERENCE_UAT_HOST] withString:@""];
+        
+        groupChatViewController.hidesBottomBarWhenPushed = YES;
+        
+        groupChatViewController.navigationItem.title = [recentObject valueForKey:@"name"];
+        
+        [self.navigationController pushViewController:groupChatViewController animated:YES];
+
+        
+    }
+    else
+    {
     
-    chatCoversationViewController.hidesBottomBarWhenPushed = YES;
-    
-    chatCoversationViewController.navigationItem.title = [recentObject valueForKey:@"name"];
-    
-    [self.navigationController pushViewController:chatCoversationViewController animated:YES];
+        XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
+                                               userForJID:[XMPPJID jidWithString:[recentObject valueForKey:@"chatWithUser"]]
+                                               xmppStream:XAppDelegate.xmppStream
+                                               managedObjectContext:XAppDelegate.managedObjectContext_roster];
+        
+
+        TCChatConversationViewController *chatCoversationViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"chatConversationView"];
+        chatCoversationViewController.chatUserObject =  user;;
+        
+        chatCoversationViewController.hidesBottomBarWhenPushed = YES;
+        
+        chatCoversationViewController.navigationItem.title = [recentObject valueForKey:@"name"];
+        
+        [self.navigationController pushViewController:chatCoversationViewController animated:YES];
+    }
     
     
   /*  if (self.conversationVC)

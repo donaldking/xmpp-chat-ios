@@ -21,5 +21,7 @@
 @property (nonatomic, retain) NSString * receiver;
 @property (nonatomic, retain) NSString * sender;
 @property (nonatomic, retain) NSString * time_stamp;
+@property (nonatomic, retain) NSNumber * isGroupMessage;
+@property (nonatomic, retain) NSString * messageType;
 
 @end

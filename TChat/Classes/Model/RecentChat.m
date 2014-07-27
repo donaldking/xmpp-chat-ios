@@ -20,5 +20,7 @@
 @dynamic receiver;
 @dynamic sender;
 @dynamic time_stamp;
+@dynamic isGroupMessage;
+@dynamic messageType;
 
 @end

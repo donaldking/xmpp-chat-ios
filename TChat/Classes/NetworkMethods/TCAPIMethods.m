@@ -59,6 +59,8 @@
                                     [[values valueForKey:@"receiver"] objectAtIndex:idx],@"receiver",
                                     [[values valueForKey:@"message"] objectAtIndex:idx],@"message",
                                     [[values valueForKey:@"time_stamp"] objectAtIndex:idx],@"message_date",
+                                    [[values valueForKey:@"messageType"] objectAtIndex:idx],@"messageType",
+                                    [NSNumber numberWithBool:[[[values valueForKey:@"isGroupMessage"] objectAtIndex:idx] boolValue]],@"isGroupMessage",
                                     @"0",@"status",
                                     nil];
             
@@ -102,6 +104,10 @@
             
             NSDictionary *lastMessage = [[values valueForKey:@"lastMessage"] objectAtIndex:idx];
             // Create message to send as dictionary
+            
+            NSLog(@"%hhd", [[lastMessage valueForKey:@"isGroupMessage"] boolValue]);
+             NSLog(@"%@", [lastMessage valueForKey:@"isGroupMessage"]);
+            
             NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [[values valueForKey:@"chatWithUser"] objectAtIndex:idx],@"chatWithUser",
                                     [[values valueForKey:@"name"] objectAtIndex:idx],@"name",
@@ -112,6 +118,8 @@
                                     [lastMessage valueForKey:@"receiver"],@"receiver",
                                     [lastMessage valueForKey:@"sender"],@"sender",
                                     [lastMessage valueForKey:@"time_stamp"],@"time_stamp",
+                                    [lastMessage valueForKey:@"messageType"],@"messageType",
+                                    [NSNumber numberWithBool:[[lastMessage valueForKey:@"isGroupMessage"] boolValue]],@"isGroupMessage",
                                     nil];
         
             //NSLog(@"id:%@", [[values valueForKey:@"chatWithUser"] objectAtIndex:idx]);
@@ -130,21 +138,6 @@
                 }
             }];
 
-            /*RecentChat *recentChatObject = [NSEntityDescription insertNewObjectForEntityForName:@"RecentChat" inManagedObjectContext:XAppDelegate.managedObjectContext];
-            
-            // Persist objects
-            [recentChatObject setValuesForKeysWithDictionary:dictionary];
-            
-            NSError *error;
-            if([XAppDelegate.managedObjectContext save:&error])
-            {
-                completionResponse(@"receiveAndPersistObjectForEntityName:OK");
-            }
-            else{
-                completionResponse(@"receiveAndPersistObjectForEntityName:ERROR");
-            }
-            */
-            
         }];
         completionResponse(@"doGetWithDictionary:OK");
         
@@ -155,13 +148,6 @@
     
     [operationQueue addOperation:operation];
 }
-/*
-/mobileservices/v1/create_group.php
-PARAMS: group_id,
-group_name,
-admin_name, (JID OF THE LOGGED IN USER)
-password, send blank string for this for now
-*/
 
 
 
