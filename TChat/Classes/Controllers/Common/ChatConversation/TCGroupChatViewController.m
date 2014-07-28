@@ -109,7 +109,9 @@ static CGRect keyboardEmoticonRect;
                                      [NSString stringWithFormat:@"mobileservices/v1/get_message.php?sender=%@&receiver=%@",sender,receiver],@"api",
                                      nil];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)", _buddy, _currentUser, _currentUser,_buddy];
+   // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"((receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)", _buddy, _currentUser, _currentUser,_buddy];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(receiver LIKE[c] %@)", _buddy];
     
     [XAppDelegate checkIfObjectExistsForEntityName:@"Chat" withPredicate:predicate inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
         if ([completionResponse isEqualToString:@"checkIfObjectExistsForEntityName:YES"]) {
@@ -310,7 +312,9 @@ static CGRect keyboardEmoticonRect;
                                         managedObjectContext:XAppDelegate.managedObjectContext sectionNameKeyPath:nil
                                                    cacheName:nil];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
+  //  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sender LIKE[c] %@) AND (receiver LIKE[c] %@) OR (sender LIKE[c] %@) AND (receiver LIKE[c] %@)",_buddy,_currentUser,_currentUser,_buddy];
+ 
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(receiver LIKE[c] %@)", _buddy];
     [fetchRequest setPredicate:predicate];
     
     _fetchedResultsController = theFetchedResultsController;
