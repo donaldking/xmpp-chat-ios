@@ -136,6 +136,7 @@
         XMPPUserCoreDataStorageObject *user = (XMPPUserCoreDataStorageObject*) obj;
         
         NSString *presenceTYPE = user.primaryResource.presence.type;
+        //if([presenceTYPE isEqualToString:@"available"])
         [self.onlineFriendsList addObject:user];
     }
 }
@@ -247,28 +248,27 @@
             friendsCell = (TCFriendsTableViewCell*)obj;
             [friendsCell setValue:@"friendcell" forKey:@"reuseIdentifier"];
             
+            XMPPUserCoreDataStorageObject *user = nil;
+            
             if(segmentStatus == SegmentStatus_All) {
-                XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+                user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
                 
                 NSString *presenceTYPE = user.primaryResource.presence.type;
-                if([presenceTYPE isEqualToString:@"available"])
+                /*if([presenceTYPE isEqualToString:@"available"])
                     friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
                 else
-                    friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];
-                // friendsCell.userJIDLabel.text = user.displayName;
-                [self configurePhotoForCell:friendsCell user:user];
+                    friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];*/
             }
             else
             {
-                XMPPUserCoreDataStorageObject *user = [[self onlineFriendsList] objectAtIndex:indexPath.row];
+                user = [[self onlineFriendsList] objectAtIndex:indexPath.row];
                 
                 NSString *presenceTYPE = user.primaryResource.presence.type;
-                if([presenceTYPE isEqualToString:@"available"])
-                    friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
-                
-                [self configurePhotoForCell:friendsCell user:user];
-
+                //if([presenceTYPE isEqualToString:@"available"])
+                //friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
             }
+            friendsCell.userJIDLabel.text = user.displayName;
+            [self configurePhotoForCell:friendsCell user:user];
             break;
         }
     }
