@@ -278,7 +278,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    
+    XMPPUserCoreDataStorageObject *user = nil;
+    
+    if(segmentStatus == SegmentStatus_All)
+        user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    else
+        user = [[self onlineFriendsList] objectAtIndex:indexPath.row];
+    
+    
+   // XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     NSLog(@"user %@", user.jidStr);
     
     TCChatConversationViewController *chatCoversationViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"chatConversationView"];
