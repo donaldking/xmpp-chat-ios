@@ -9,6 +9,7 @@
 #import "TCGroupsViewController.h"
 #import "TCCreateGroupViewController.h"
 #import "Room.h"
+#import "TCGroupChatViewController.h"
 
 @interface TCGroupsViewController ()
 @property (nonatomic,strong) NSMutableArray *rooms;
@@ -124,6 +125,25 @@
 	cell.textLabel.text = room.name;
 	
 	return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Room *room = [self.rooms objectAtIndex:indexPath.row];
+    
+    TCGroupChatViewController *groupChatViewController = [XAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"groupChatView"];
+        
+    groupChatViewController.chatWithUser = [ room.roomJID stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XMPP_CONFERENCE_UAT_HOST] withString:@""];
+        
+    groupChatViewController.hidesBottomBarWhenPushed = YES;
+        
+    groupChatViewController.navigationItem.title = room.name;
+        
+    [self.navigationController pushViewController:groupChatViewController animated:YES];
+    
 }
 
 

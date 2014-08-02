@@ -139,9 +139,11 @@
         NSLog(@"user.displayName: %@", user.displayName);
         
 
+        NSString *userId = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
+        
     
         NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     user.jidStr, @"user_id",
+                                     userId, @"user_id",
                                      _groupID, @"group_id",
                                      [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
                                      @"mobileservices/v1/add_user_to_group.php",@"api",
@@ -162,6 +164,32 @@
         }];
     }
 
+    //add login user as well
+    NSString *userId = XAppDelegate.username;
+    
+    
+    NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     userId, @"user_id",
+                                     _groupID, @"group_id",
+                                     [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
+                                     @"mobileservices/v1/add_user_to_group.php",@"api",
+                                     nil];
+    
+    
+    [XAppDelegate.ApiMethods doPostWithDictionary:dicToApi andCallback:^(id completionResponse) {
+        
+        if([completionResponse isEqualToString:@"doPostWithDictionary:OK"])
+        {
+            NSLog(@"create_group API successful");
+        }
+        else
+        {
+            NSLog(@"create_group API failed");
+        }
+        
+    }];
+
+    
     [HUD hide:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 

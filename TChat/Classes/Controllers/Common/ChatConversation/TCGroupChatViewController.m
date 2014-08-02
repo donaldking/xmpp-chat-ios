@@ -545,6 +545,72 @@ static CGRect keyboardEmoticonRect;
 }
 
 
+#pragma mark - chat message lifecycle
+-(IBAction)sendMessageAction:(id)sender
+{
+    NSString *message = _textView.text;
+    if ([[message stringByReplacingOccurrencesOfString:@" " withString:@""] length] >=1) {
+#if !(TARGET_IPHONE_SIMULATOR)
+        //TODO   [XAppDelegate.sendMessageSound play];
+#endif
+        // Create date time
+        NSDate *date = [NSDate date];
+        int timestamp = [date timeIntervalSince1970];
+        NSString *dateString = [NSString stringWithFormat:@"%i",timestamp];
+        
+        // Create message to send as dictionary
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                _currentUser,@"sender",
+                                _buddy,@"receiver",
+                                message,@"message",
+                                @"0",@"status",
+                                dateString,@"message_date",
+                                nil];
+        
+        [XAppDelegate sendAndPersistObjectForEntityName:@"Chat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
+            //
+            if ([completionResponse isEqualToString:@"persistObjectForEntityName:OK"]) {
+                
+                [self fetchItemsFromStore];
+            }
+        }];
+        
+        
+        // POST TO API, SAVE TO DICTIONARY
+        [self apiPostWithDictionary:params];
+        
+    }
+    [self.textView setText:@""];
+}
+
+-(void)apiPostWithDictionary:(NSDictionary *)dictionary{
+    
+    // Build api params
+    NSMutableDictionary *mDic = [NSMutableDictionary dictionary];
+    [mDic addEntriesFromDictionary:dictionary];
+    
+    [mDic setValue:[[mDic valueForKey:@"sender"] stringByReplacingOccurrencesOfString:
+                    [NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""] forKey:@"sender"];
+    [mDic setValue:[[mDic valueForKey:@"receiver"] stringByReplacingOccurrencesOfString:
+                    [NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""] forKey:@"receiver"];
+    
+    //http://dev.yookoschat.com/mobileservices/v1/store_message.php?sender=zoepraise&receiver=donaldking&message=KINGKING&mid=longguid
+    
+    NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
+                                     @"mobileservices/v1/store_message.php",@"api",
+                                     [TCUtility GetUUID],@"mid",
+                                     nil];
+    
+    [dicToApi addEntriesFromDictionary:mDic];
+    
+    [XAppDelegate.ApiMethods doPostWithDictionary:dicToApi andCallback:^(id completionResponse) {
+        
+    }];
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
