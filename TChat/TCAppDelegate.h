@@ -66,6 +66,7 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 
 @property (nonatomic, strong) NSString *profileName;
 @property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *userNickName;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic) PresenceStatus presence;
 

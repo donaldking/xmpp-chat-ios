@@ -194,21 +194,11 @@
 {
     _groupName = nil;
     
-    _groupName = [NSString stringWithFormat:@"%@",XAppDelegate.username];
-    
-    NSString *currentUser = [NSString stringWithFormat:@"%@@%@",XAppDelegate.username,XAppDelegate.currentHost];
-
-    
-    XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
-                                           userForJID:[XMPPJID jidWithString:currentUser]
-                                           xmppStream:XAppDelegate.xmppStream
-                                           managedObjectContext:XAppDelegate.managedObjectContext_roster];
-    
-    NSLog(@"DISPLAY:%@, NICK:%@", user.displayName,user.nickname);
+    _groupName = [NSString stringWithFormat:@"%@",XAppDelegate.userNickName];
     
     for (NSIndexPath* indexPath in _selectedIndex) {
         XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        _groupName = [_groupName stringByAppendingString:[NSString stringWithFormat:@",%@",user.displayName]];
+        _groupName = [_groupName stringByAppendingString:[NSString stringWithFormat:@", %@",user.displayName]];
     }
 }
 
@@ -389,7 +379,8 @@
          NSLog(@"user.jidStr: %@", user.jidStr);
          NSLog(@"user.displayName: %@", user.displayName);
         
-        [self.currentRoom inviteUser: [XMPPJID jidWithString:user.jidStr] withMessage:@"Join this room"];
+        //[self.currentRoom inviteUser: [XMPPJID jidWithString:user.jidStr] withMessage:@"Join this room"];
+        [self.currentRoom inviteUser: [XMPPJID jidWithString:user.jidStr] withMessage:_groupName];
     }
     [self addUserCustomAPICall];
     

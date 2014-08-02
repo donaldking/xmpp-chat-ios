@@ -221,6 +221,8 @@ typedef enum ScrollDirection{
   /*  XAppDelegate.presence = offline;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccessfulNotification" object:nil];*/
     
+    [self getUserProfile];
+    
     [_loginButton setEnabled:YES];
     [_activityIndicatorView setHidden:YES];
     [_activityIndicatorView stopAnimating];
@@ -260,7 +262,26 @@ typedef enum ScrollDirection{
 
 }
 
-
+-(void)getUserProfile
+{
+    NSString *sender = XAppDelegate.username;
+    
+    NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
+                                     [NSString stringWithFormat:@"mobileservices/v1/get_profile.php?username=%@",sender],@"api",
+                                     nil];
+    
+    
+    [XAppDelegate.ApiMethods doGetProfileWithDictionary:dicToApi andCallback:^(id completionResponse) {
+        NSLog(@"Completion response: %@",completionResponse);
+        
+        if ([completionResponse isEqualToString:@"doGetWithDictionary:OK"]) {
+            NSLog(@"received success response");
+        }
+    }];
+    
+    
+}
 
 /*
 #pragma mark - Navigation

@@ -202,5 +202,49 @@
 }
 
 
+-(void)doGetProfileWithDictionary:(NSDictionary*)dictionary andCallback:(getCompletedBlock)completionResponse
+{
+    NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+    NSURL *baseUrl = [NSURL URLWithString:[dictionary valueForKey:@"baseUrl"]];
+    NSString *api = [dictionary valueForKey:@"api"];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET" path:api parameters:dictionary];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //
+        NSData *data = [[operation responseString] dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        //NSLog(@"Will persist total objects: %i",values.count);
+        
+        [values enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [obj valueForKey:@"fullName"],@"fullname",
+                                        nil];
+            
+            [XAppDelegate clearObjectsForEntityName:@"UserProfile" inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
+            }];
+
+        
+            XAppDelegate.userNickName = [obj valueForKey:@"fullName"];
+            [XAppDelegate persistObjectForEntityName:@"UserProfile" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andCallback:^(id completionResponse){
+                        //NSLog(@"persist Recent Chat model");
+                    }];
+        
+        }];
+        completionResponse(@"doGetWithDictionary:OK");
+        
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //
+        completionResponse(@"doGetWithDictionary:ERROR");
+    }];
+    
+    [operationQueue addOperation:operation];
+}
+
 
 @end
