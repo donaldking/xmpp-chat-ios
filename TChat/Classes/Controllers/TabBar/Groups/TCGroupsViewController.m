@@ -36,6 +36,7 @@
 {
     [super viewWillAppear:animated];
     [self loadData];
+    [self getGroups];
 }
 
 
@@ -57,6 +58,29 @@
     }
     //reload the table view
     [self.tableView reloadData];
+}
+
+-(void)getGroups
+{
+    NSString *sender = XAppDelegate.username;
+    
+    NSMutableDictionary *dicToApi = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     [NSString stringWithFormat:@"%@%@",URL_SCHEME,XAppDelegate.currentHost],@"baseUrl",
+                                     [NSString stringWithFormat:@"mobileservices/v1/get_groups_for_user.php?user_id=%@",sender],@"api",
+                                     nil];
+    
+    
+    [XAppDelegate.ApiMethods doGetGroupsWithDictionary:dicToApi andCallback:^(id completionResponse) {
+        NSLog(@"Completion response: %@",completionResponse);
+        
+        if ([completionResponse isEqualToString:@"doGetWithDictionary:OK"]) {
+            NSLog(@"received success response");
+            //TODO
+            [self loadData];
+        }
+    }];
+    
+    
 }
 
 

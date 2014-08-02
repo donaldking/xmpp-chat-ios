@@ -86,20 +86,6 @@
 
 -(void)createRoomCustomAPICall
 {
-    // Create date time
-   /* NSDate *date = [NSDate date];
-    int timestamp = [date timeIntervalSince1970];
-    NSString *timeString = [NSString stringWithFormat:@"%i",timestamp];
-    
-    NSString *group_id = [NSString stringWithFormat:@"%@_",XAppDelegate.username];
-    group_id = [group_id stringByAppendingString: timeString];*/
-    
-  /*  NSString *group_name = [NSString stringWithFormat:@"%@",XAppDelegate.username];
-    
-    for (NSIndexPath* indexPath in _selectedIndex) {
-        XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        group_name = [group_name stringByAppendingString:[NSString stringWithFormat:@",%@",user.displayName]];
-    }*/
     
     NSString *currentUser = [NSString stringWithFormat:@"%@@%@",XAppDelegate.username,XAppDelegate.currentHost];
     
@@ -209,6 +195,16 @@
     _groupName = nil;
     
     _groupName = [NSString stringWithFormat:@"%@",XAppDelegate.username];
+    
+    NSString *currentUser = [NSString stringWithFormat:@"%@@%@",XAppDelegate.username,XAppDelegate.currentHost];
+
+    
+    XMPPUserCoreDataStorageObject *user = [XAppDelegate.xmppRosterStorage
+                                           userForJID:[XMPPJID jidWithString:currentUser]
+                                           xmppStream:XAppDelegate.xmppStream
+                                           managedObjectContext:XAppDelegate.managedObjectContext_roster];
+    
+    NSLog(@"DISPLAY:%@, NICK:%@", user.displayName,user.nickname);
     
     for (NSIndexPath* indexPath in _selectedIndex) {
         XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];

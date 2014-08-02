@@ -149,6 +149,57 @@
     [operationQueue addOperation:operation];
 }
 
+-(void)doGetGroupsWithDictionary:(NSDictionary*)dictionary andCallback:(getCompletedBlock)completionResponse
+{
+    NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+    NSURL *baseUrl = [NSURL URLWithString:[dictionary valueForKey:@"baseUrl"]];
+    NSString *api = [dictionary valueForKey:@"api"];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET" path:api parameters:dictionary];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //
+        NSData *data = [[operation responseString] dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        //NSLog(@"Will persist total objects: %i",values.count);
+        
+        [values enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [obj valueForKey:@"group_name"],@"name",
+                                        [obj valueForKey:@"group_id"],@"roomJID",
+                                        nil];
+            
+            //NSLog(@"id:%@", [[values valueForKey:@"chatWithUser"] objectAtIndex:idx]);
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"roomJID=%@", [obj valueForKey:@"group_id"]];
+            
+            [XAppDelegate checkIfObjectExistsForEntityName:@"Room" withPredicate:predicate inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
+                if ([completionResponse isEqualToString:@"checkIfObjectExistsForEntityName:YES"]) {
+                    [XAppDelegate updateAttributeForEntityName:@"Room" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andPredicate:predicate andCallback:^(id completionResponse){
+                        //NSLog(@"update Recent Chat model");
+                    }];
+                }
+                else{
+                    [XAppDelegate persistObjectForEntityName:@"Room" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andCallback:^(id completionResponse){
+                        //NSLog(@"persist Recent Chat model");
+                    }];
+                }
+            }];
+            
+        }];
+        completionResponse(@"doGetWithDictionary:OK");
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //
+        completionResponse(@"doGetWithDictionary:ERROR");
+    }];
+    
+    [operationQueue addOperation:operation];
+}
 
 
 
