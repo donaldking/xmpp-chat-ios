@@ -23,9 +23,7 @@
 		4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2341968C7180055812C /* XMPPRoster.xcdatamodel */; };
 		4FC0D2521968C7180055812C /* XMPPvCard.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D2351968C7180055812C /* XMPPvCard.xcdatamodel */; };
 		4FC0D2531968C7180055812C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D2361968C7180055812C /* InfoPlist.strings */; };
-		4FC0D2541968C7180055812C /* friend-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23A1968C7180055812C /* friend-button.png */; };
 		4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23B1968C7180055812C /* groups_button@2x.png */; };
-		4FC0D2561968C7180055812C /* recent-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23C1968C7180055812C /* recent-button@2x.png */; };
 		4FC0D2571968C7180055812C /* setting-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23D1968C7180055812C /* setting-button@2x.png */; };
 		4FC0D2581968C7180055812C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC0D23E1968C7180055812C /* Images.xcassets */; };
 		4FC0D2591968C7180055812C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0D23F1968C7180055812C /* main.m */; };
@@ -34,6 +32,10 @@
 		D203EA6719680B1E00669326 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6619680B1E00669326 /* AVFoundation.framework */; };
 		D203EA6919680B3900669326 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6819680B3900669326 /* QuartzCore.framework */; };
 		D203EA6B19680B4D00669326 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D203EA6A19680B4D00669326 /* MobileCoreServices.framework */; };
+		D219860E198E7EFD00078382 /* chatrooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D219860D198E7EFD00078382 /* chatrooms@2x.png */; };
+		D2198610198E7F7F00078382 /* friends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D219860F198E7F7F00078382 /* friends@2x.png */; };
+		D2198612198E7FA200078382 /* recents@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2198611198E7FA200078382 /* recents@2x.png */; };
+		D2198616198E809100078382 /* TCChatroomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2198615198E809100078382 /* TCChatroomsViewController.m */; };
 		D21CE98D19680D9D006E19C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */; };
 		D21CE98F19680DB8006E19C6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98E19680DB8006E19C6 /* CoreText.framework */; };
 		D21CE99119680DC2006E19C6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE99019680DC2006E19C6 /* ImageIO.framework */; };
@@ -111,9 +113,7 @@
 		4FC0D2341968C7180055812C /* XMPPRoster.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoster.xcdatamodel; sourceTree = "<group>"; };
 		4FC0D2351968C7180055812C /* XMPPvCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPvCard.xcdatamodel; sourceTree = "<group>"; };
 		4FC0D2371968C7180055812C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4FC0D23A1968C7180055812C /* friend-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friend-button.png"; sourceTree = "<group>"; };
 		4FC0D23B1968C7180055812C /* groups_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groups_button@2x.png"; sourceTree = "<group>"; };
-		4FC0D23C1968C7180055812C /* recent-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-button@2x.png"; sourceTree = "<group>"; };
 		4FC0D23D1968C7180055812C /* setting-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-button@2x.png"; sourceTree = "<group>"; };
 		4FC0D23E1968C7180055812C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TChat/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		4FC0D23F1968C7180055812C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,6 +124,11 @@
 		D203EA6619680B1E00669326 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D203EA6819680B3900669326 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D203EA6A19680B4D00669326 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D219860D198E7EFD00078382 /* chatrooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatrooms@2x.png"; sourceTree = "<group>"; };
+		D219860F198E7F7F00078382 /* friends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends@2x.png"; sourceTree = "<group>"; };
+		D2198611198E7FA200078382 /* recents@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recents@2x.png"; sourceTree = "<group>"; };
+		D2198614198E809100078382 /* TCChatroomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatroomsViewController.h; sourceTree = "<group>"; };
+		D2198615198E809100078382 /* TCChatroomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChatroomsViewController.m; sourceTree = "<group>"; };
 		D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		D21CE98E19680DB8006E19C6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		D21CE99019680DC2006E19C6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -301,6 +306,7 @@
 		4FC0D21C1968C7170055812C /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				D2198613198E807300078382 /* Chatrooms */,
 				D2798D81196B3668008F77F9 /* Friends */,
 				4FC0D21D1968C7170055812C /* Groups */,
 				4FC0D2201968C7170055812C /* Recents */,
@@ -404,12 +410,22 @@
 		4FC0D2391968C7180055812C /* Tab_Icons */ = {
 			isa = PBXGroup;
 			children = (
-				4FC0D23A1968C7180055812C /* friend-button.png */,
+				D2198611198E7FA200078382 /* recents@2x.png */,
+				D219860F198E7F7F00078382 /* friends@2x.png */,
+				D219860D198E7EFD00078382 /* chatrooms@2x.png */,
 				4FC0D23B1968C7180055812C /* groups_button@2x.png */,
-				4FC0D23C1968C7180055812C /* recent-button@2x.png */,
 				4FC0D23D1968C7180055812C /* setting-button@2x.png */,
 			);
 			path = Tab_Icons;
+			sourceTree = "<group>";
+		};
+		D2198613198E807300078382 /* Chatrooms */ = {
+			isa = PBXGroup;
+			children = (
+				D2198614198E809100078382 /* TCChatroomsViewController.h */,
+				D2198615198E809100078382 /* TCChatroomsViewController.m */,
+			);
+			path = Chatrooms;
 			sourceTree = "<group>";
 		};
 		D21F127D1966ACA7006A8910 = {
@@ -775,11 +791,12 @@
 			files = (
 				D2798D8E196B58D7008F77F9 /* placeholder_profile.png in Resources */,
 				4FC0D25B1968C7180055812C /* TChat-Info.plist in Resources */,
+				D219860E198E7EFD00078382 /* chatrooms@2x.png in Resources */,
 				4FC0D2451968C7180055812C /* Main_iPhone.storyboard in Resources */,
 				4FC0D2581968C7180055812C /* Images.xcassets in Resources */,
-				4FC0D2561968C7180055812C /* recent-button@2x.png in Resources */,
 				D2798DF3196CAD83008F77F9 /* TCRecentChatTableViewCell.xib in Resources */,
-				4FC0D2541968C7180055812C /* friend-button.png in Resources */,
+				D2198610198E7F7F00078382 /* friends@2x.png in Resources */,
+				D2198612198E7FA200078382 /* recents@2x.png in Resources */,
 				4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */,
 				D261658919709D9D002B77C7 /* SORelativeDateTransformer.bundle in Resources */,
 				D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */,
@@ -841,6 +858,7 @@
 				4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */,
 				4FC0D2591968C7180055812C /* main.m in Sources */,
 				4FC0D24D1968C7180055812C /* XMPPCapabilities.xcdatamodel in Sources */,
+				D2198616198E809100078382 /* TCChatroomsViewController.m in Sources */,
 				D2798DDB196C44A0008F77F9 /* TChatModel.xcdatamodeld in Sources */,
 				D26161BB19709288002B77C7 /* UIColor+HexToRgb.m in Sources */,
 			);

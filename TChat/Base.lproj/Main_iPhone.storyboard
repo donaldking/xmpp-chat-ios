@@ -364,8 +364,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="m6d-yE-gvD" kind="relationship" relationship="viewControllers" id="bnq-0o-94P"/>
-                        <segue destination="xb5-Yf-5ws" kind="relationship" relationship="viewControllers" id="WmL-5v-kRA"/>
                         <segue destination="jTF-En-eFy" kind="relationship" relationship="viewControllers" id="qYJ-HF-K5M"/>
+                        <segue destination="xb5-Yf-5ws" kind="relationship" relationship="viewControllers" id="WmL-5v-kRA"/>
+                        <segue destination="M0r-TG-eie" kind="relationship" relationship="viewControllers" id="fGu-eC-3is"/>
                         <segue destination="b9y-fF-csO" kind="relationship" relationship="viewControllers" id="sD1-9k-BfL"/>
                     </connections>
                 </tabBarController>
@@ -599,6 +600,30 @@
             </objects>
             <point key="canvasLocation" x="2665" y="1720"/>
         </scene>
+        <!--Chatrooms View Controller - Chatrooms-->
+        <scene sceneID="hmq-PA-VU9">
+            <objects>
+                <viewController id="ZGm-HA-Xgd" customClass="TCChatroomsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dkC-yJ-aKd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatrooms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nvn-pQ-OJI">
+                                <rect key="frame" x="96" y="273" width="128" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chatrooms" id="aKV-c7-tt5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oey-DQ-0gx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2665" y="2435"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="BgA-cp-hVZ">
             <objects>
@@ -621,7 +646,7 @@
         <scene sceneID="gAF-c2-HDW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m6d-yE-gvD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recents" image="recent-button.png" id="gyC-S9-I5Z"/>
+                    <tabBarItem key="tabBarItem" title="Recents" image="recents.png" id="gyC-S9-I5Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cgX-1l-QGM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -640,7 +665,7 @@
         <scene sceneID="wfv-Q3-Y1c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xb5-Yf-5ws" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" image="groups_button.png" id="Kc4-Nb-lQ4"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="chatrooms.png" id="Kc4-Nb-lQ4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kgR-ND-eot">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -659,7 +684,7 @@
         <scene sceneID="FGj-N6-PKy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jTF-En-eFy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="friend-button.png" id="Xff-dn-FsX"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends.png" id="Xff-dn-FsX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9nF-SJ-4ue">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -726,11 +751,30 @@
             </objects>
             <point key="canvasLocation" x="3269" y="832"/>
         </scene>
+        <!--Navigation Controller - Chatrooms-->
+        <scene sceneID="Pva-yX-sr3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M0r-TG-eie" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chatrooms" image="chatrooms.png" id="USk-pH-ImP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tHj-0i-Pop">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZGm-HA-Xgd" kind="relationship" relationship="rootViewController" id="U5Z-CN-OBm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qkB-m5-kwM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2139" y="2435"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="friend-button.png" width="30" height="30"/>
-        <image name="groups_button.png" width="30" height="30"/>
-        <image name="recent-button.png" width="30" height="30"/>
+        <image name="chatrooms.png" width="32" height="32"/>
+        <image name="friends.png" width="32" height="32"/>
+        <image name="recents.png" width="32" height="32"/>
         <image name="setting-button.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
