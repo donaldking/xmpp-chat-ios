@@ -554,12 +554,13 @@
             
             XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
                 
-            NSString *presenceTYPE = user.primaryResource.presence.type;
+           /* NSString *presenceTYPE = user.primaryResource.presence.type;
             if([presenceTYPE isEqualToString:@"available"])
                 friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
             else
-                friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];
-            // friendsCell.userJIDLabel.text = user.displayName;
+                friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"offline"];*/
+            
+            friendsCell.userJIDLabel.text = user.displayName;
             [self configurePhotoForCell:friendsCell user:user];
             
             

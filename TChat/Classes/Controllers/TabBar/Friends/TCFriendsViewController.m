@@ -135,7 +135,7 @@
     {
         XMPPUserCoreDataStorageObject *user = (XMPPUserCoreDataStorageObject*) obj;
         
-        NSString *presenceTYPE = user.primaryResource.presence.type;
+        //NSString *presenceTYPE = user.primaryResource.presence.type;
         //if([presenceTYPE isEqualToString:@"available"])
         [self.onlineFriendsList addObject:user];
     }
@@ -253,7 +253,7 @@
             if(segmentStatus == SegmentStatus_All) {
                 user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
                 
-                NSString *presenceTYPE = user.primaryResource.presence.type;
+                //NSString *presenceTYPE = user.primaryResource.presence.type;
                 /*if([presenceTYPE isEqualToString:@"available"])
                     friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
                 else
@@ -263,7 +263,7 @@
             {
                 user = [[self onlineFriendsList] objectAtIndex:indexPath.row];
                 
-                NSString *presenceTYPE = user.primaryResource.presence.type;
+                //NSString *presenceTYPE = user.primaryResource.presence.type;
                 //if([presenceTYPE isEqualToString:@"available"])
                 //friendsCell.userJIDLabel.text = [NSString stringWithFormat:@"%@ %@", user.displayName, @"Online"];
             }
