@@ -12,7 +12,7 @@
 #import "TCUtility.h"
 
 
-static CGFloat padding = 20.0;
+static CGFloat padding = 14.0;
 static CGFloat horizontalPadding = 20.0;
 static CGFloat phoneKeyboardHeight = 216;
 static CGFloat phoneKeyboardWidth = 320;
@@ -416,7 +416,7 @@ static CGRect keyboardEmoticonRect;
     CGSize textSize = {268, 10000.0f};
     CGSize size = [message sizeWithFont:[UIFont fontWithName:@"Helvetica Neue" size:14] constrainedToSize:textSize lineBreakMode:NSLineBreakByWordWrapping];
     size.height += padding*2;
-    CGFloat height = size.height < 65 ? 65 : size.height;
+    CGFloat height = size.height < 90 ? 90 : size.height;
     return height;
 }
 
@@ -432,6 +432,8 @@ static CGRect keyboardEmoticonRect;
     _myChatCell.message.text = [messageObject valueForKey:@"message"];
     [_myChatCell.message setFrame:CGRectMake(ScreenWidth - size.width - padding - horizontalPadding, _myChatCell.message.frame.origin.y, size.width + padding, size.height)];
     [_myChatCell.message.layer setCornerRadius:5.0f];
+    
+    _myChatCell.name.text = XAppDelegate.userNickName;
     
     NSString *dateString = [messageObject valueForKey:@"message_date"];
     int timestamp = [[NSString stringWithFormat:@"%@",dateString] intValue];
