@@ -550,6 +550,8 @@ static CGRect keyboardEmoticonRect;
                                 message,@"message",
                                 @"0",@"status",
                                 dateString,@"message_date",
+                                [NSNumber numberWithBool:NO] , @"isGroupMessage",
+                                @"CHAT", @"messageType",
                                 nil];
     
         [XAppDelegate sendAndPersistObjectForEntityName:@"Chat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {

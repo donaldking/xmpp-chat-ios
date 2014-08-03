@@ -565,6 +565,8 @@ static CGRect keyboardEmoticonRect;
                                 message,@"message",
                                 @"0",@"status",
                                 dateString,@"message_date",
+                                [NSNumber numberWithBool:YES] , @"isGroupMessage",
+                                @"GROUP_CHAT", @"messageType",
                                 nil];
         
         [XAppDelegate sendAndPersistObjectForEntityName:@"Chat" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:params andCallback:^(id completionResponse) {
@@ -592,7 +594,7 @@ static CGRect keyboardEmoticonRect;
     [mDic setValue:[[mDic valueForKey:@"sender"] stringByReplacingOccurrencesOfString:
                     [NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""] forKey:@"sender"];
     [mDic setValue:[[mDic valueForKey:@"receiver"] stringByReplacingOccurrencesOfString:
-                    [NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""] forKey:@"receiver"];
+                    [NSString stringWithFormat:@"@%@",XMPP_CONFERENCE_UAT_HOST] withString:@""] forKey:@"receiver"];
     
     //http://dev.yookoschat.com/mobileservices/v1/store_message.php?sender=zoepraise&receiver=donaldking&message=KINGKING&mid=longguid
     
