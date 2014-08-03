@@ -9,6 +9,7 @@
 #import "TCSettingsViewController.h"
 #import "TCAppDelegate.h"
 #import "TCLoginViewController.h"
+#import "TCUserStatusCell.h"
 
 @interface TCSettingsViewController ()
 
@@ -31,6 +32,9 @@
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutNotificationAction) name:@"logoutNotification" object:nil];
     
+    // This will remove extra separators from tableview
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
    // [logoutButton setHidden:YES];
 }
 
@@ -39,6 +43,7 @@
 {
     [super viewWillAppear:animated];
     [_activityIndicatorView setHidden:YES];
+    _userName.text = XAppDelegate.userNickName;
 }
 
 
@@ -73,6 +78,81 @@
     [XAppDelegate.window setRootViewController:XAppDelegate.navController];
     
 }
+
+
+#pragma mark UITableView Delegates
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+{
+	return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *statusCellIdentifier = @"statuscell";
+  
+    TCUserStatusCell *userStatusCell = (TCUserStatusCell*)[self.tableView dequeueReusableCellWithIdentifier:statusCellIdentifier];
+    
+    switch (indexPath.row) {
+        case 0:
+            userStatusCell.titleLbl.text = @"Change Status";
+            userStatusCell.userStatus.text = @"ONLINE";
+            break;
+        case 1:
+            userStatusCell.titleLbl.text = @"Sound Notification";
+            userStatusCell.userStatus.hidden = YES;
+            break;
+        case 2:
+            userStatusCell.titleLbl.text = @"Show Last Seen Online";
+            userStatusCell.userStatus.hidden = YES;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return userStatusCell;
+ 
+    
+   /* static NSString *myChatCellIdentifier = @"statuscell";
+    static NSString *friendChatCellIdentifier = @"friendChatCell";
+    
+    NSManagedObject *messageObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    //  NSString *senderDir = [messageObject valueForKey:@"direction"];
+    //  if ([senderDir isEqualToString:@"OUT"])
+    
+    NSString *senderJid = [messageObject valueForKey:@"sender"];
+    if ([senderJid isEqualToString:_currentUser])
+    {
+        
+        // Me
+        _myChatCell = (TCMyChatCell*)[self.tableView dequeueReusableCellWithIdentifier:myChatCellIdentifier];
+        [_myChatCell setBackgroundColor:[UIColor clearColor]];
+        [self configureMyChatCell:_myChatCell atIndexPath:indexPath];
+        return _myChatCell;
+    }
+    else{
+        // Friends
+        _friendChatCell = (TCFriendChatCell*)[self.tableView dequeueReusableCellWithIdentifier:friendChatCellIdentifier];
+        [self configureFriendChatCell:_friendChatCell atIndexPath:indexPath];
+        return _friendChatCell;
+    }
+    return 0;*/
+    
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+
 
 /*
 #pragma mark - Navigation

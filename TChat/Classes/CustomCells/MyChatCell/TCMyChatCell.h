@@ -11,7 +11,7 @@
 
 
 
-@interface TCMyChatCell : UITableViewCell<UIWebViewDelegate>
+@interface TCMyChatCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *date;
 @property (nonatomic, strong) IBOutlet UILabel *name;

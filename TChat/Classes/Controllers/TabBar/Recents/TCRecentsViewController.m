@@ -173,10 +173,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
              NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@", @"http://", XAppDelegate.currentHost, @"service/proxy/proxy.yookos.php?", proxyPath];
              [recentChatCell.userImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:PLACEHOLDER_IMAGE]];
             
-            
             NSInteger timestamp = [[recentObject valueForKey:@"time_stamp"] integerValue];
             NSDate *msg_date = [NSDate dateWithTimeIntervalSince1970:timestamp];
-            
             
             NSInteger differenceInDays = [TCUtility numberOfDaysBetDates: [TCUtility formattedDateFor:msg_date]];
             

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "DTAttributedTextContentView.h"
 
-@interface TCFriendChatCell : UITableViewCell<UIWebViewDelegate>
+@interface TCFriendChatCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *date;
 @property (nonatomic, strong) IBOutlet UILabel *name;

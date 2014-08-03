@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCSettingsViewController : UIViewController
+@interface TCSettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UILabel *userName;
+@property (nonatomic, strong) IBOutlet UIImageView *userProfileImg;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 - (IBAction)logoutAction:(UIButton *)sender;
+
 
 @end

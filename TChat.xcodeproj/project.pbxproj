@@ -36,6 +36,7 @@
 		D2198610198E7F7F00078382 /* friends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D219860F198E7F7F00078382 /* friends@2x.png */; };
 		D2198612198E7FA200078382 /* recents@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2198611198E7FA200078382 /* recents@2x.png */; };
 		D2198616198E809100078382 /* TCChatroomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2198615198E809100078382 /* TCChatroomsViewController.m */; };
+		D219861A198E854300078382 /* TCUserStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2198619198E854300078382 /* TCUserStatusCell.m */; };
 		D21CE98D19680D9D006E19C6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */; };
 		D21CE98F19680DB8006E19C6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE98E19680DB8006E19C6 /* CoreText.framework */; };
 		D21CE99119680DC2006E19C6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE99019680DC2006E19C6 /* ImageIO.framework */; };
@@ -129,6 +130,8 @@
 		D2198611198E7FA200078382 /* recents@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recents@2x.png"; sourceTree = "<group>"; };
 		D2198614198E809100078382 /* TCChatroomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatroomsViewController.h; sourceTree = "<group>"; };
 		D2198615198E809100078382 /* TCChatroomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChatroomsViewController.m; sourceTree = "<group>"; };
+		D2198618198E854300078382 /* TCUserStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserStatusCell.h; sourceTree = "<group>"; };
+		D2198619198E854300078382 /* TCUserStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserStatusCell.m; sourceTree = "<group>"; };
 		D21CE98C19680D9D006E19C6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		D21CE98E19680DB8006E19C6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		D21CE99019680DC2006E19C6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -428,6 +431,15 @@
 			path = Chatrooms;
 			sourceTree = "<group>";
 		};
+		D2198617198E852200078382 /* UserStatusCell */ = {
+			isa = PBXGroup;
+			children = (
+				D2198618198E854300078382 /* TCUserStatusCell.h */,
+				D2198619198E854300078382 /* TCUserStatusCell.m */,
+			);
+			path = UserStatusCell;
+			sourceTree = "<group>";
+		};
 		D21F127D1966ACA7006A8910 = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +585,7 @@
 		D2798D85196B4890008F77F9 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				D2198617198E852200078382 /* UserStatusCell */,
 				D26161AC197041B7002B77C7 /* FriendChatCell */,
 				D26161AD197041B7002B77C7 /* MyChatCell */,
 				D26161A619703D21002B77C7 /* EmoticonCell */,
@@ -853,6 +866,7 @@
 				4FC0D2481968C7180055812C /* TCGroupsViewController.m in Sources */,
 				D2798DCC196B692D008F77F9 /* AFImageRequestOperation.m in Sources */,
 				D2798DF2196CAD83008F77F9 /* TCRecentChatTableViewCell.m in Sources */,
+				D219861A198E854300078382 /* TCUserStatusCell.m in Sources */,
 				D2798DCD196B692D008F77F9 /* AFJSONRequestOperation.m in Sources */,
 				D2798DCF196B692D008F77F9 /* AFPropertyListRequestOperation.m in Sources */,
 				4FC0D2511968C7180055812C /* XMPPRoster.xcdatamodel in Sources */,
