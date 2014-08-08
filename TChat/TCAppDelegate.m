@@ -66,6 +66,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [self prepareXmppChat];
   
+    [self loadAudioFiles];
+    
     _storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     
   //  [self.window makeKeyAndVisible];
@@ -82,6 +84,28 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [self loginToChat];
     }
 }
+
+-(void) loadAudioFiles
+{
+    NSURL *sendMessageFileURL = [XAppDelegate getResourcePath:SEND_MESSAGE_SOUND ofType:@"aif"];
+    _sendMessageSound = [[AVAudioPlayer alloc] initWithContentsOfURL:sendMessageFileURL error:nil];
+    [_sendMessageSound setVolume:0.3];
+    
+    NSURL *receivedMessageFileURL = [XAppDelegate getResourcePath:RECEIVED_MESSAGE_SOUND ofType:@"wav"];
+    _receivedMessageSound = [[AVAudioPlayer alloc] initWithContentsOfURL:receivedMessageFileURL error:nil];
+    [_receivedMessageSound setVolume:0.3];
+}
+
+-(void) playSendMessageSound
+{
+    [_sendMessageSound play];
+}
+
+-(void) playReceiveMessageSound
+{
+    [_receivedMessageSound play];
+}
+
 
 -(void)loginToChat{
     [self doLoginForUsername:_username andPassword:_password andCallback:^(id completionResponse) {
@@ -390,7 +414,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
     if ([message isChatMessageWithBody])
+    {
         [self updateCoreDataWithIncomingMessage:message];
+    }
     else if ([message isChatMessage])
     {
         NSArray *elements = [message elementsForXmlns:@"http://jabber.org/protocol/chatstates"];
@@ -502,6 +528,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     chat.status = @"0";
     chat.sender = user.jidStr;
     chat.receiver = user.streamBareJidStr;
+    
+    if(! [user.jidStr isEqualToString:[NSString stringWithFormat:@"%@@%@", self.username, XMPP_UAT_HOST]])
+         [self playReceiveMessageSound];
     
     NSError *error = nil;
     if(![self.managedObjectContext save:&error])

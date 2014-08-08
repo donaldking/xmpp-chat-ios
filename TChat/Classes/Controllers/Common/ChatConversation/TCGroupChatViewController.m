@@ -582,6 +582,7 @@ static CGRect keyboardEmoticonRect;
         
         // POST TO API, SAVE TO DICTIONARY
         [self apiPostWithDictionary:params];
+        [XAppDelegate playSendMessageSound];
         
     }
     [self.textView setText:@""];

@@ -35,6 +35,8 @@
     // This will remove extra separators from tableview
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    [self configureUserProfilePhoto];
+    
    // [logoutButton setHidden:YES];
 }
 
@@ -79,6 +81,17 @@
     
 }
 
+-(void)configureUserProfilePhoto{
+    
+    //NSString *displayUsername = [[user jidStr] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"@%@",XAppDelegate.currentHost] withString:@""];
+    NSString *displayUsername = XAppDelegate.username;
+    NSString *proxyPath = [NSString stringWithFormat:@"path=/people/%@/avatar/128&return=png",displayUsername];
+    
+    NSString *avatarUrl = [NSString stringWithFormat:@"%@%@/%@%@", @"http://", XAppDelegate.currentHost, @"service/proxy/proxy.yookos.php?", proxyPath];
+    
+    [_userProfileImg setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:PLACEHOLDER_IMAGE]];
+}
+
 
 #pragma mark UITableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -100,14 +113,22 @@
         case 0:
             userStatusCell.titleLbl.text = @"Change Status";
             userStatusCell.userStatus.text = @"ONLINE";
+            userStatusCell.accessoryType = UITableViewCellAccessoryNone;
             break;
         case 1:
             userStatusCell.titleLbl.text = @"Sound Notification";
             userStatusCell.userStatus.hidden = YES;
+            
+            //TODO check flag
+            userStatusCell.accessoryType = UITableViewCellAccessoryCheckmark;
+             
             break;
         case 2:
             userStatusCell.titleLbl.text = @"Show Last Seen Online";
             userStatusCell.userStatus.hidden = YES;
+            
+            //TODO check flag
+            userStatusCell.accessoryType = UITableViewCellAccessoryCheckmark;
             break;
             
         default:
@@ -115,33 +136,6 @@
     }
     
     return userStatusCell;
- 
-    
-   /* static NSString *myChatCellIdentifier = @"statuscell";
-    static NSString *friendChatCellIdentifier = @"friendChatCell";
-    
-    NSManagedObject *messageObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    //  NSString *senderDir = [messageObject valueForKey:@"direction"];
-    //  if ([senderDir isEqualToString:@"OUT"])
-    
-    NSString *senderJid = [messageObject valueForKey:@"sender"];
-    if ([senderJid isEqualToString:_currentUser])
-    {
-        
-        // Me
-        _myChatCell = (TCMyChatCell*)[self.tableView dequeueReusableCellWithIdentifier:myChatCellIdentifier];
-        [_myChatCell setBackgroundColor:[UIColor clearColor]];
-        [self configureMyChatCell:_myChatCell atIndexPath:indexPath];
-        return _myChatCell;
-    }
-    else{
-        // Friends
-        _friendChatCell = (TCFriendChatCell*)[self.tableView dequeueReusableCellWithIdentifier:friendChatCellIdentifier];
-        [self configureFriendChatCell:_friendChatCell atIndexPath:indexPath];
-        return _friendChatCell;
-    }
-    return 0;*/
     
 }
 
@@ -149,6 +143,42 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+
+    // TODO setting option actions on clikc
+    switch (indexPath.row) {
+        case 0:
+            //TODO - Show picker of 2 options onilne and offline
+            break;
+        case 1:
+            
+            if (cell.accessoryType == UITableViewCellAccessoryNone) {
+                //TO DO - Enable sound notification
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+                //TO DO - Disable sound notification
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+            break;
+        case 2:
+            if (cell.accessoryType == UITableViewCellAccessoryNone) {
+                //TO DO - Enable show user online status
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+                //TO DO - Disable show user online status
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+
+            break;
+            
+        default:
+            break;
+    }
+
     
 }
 

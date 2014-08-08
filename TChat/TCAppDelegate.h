@@ -102,6 +102,11 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 @property (nonatomic,strong, readonly) XMPPMUC *xmppMUC;
 @property (nonatomic,strong, readonly) XMPPRoomCoreDataStorage *xmppRoomCoreDataStore;
 
+//sounds
+@property (nonatomic, retain) AVAudioPlayer *sendMessageSound;
+@property (nonatomic, retain) AVAudioPlayer *receivedMessageSound;
+-(void) playSendMessageSound;
+-(void) playReceiveMessageSound;
 
 - (void) prepareXmppChat;
 - (void) setupStream;

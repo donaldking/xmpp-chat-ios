@@ -23,4 +23,7 @@
 #define USE_MEMORY_STORAGE 1
 #define USE_HYBRID_STORAGE 0
 
+#define SEND_MESSAGE_SOUND @"send_message"
+#define RECEIVED_MESSAGE_SOUND @"received_message"
+
 #endif

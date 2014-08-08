@@ -51,6 +51,8 @@
 		D21F130E19670979006A8910 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130D19670979006A8910 /* SystemConfiguration.framework */; };
 		D21F13101967097F006A8910 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F130F1967097F006A8910 /* CoreData.framework */; };
 		D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13111967099C006A8910 /* libresolv.dylib */; };
+		D24C054F1993E5BF00200C76 /* received_message.wav in Resources */ = {isa = PBXBuildFile; fileRef = D24C054D1993E5BF00200C76 /* received_message.wav */; };
+		D24C05501993E5BF00200C76 /* send_message.aif in Resources */ = {isa = PBXBuildFile; fileRef = D24C054E1993E5BF00200C76 /* send_message.aif */; };
 		D261619C19703151002B77C7 /* TCChatConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D261619B19703151002B77C7 /* TCChatConversationViewController.m */; };
 		D26161A119703BB1002B77C7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A019703BB1002B77C7 /* MBProgressHUD.m */; };
 		D26161A519703CB4002B77C7 /* TCEmoticonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A419703CB4002B77C7 /* TCEmoticonViewController.m */; };
@@ -148,6 +150,8 @@
 		D21F130D19670979006A8910 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D21F130F1967097F006A8910 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D21F13111967099C006A8910 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		D24C054D1993E5BF00200C76 /* received_message.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = received_message.wav; sourceTree = "<group>"; };
+		D24C054E1993E5BF00200C76 /* send_message.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = send_message.aif; sourceTree = "<group>"; };
 		D261619A19703151002B77C7 /* TCChatConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatConversationViewController.h; sourceTree = "<group>"; };
 		D261619B19703151002B77C7 /* TCChatConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChatConversationViewController.m; sourceTree = "<group>"; };
 		D261619D19703B2A002B77C7 /* TCChatMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatMessageProtocol.h; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 		4FC0D20F1968C7170055812C /* TChat */ = {
 			isa = PBXGroup;
 			children = (
+				D24C054C1993E5BF00200C76 /* Sounds */,
 				4FC0D2141968C7170055812C /* Classes */,
 				4FC0D22F1968C7170055812C /* CoreDataModels */,
 				4FC0D2381968C7180055812C /* Images */,
@@ -480,6 +485,15 @@
 				D21F12AB1966ACA8006A8910 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D24C054C1993E5BF00200C76 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D24C054D1993E5BF00200C76 /* received_message.wav */,
+				D24C054E1993E5BF00200C76 /* send_message.aif */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		D26161981970311B002B77C7 /* Common */ = {
@@ -812,7 +826,9 @@
 				D2198612198E7FA200078382 /* recents@2x.png in Resources */,
 				4FC0D2551968C7180055812C /* groups_button@2x.png in Resources */,
 				D261658919709D9D002B77C7 /* SORelativeDateTransformer.bundle in Resources */,
+				D24C05501993E5BF00200C76 /* send_message.aif in Resources */,
 				D2798D8B196B48E6008F77F9 /* TCFriendsTableViewCell.xib in Resources */,
+				D24C054F1993E5BF00200C76 /* received_message.wav in Resources */,
 				4FC0D2531968C7180055812C /* InfoPlist.strings in Resources */,
 				4FC0D2441968C7180055812C /* Main_iPad.storyboard in Resources */,
 				D26161AB19703F0D002B77C7 /* TC_EmoticonSymbols.plist in Resources */,
