@@ -512,6 +512,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 -(void) updateCoreDataWithIncomingMessage:(XMPPMessage *)message
 {
+    
+    XMPPJID *fromUserString = [message from];
+    if([fromUserString.user isEqualToString:self.username])
+        return;
+    
     //determine the sender
     XMPPUserCoreDataStorageObject *user = [self.xmppRosterStorage userForJID:[message from]
                                                                   xmppStream:self.xmppStream
