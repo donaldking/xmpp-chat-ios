@@ -37,6 +37,10 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomJID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Setting" representedClassName="Setting" syncable="YES">
+        <attribute name="isSoundOn" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="showLastSeen" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
     <entity name="UserProfile" syncable="YES">
         <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -45,5 +49,6 @@
         <element name="RecentChat" positionX="-54" positionY="117" width="128" height="208"/>
         <element name="Room" positionX="-54" positionY="117" width="128" height="73"/>
         <element name="UserProfile" positionX="-54" positionY="135" width="128" height="60"/>
+        <element name="Setting" positionX="-45" positionY="144" width="128" height="75"/>
     </elements>
 </model>

@@ -120,7 +120,10 @@
             userStatusCell.userStatus.hidden = YES;
             
             //TODO check flag
-            userStatusCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            if([XAppDelegate isSettingOnFor:SOUND_SETTING])
+                userStatusCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            else
+                userStatusCell.accessoryType = UITableViewCellAccessoryNone;
              
             break;
         case 2:
@@ -128,7 +131,11 @@
             userStatusCell.userStatus.hidden = YES;
             
             //TODO check flag
-            userStatusCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            if([XAppDelegate isSettingOnFor:LAST_SEEN_SETTING])
+                userStatusCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            else
+                userStatusCell.accessoryType = UITableViewCellAccessoryNone;
+            
             break;
             
         default:
@@ -162,6 +169,7 @@
                 //TO DO - Disable sound notification
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
+            [XAppDelegate updateSettingFor:SOUND_SETTING];
             break;
         case 2:
             if (cell.accessoryType == UITableViewCellAccessoryNone) {
@@ -172,7 +180,7 @@
                 //TO DO - Disable show user online status
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
-
+            [XAppDelegate updateSettingFor:LAST_SEEN_SETTING];
             break;
             
         default:

@@ -9,6 +9,7 @@
 #import "TCAppDelegate.h"
 
 #import "TCTabBarController.h"
+#import "Setting.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -85,33 +86,26 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 }
 
--(void) loadAudioFiles
-{
-    NSURL *sendMessageFileURL = [XAppDelegate getResourcePath:SEND_MESSAGE_SOUND ofType:@"aif"];
-    _sendMessageSound = [[AVAudioPlayer alloc] initWithContentsOfURL:sendMessageFileURL error:nil];
-    [_sendMessageSound setVolume:0.3];
-    
-    NSURL *receivedMessageFileURL = [XAppDelegate getResourcePath:RECEIVED_MESSAGE_SOUND ofType:@"wav"];
-    _receivedMessageSound = [[AVAudioPlayer alloc] initWithContentsOfURL:receivedMessageFileURL error:nil];
-    [_receivedMessageSound setVolume:0.3];
-}
-
--(void) playSendMessageSound
-{
-    [_sendMessageSound play];
-}
-
--(void) playReceiveMessageSound
-{
-    [_receivedMessageSound play];
-}
-
-
 -(void)loginToChat{
     [self doLoginForUsername:_username andPassword:_password andCallback:^(id completionResponse) {
         //
         ////NSLog(@"Login completion: %@",completionResponse);
         
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithBool:YES], @"isSoundOn",
+                                    [NSNumber numberWithBool:YES], @"showLastSeen",
+                                    nil];
+        
+        
+        [self persistObjectForEntityName:@"Setting" inManagedObjectContext:XAppDelegate.managedObjectContext  withDictionary:dictionary andCallback:^(id completionResponse){
+           
+           //NSLog(@"Persistence response: %@",completionResponse);
+           if ([completionResponse isEqualToString:@"persistObjectForEntityName:OK"]) {
+               //[self bootStrap];
+               
+               //NSLog(@"Username persisted");
+           }}];
+
         TCTabBarController *tabBarController=[_storyboard instantiateViewControllerWithIdentifier:@"tabBar"];
         [XAppDelegate.window setRootViewController:tabBarController];
 
@@ -685,6 +679,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }];
     [self clearObjectsForEntityName:@"Room" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
     }];
+    [self clearObjectsForEntityName:@"Setting" inManagedObjectContext:self.managedObjectContext andCallback:^(id completionResponse) {
+    }];
     
     [xmppvCardStorage clearvCardTempForJID:[xmppStream myJID] xmppStream:xmppStream];
     [xmppRosterStorage clearAllUsersAndResourcesForXMPPStream:xmppStream];
@@ -1111,6 +1107,90 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     {
         completionResponse(@"checkIfObjectExistsForEntityName:NO");
     }
+}
+
+#pragma mark - App Setting - Sound and Last Seen
+
+
+-(void) loadAudioFiles
+{
+    NSURL *sendMessageFileURL = [XAppDelegate getResourcePath:SEND_MESSAGE_SOUND ofType:@"aif"];
+    _sendMessageSound = [[AVAudioPlayer alloc] initWithContentsOfURL:sendMessageFileURL error:nil];
+    [_sendMessageSound setVolume:0.3];
+    
+    NSURL *receivedMessageFileURL = [XAppDelegate getResourcePath:RECEIVED_MESSAGE_SOUND ofType:@"wav"];
+    _receivedMessageSound = [[AVAudioPlayer alloc] initWithContentsOfURL:receivedMessageFileURL error:nil];
+    [_receivedMessageSound setVolume:0.3];
+}
+
+-(void) playSendMessageSound
+{
+    if([self isSettingOnFor:SOUND_SETTING])
+        [_sendMessageSound play];
+}
+
+-(void) playReceiveMessageSound
+{
+    if([self isSettingOnFor:SOUND_SETTING])
+        [_receivedMessageSound play];
+}
+
+-(BOOL) isSettingOnFor:(SettingType) type
+{
+    NSArray *fetchedObjects = [self fetchObjectsForEntityName:@"Setting" withPredicate:nil inManagedObjectContext:XAppDelegate.managedObjectContext setResultType:NSManagedObjectResultType];
+    
+    Setting* soundSetting = [fetchedObjects lastObject];
+ 
+    if(type == SOUND_SETTING)
+        return [soundSetting.isSoundOn boolValue];
+    else
+        return [soundSetting.showLastSeen boolValue];
+        
+}
+
+-(void) updateSettingFor:(SettingType) type
+{
+    NSDictionary *dictionary = nil;
+    
+    //   [NSNumber numberWithBool:YES], @"isSoundOn",
+    //[NSNumber numberWithBool:YES], @"showLastSeen",
+
+    if(type == SOUND_SETTING)
+    {
+        if([self isSettingOnFor:SOUND_SETTING])//sound is on
+            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithBool:NO],@"isSoundOn",
+                      nil];
+        else
+            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithBool:YES],@"isSoundOn",
+                          nil];
+    }
+    else if(type == LAST_SEEN_SETTING)
+    {
+        if([self isSettingOnFor:LAST_SEEN_SETTING])//last seen is on
+            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithBool:NO],@"showLastSeen",
+                          nil];
+        else
+            dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithBool:YES],@"showLastSeen",
+                          nil];
+    }
+
+    [XAppDelegate checkIfObjectExistsForEntityName:@"Setting" withPredicate:nil inManagedObjectContext:XAppDelegate.managedObjectContext andCallback:^(id completionResponse) {
+        if ([completionResponse isEqualToString:@"checkIfObjectExistsForEntityName:YES"]) {
+            [XAppDelegate updateAttributeForEntityName:@"Setting" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andPredicate:nil andCallback:^(id completionResponse){
+                //NSLog(@"update Recent Chat model");
+            }];
+        }
+        else{
+            [XAppDelegate persistObjectForEntityName:@"Setting" inManagedObjectContext:XAppDelegate.managedObjectContext withDictionary:dictionary andCallback:^(id completionResponse){
+                //NSLog(@"persist Recent Chat model");
+            }];
+        }
+    }];
+
 }
 
 #pragma mark - Application's Documents directory

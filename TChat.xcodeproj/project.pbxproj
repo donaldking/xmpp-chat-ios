@@ -53,6 +53,7 @@
 		D21F13121967099C006A8910 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F13111967099C006A8910 /* libresolv.dylib */; };
 		D24C054F1993E5BF00200C76 /* received_message.wav in Resources */ = {isa = PBXBuildFile; fileRef = D24C054D1993E5BF00200C76 /* received_message.wav */; };
 		D24C05501993E5BF00200C76 /* send_message.aif in Resources */ = {isa = PBXBuildFile; fileRef = D24C054E1993E5BF00200C76 /* send_message.aif */; };
+		D24C05561997F73E00200C76 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = D24C05551997F73E00200C76 /* Setting.m */; };
 		D261619C19703151002B77C7 /* TCChatConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D261619B19703151002B77C7 /* TCChatConversationViewController.m */; };
 		D26161A119703BB1002B77C7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A019703BB1002B77C7 /* MBProgressHUD.m */; };
 		D26161A519703CB4002B77C7 /* TCEmoticonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26161A419703CB4002B77C7 /* TCEmoticonViewController.m */; };
@@ -152,6 +153,8 @@
 		D21F13111967099C006A8910 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		D24C054D1993E5BF00200C76 /* received_message.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = received_message.wav; sourceTree = "<group>"; };
 		D24C054E1993E5BF00200C76 /* send_message.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = send_message.aif; sourceTree = "<group>"; };
+		D24C05541997F73E00200C76 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		D24C05551997F73E00200C76 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		D261619A19703151002B77C7 /* TCChatConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatConversationViewController.h; sourceTree = "<group>"; };
 		D261619B19703151002B77C7 /* TCChatConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChatConversationViewController.m; sourceTree = "<group>"; };
 		D261619D19703B2A002B77C7 /* TCChatMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChatMessageProtocol.h; sourceTree = "<group>"; };
@@ -672,6 +675,8 @@
 				D2E8A35A19788606006CD97E /* RecentChat.m */,
 				D2CAF13D1981931900DAEB3B /* Room.h */,
 				D2CAF13E1981931900DAEB3B /* Room.m */,
+				D24C05541997F73E00200C76 /* Setting.h */,
+				D24C05551997F73E00200C76 /* Setting.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -858,6 +863,7 @@
 				4FC0D24E1968C7180055812C /* XMPPMessageArchiving.xcdatamodel in Sources */,
 				D2CAF1421981BA5D00DAEB3B /* TCCreateGroupViewController.m in Sources */,
 				D26161A519703CB4002B77C7 /* TCEmoticonViewController.m in Sources */,
+				D24C05561997F73E00200C76 /* Setting.m in Sources */,
 				4FC0D2471968C7180055812C /* TCLoginViewController.m in Sources */,
 				D2798D84196B368D008F77F9 /* TCFriendsViewController.m in Sources */,
 				4FC0D24B1968C7180055812C /* TCTabBarController.m in Sources */,

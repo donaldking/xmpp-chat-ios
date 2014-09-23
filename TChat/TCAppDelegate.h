@@ -32,10 +32,17 @@
 #import "TCChatConnectionProtocol.h"
 #import "TCConstants.h"
 
+
 #define XAppDelegate ((TCAppDelegate*)[[UIApplication sharedApplication] delegate])
 
 typedef void(^chatMessageSentResponseBlock) (NSString *response);
 typedef void(^requestCompletedBlock) (id completionResponse);
+
+typedef NS_ENUM(int, SettingType){
+    SOUND_SETTING,
+    LAST_SEEN_SETTING,
+};
+
 
 @interface TCAppDelegate : UIResponder <UIApplicationDelegate, XMPPReconnectDelegate, TCChatConnectionProtocol, XMPPMUCDelegate,XMPPRoomDelegate>
 {
@@ -77,6 +84,8 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 @property (nonatomic, strong) NSString *thisPassword;
 @property (nonatomic, strong) NSString *XMPP_RESOURCE_NAME;
 @property (nonatomic, strong) NSString *currentHost;
+
+@property (nonatomic) SettingType currentSettingType;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -146,8 +155,13 @@ typedef void(^requestCompletedBlock) (id completionResponse);
 
 -(id)getResourcePath:(NSString*)resource ofType:(NSString*)type;
 
+
 #pragma mark - CoreData
 - (void) saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
+#pragma mark - App Setting
+-(BOOL) isSettingOnFor:(SettingType) type;
+-(void) updateSettingFor:(SettingType) type;
 
 @end
