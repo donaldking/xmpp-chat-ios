@@ -57,6 +57,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     _keyChain = [[KeychainItemWrapper alloc] initWithIdentifier:[[NSBundle mainBundle] bundleIdentifier]  accessGroup:nil];
     
+    [_keyChain resetKeychainItem];
+    
      _currentHost = XMPP_UAT_HOST;
     
     _XMPP_RESOURCE_NAME = [[NSString stringWithFormat:@"TChat-iOS-%@-%@",[[UIDevice currentDevice] localizedModel],[[[UIDevice currentDevice] identifierForVendor] UUIDString]] stringByReplacingOccurrencesOfString:@" " withString:@""];
